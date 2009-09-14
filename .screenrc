@@ -4,3 +4,7 @@ autodetach on
 attrcolor b ".I"
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 defbce "on"
+
+# let me know that I'm in a screen session (bash prompt)
+# I don't particularly like caption or hardstatusline...
+setenv PROMPT_HOST "[screen]"

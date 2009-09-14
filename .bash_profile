@@ -4,6 +4,8 @@
 # runs your .bashrc and is recommended by the bash info pages.
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-# add @host to after name so I know where I am
-PS1='\[\e[1;32m\]\u@\h \[\e[1;34m\]\w \[\e[1;$(($??31:34))m\]\$\[\e[0m\] '
+# add @hostname to after name so I know where I am
+if [ -z "${PROMPT_HOST}" ]; then
+    PROMPT_HOST="@`hostname`"
+fi
 

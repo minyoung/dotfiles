@@ -63,7 +63,7 @@ PATH=${PATH}:${HOME}/.python/bin
 PATH=${PATH}:${HOME}/.gem/ruby/1.8/bin
 
 # blue/red $ depending on exit status of previous command
-PS1='\[\e[1;32m\]\u \[\e[1;34m\]\w \[\e[1;$(($??31:34))m\]\$\[\e[0m\] '
+PS1='\[\e[1;32m\]\u${PROMPT_HOST} \[\e[1;34m\]\w \[\e[1;$(($??31:34))m\]\$\[\e[0m\] '
 
 export XDG_CONFIG_HOME=~/.config
 export XDG_DATA_HOME=~/.cache
