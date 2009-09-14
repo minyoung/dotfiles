@@ -29,6 +29,6 @@ diff.changed = white bold
 diff.trailingwhitespace = bold red_background
 
 [pager]
-attend = log diff qdiff
+attend = log diff help
 
 ; vim: set ft=dosini :
