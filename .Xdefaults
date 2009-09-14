@@ -1,0 +1,82 @@
+Xcursor.theme: haematite
+
+XTerm*background: #1c1c1c
+XTerm*foreground: #d0d0d0
+XTerm*selectToClipboard: true
+XTerm*faceName: :pixelsize=14
+! XTerm*faceName: Microsoft YaHei:pixelsize=16
+
+URxvt.background: #1c1c1c
+URxvt.foreground: #d0d0d0
+URxvt.scrollBar: false
+URxvt.font: xft:Monospace:pixelsize=16,\
+            xft:Microsoft YaHei:pixelsize=32,\
+            xft:AR PL ZenKai Uni:pixelsize=32,\
+
+
+URxvt.color0:   #000000
+URxvt.color1:   #A80000
+URxvt.color2:   #00A800
+URxvt.color3:   #A8A800
+URxvt.color4:   #0000A8
+URxvt.color5:   #A800A8
+URxvt.color6:   #00A8A8
+URxvt.color7:   #A8A8A8
+
+URxvt.color8:   #000054
+URxvt.color9:   #FF0054
+URxvt.color10:  #00FF54
+URxvt.color11:  #FFFF54
+URxvt.color12:  #0000FF
+URxvt.color13:  #FF00FF
+URxvt.color14:  #00FFFF
+URxvt.color15:  #FFFFFF
+
+
+
+XLock.mode: blank
+XLock.timeout: 5
+XLock.resetsaver: off
+XLock.username:
+XLock.password:
+XLock.font: -*-Helvetica-medium-r-normal--17-*-*-*-*-*-*
+XLock.planfont: -*-Helvetica-medium-r-normal--17-*-*-*-*-*-*
+XLock.dpmsstandby: 1
+XLock.dpmssuspend: 5
+XLock.dpmsoff: 10
+
+Xautolock.time: 5
+Xautolock.corners: +000
+Xautolock.cornersize: 2
+Xautolock.cornerdelay: 3
+
+
+!font settings
+xscreensaver.Dialog.headingFont:        -*-Helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:           -*-Helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:          -*-Helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:          -*-Helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:         -*-Helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:           -*-Helvetica-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:         -*-Helvetica-bold-r-*-*-12-*-*-*-*-*-*-*
+!general dialog box (affects main hostname, username, password text)
+xscreensaver.Dialog.foreground:         #ffffff
+xscreensaver.Dialog.background:         #111111
+xscreensaver.Dialog.topShadowColor:     #111111
+xscreensaver.Dialog.bottomShadowColor:  #111111
+xscreensaver.Dialog.Button.foreground:  #666666
+xscreensaver.Dialog.Button.background:  #ffffff
+!username/password input box and date text colour
+xscreensaver.Dialog.text.foreground:    #666666
+xscreensaver.Dialog.text.background:    #ffffff
+xscreensaver.Dialog.internalBorderWidth:24
+xscreensaver.Dialog.borderWidth:        20
+xscreensaver.Dialog.shadowThickness:    2
+!timeout bar (background is actually determined by Dialog.text.background)
+!xscreensaver.passwd.thermometer.foreground:  #ff0000
+xscreensaver.passwd.thermometer.foreground:  #000000
+xscreensaver.passwd.thermometer.background:  #000000
+xscreensaver.passwd.thermometer.width:       8
+!datestamp format--see the strftime(3) manual page for details
+xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
+

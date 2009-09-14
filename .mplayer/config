@@ -1,0 +1,4 @@
+# Write your default config options here!
+
+nojoystick = "yes"
+stop-xscreensaver = "yes"

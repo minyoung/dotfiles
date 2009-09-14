@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#arg count checking
+if [ -z "$1" ]; then
+    echo "$0 [JAVA_ARGS] file[.[class]] [CLASS_ARGS]"
+    echo
+    echo "strips off .[class] at end of class argument if present"
+    echo "passes everything else as is to 'java' and program"
+    exit
+fi
+
+#arguments to be passed to java
+ARGS=''
+#in java arguments (have a - in front)
+JARG=true
+
+#loop through the arguments
+for i in "$@"; do
+    #if still in java arguments, check for '-'
+    if [ $JARG = true ]; then
+        if [ -z `echo "$i" | grep '^-'` ]; then
+            #once past java args, check for .[class] and end in java args
+            JARG=false
+            #get rid of the .[class] at the end of the file name
+            ARGS+=" `echo "$i" | sed -r 's/\.(class)?$//'`"
+        else #still java argument
+            ARGS+=" $i"
+        fi
+    else
+        ARGS+=" $i"
+    fi
+done
+
+#echo java $ARGS
+java $ARGS
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+TARGET=""
+if [ -z "$1" ]; then
+    TARGET="."
+else
+    TARGET="$1"
+fi
+#find "$TARGET" -type f -print0 | xargs -0 chmod -x
+find "$TARGET" -type f -exec chmod -x {} \;
+find "$TARGET" -type f -exec chmod go-w {} \;
+find "$TARGET" -type d -exec chmod go-w {} \;

@@ -1,0 +1,34 @@
+[extensions]
+crecord =
+; http://bitbucket.org/edgimar/crecord/wiki/Home
+; choose what to commit with line-level granularity
+color =
+pager =
+
+[ui]
+username = Min-Young Wu <mwu368@gmail.com>
+ssh = ssh -C
+
+[color]
+status.modified = green
+status.added = yellow
+status.removed = red
+status.deleted = blue
+status.unknown = cyan
+status.ignored = grey
+status.clean = none
+status.copied = none
+diff.diffline = yellow bold
+diff.extended = cyan bold
+diff.file_a = red bold
+diff.file_b = green bold
+diff.hunk = magenta bold
+diff.deleted = red bold
+diff.inserted = green bold
+diff.changed = white bold
+diff.trailingwhitespace = bold red_background
+
+[pager]
+attend = log diff qdiff
+
+; vim: set ft=dosini :

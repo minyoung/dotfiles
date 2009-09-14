@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#arg count checking
+if [ -z "$1" ]; then
+    echo "$0 [JAVAC_ARGS] file[.[java]]"
+    echo
+    echo "adds on [.]java at end of class argument if present"
+    echo "passes everything else as is to 'javac'"
+    exit
+fi
+
+#arguments to be passed to javac
+JARGS=''
+FILES=''
+IN_JARGS=true
+
+#loop through the arguments
+for i in "$@"; do
+    #in still in javac args, then check current argument for
+    #preceding '-', meaning still javac args
+    if [ $IN_JARGS = true ]; then
+        if [ -n `echo "$i" | grep '^-'` ]; then
+            IN_JARGS=false
+        fi
+    fi
+
+    #if javac args, just pass it along
+    if [ $IN_JARGS = true ]; then
+        JARGS+=" $i"
+    #else add on the [.[java]]
+    else
+        FILES+=" `echo "$i" | sed -r 's/(\.(java)?)?$/.java/'`"
+    fi
+done
+
+#echo javac $JARGS $FILES
+javac $JARGS $FILES
+

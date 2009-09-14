@@ -1,0 +1,36 @@
+xoria256.vim
+http://www.vim.org/scripts/script.php?script_id=2140
+Low contrast 256 color scheme
+
+a.vim
+http://www.vim.org/scripts/script.php?script_id=31
+:A to alternate between .cpp/.h files
+
+snipMate.vim
+http://www.vim.org/scripts/script.php?script_id=2540
+Very cool snippets functionality
+
+commentToggle.vim
+Where did I get this from? O.o
+<Leader>; to toggle comment on/off
+
+toggle_words.vim
+http://www.vim.org/scripts/script.php?script_id=1676
+:ToggleWord to toggle word under cursor (true->false, etc)
+
+surround.vim
+http://www.vim.org/scripts/script.php?script_id=1697
+cs'" to change surrounding single quote to double quotes
+
+ZoomWinPlugin.vim
+http://www.vim.org/scripts/script.php?script_id=508
+<C-W>o to zoom in/out of current split window
+
+tasklist.vim
+http://www.vim.org/scripts/script.php?script_id=2607
+:TaskList to show a tasklist (TODO, FIXME, etc)
+
+closetag.vim
+http://www.vim.org/scripts/script.php?script_id=13
+<C-_> to close a tag
+

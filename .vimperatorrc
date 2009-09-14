@@ -1,0 +1,19 @@
+set runtimepath=/home/min/.vimperator
+
+" set guioptions+=mT
+
+set mainecoon=am
+" http://coderepos.org/share/browser/lang/javascript/vimperator-plugins/trunk/maine_coon.js
+" requires:
+" http://coderepos.org/share/browser/lang/javascript/vimperator-plugins/trunk/_libly.js
+" hides command line when not in use
+
+set complete=l
+set wildoptions=auto
+
+js function disable() { liberator.execute(':set guioptions=Tnbrm'); modes.passAllKeys = true; }
+js function enable() { liberator.execute(':set guioptions=rb'); modes.passAllKeys = false; }
+command disable javascript disable()
+command enable javascript enable()
+
+" vim: set ft=vimperator :
