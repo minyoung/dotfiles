@@ -3,7 +3,12 @@
   [Layer]	{2}
 [end]
 
-[group]
+[group] (workspace)
 [app] (name=thunderbird-bin)
 [app] (name=Navigator)
+[app] (name=pidgin)
+[end]
+
+[group] (workspace)
+[app] (name=xterm)
 [end]
