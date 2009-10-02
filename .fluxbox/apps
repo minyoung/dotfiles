@@ -1,3 +1,5 @@
+[startup] {xterm}
+
 [app] (name=fbrun)
   [Position]	(WINCENTER)	{0 0}
   [Layer]	{2}
@@ -7,6 +9,7 @@
 [app] (name=thunderbird-bin)
 [app] (name=Navigator)
 [app] (name=pidgin)
+[app] (arora)
 [end]
 
 [group] (workspace)

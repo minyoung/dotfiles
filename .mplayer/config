@@ -2,3 +2,4 @@
 
 nojoystick = "yes"
 stop-xscreensaver = "yes"
+fs = "yes"

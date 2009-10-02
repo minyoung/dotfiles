@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# fluxbox startup-script:
+#
+# Lines starting with a '#' are ignored.
+
+# fluxbox doesn't seem to source the the bashrc :/
+# since I have stuff in there, source it now
+source ${HOME}/.bashrc
+
+fbsetbg "${HOME}/bin/background.jpg"
+xautolock -secure &
+
+# set the keyboard mouse acceleration
+xkbset ma 20 20 20 100 10
+
+# skippy-xd &
+
+# Change your keymap:
+#xmodmap "${HOME}/.Xmodmap"
+
+# Applications you want to run with fluxbox.
+# MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN ''&'' AT THE END.
+#
+# unclutter -idle 2 &
+# wmnd &
+# wmsmixer -w &
+# idesk &
+
+# And last but not least we start fluxbox.
+# Because it is the last app you have to run it with ''exec'' before it.
+
+exec fluxbox
+# or if you want to keep a log:
+# exec fluxbox -log "/home/min/.fluxbox/log"

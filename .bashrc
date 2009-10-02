@@ -58,9 +58,9 @@ alias amke='make'
 
 # my binary paths
 export PYTHONPATH=.:${HOME}/.python:${HOME}/.python/lib/python
-PATH=${PATH}:${HOME}/bin
-PATH=${PATH}:${HOME}/.python/bin
-PATH=${PATH}:${HOME}/.gem/ruby/1.8/bin
+PATH+=:${HOME}/bin
+PATH+=:${HOME}/.python/bin
+PATH+=:${HOME}/.gem/ruby/1.8/bin
 
 # blue/red $ depending on exit status of previous command
 PS1='\[\e[1;32m\]\u${PROMPT_HOST} \[\e[1;34m\]\w \[\e[1;$(($??31:34))m\]\$\[\e[0m\] '
@@ -68,6 +68,7 @@ PS1='\[\e[1;32m\]\u${PROMPT_HOST} \[\e[1;34m\]\w \[\e[1;$(($??31:34))m\]\$\[\e[0
 export XDG_CONFIG_HOME=~/.config
 export XDG_DATA_HOME=~/.cache
 
+export LANG=en_GB.UTF-8
 
 #export LC_CTYPE="zh_CN.utf8"
 #export XMODIFIERS=@im=SCIM
