@@ -1,0 +1,21 @@
+dev-java/sun-jdk -doc nsplugin
+dev-lang/ghc doc
+dev-lang/php apache2 cgi ctype doc gd mysqli pcre pdo reflection session simplexml tokenizer -sqlite
+dev-lang/python doc tk
+dev-lang/ruby doc
+sys-devel/gcc fortran gcj
+
+app-doc/doxygen doc
+dev-python/epydoc doc
+dev-python/ipython doc
+
+dev-python/pygame doc
+dev-python/pyopengl doc
+
+dev-python/pygtk doc
+dev-python/PyQt4 doc examples webkit
+dev-python/wxpython doc
+x11-libs/gtk+ doc
+x11-libs/qt doc immqt-bc
+x11-libs/wxGTK doc
+

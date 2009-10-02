@@ -1,0 +1,6 @@
+dev-libs/apr-util -sqlite
+dev-python/pycairo numeric
+dev-python/imaging -X
+media-libs/libtheora encode
+x11-libs/cairo glitz
+x11-libs/libX11 xcb

@@ -1,0 +1,14 @@
+dev-python/pylons
+dev-python/webtest
+dev-python/webhelpers
+dev-python/simplejson
+dev-python/pastescript
+dev-python/webob
+dev-python/decorator
+dev-python/mako
+dev-python/formencode
+dev-python/tempita
+dev-python/paste
+dev-python/pastedeploy
+dev-python/beaker
+dev-python/weberror

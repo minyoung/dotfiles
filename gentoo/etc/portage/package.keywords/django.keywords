@@ -1,0 +1,8 @@
+dev-python/flup
+dev-python/jinja2
+dev-python/sphinx
+dev-python/django
+
+www-apache/mod_wsgi
+dev-python/sqlalchemy
+
