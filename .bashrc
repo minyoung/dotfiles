@@ -51,6 +51,7 @@ alias lz='unzip -l'
 alias p='python'
 alias ip='ipython'
 alias vm='valgrind --leak-check=full'
+alias mi='mv -i'
 
 # fix some typos
 alias sl='ls'
