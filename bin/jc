@@ -2,7 +2,7 @@
 
 #arg count checking
 if [ -z "$1" ]; then
-    echo "$0 [JAVAC_ARGS] file[.[java]]"
+    echo "`basename $0` [JAVAC_ARGS] file[.[java]]"
     echo
     echo "adds on [.]java at end of class argument if present"
     echo "passes everything else as is to 'javac'"

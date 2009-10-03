@@ -2,7 +2,7 @@
 
 #arg count checking
 if [ -z "$1" ]; then
-    echo "$0 [JAVA_ARGS] file[.[class]] [CLASS_ARGS]"
+    echo "`basename $0` [JAVA_ARGS] file[.[class]] [CLASS_ARGS]"
     echo
     echo "strips off .[class] at end of class argument if present"
     echo "passes everything else as is to 'java' and program"
