@@ -51,8 +51,8 @@ def process_line(line, outfile):
         directory = line
 
     # always have a leading slash
-    if not line.startswith('/'):
-        line = '/' + line
+    if not directory.startswith('/'):
+        directory = '/' + directory
 
     # if no title, use the last directory name as title
     if title == '':
@@ -60,7 +60,7 @@ def process_line(line, outfile):
 
     # write out the commands now
     outfile.write("chdir ${%s}%s\n" %(ENV_ROOT_DIR, directory))
-    outfile.write("screen -t %s\n" %title)
+    outfile.write("screen -t '%s'\n" %title)
     outfile.write("exec ls --color\n")
     outfile.write("\n")
     # print "%s : %s" %(title, directory)
