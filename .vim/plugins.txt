@@ -11,7 +11,7 @@ http://www.vim.org/scripts/script.php?script_id=2540
 Very cool snippets functionality
 
 commentToggle.vim
-Where did I get this from? O.o
+http://www.vim.org/scripts/script.php?script_id=2431
 <Leader>; to toggle comment on/off
 
 toggle_words.vim
