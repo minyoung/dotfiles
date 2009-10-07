@@ -1,11 +1,13 @@
 set nocompatible
 
 " pretty colors and looks
-if &t_Co == 256
+" try my preferred colorscheme first (xoria256),
+" if that fails, then use a default colorscheme that *should* be present
+try
     colorscheme xoria256
-else
-    set background=dark
-endif
+catch /.*/
+    colorscheme desert
+endtry
 syntax on
 syn sync fromstart
 set cursorline
@@ -33,10 +35,7 @@ set smartcase
 
 " folding
 set foldenable
-set foldmarker={,}
-set foldmethod=marker
-" set foldmethod=syntax
-" set foldmethod=indent
+" see near end of file for more folding stuff
 
 " tab stuff
 set expandtab
@@ -152,11 +151,27 @@ nnoremap Y y$
 " more informative <C-g>
 nnoremap <C-g> 2<C-g>
 
-" some file stuff
-autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl set filetype glsl
-autocmd BufNewFile,BufRead *.draft set filetype draft
+" some file type detection
+autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl set filetype=glsl
 autocmd BufNewFile,BufRead *.as set filetype=actionscript
+autocmd BufNewFile,BufRead *.mxml set filetype=mxml
+
+" let the default foldmethod be marker, which is the most common
+set foldmarker={,}
+set foldmethod=marker
+autocmd FileType cpp set foldmethod=syntax
+autocmd FileType html set foldmethod=indent
+autocmd FileType python set foldmethod=indent
+autocmd FileType ruby set foldmethod=syntax
+autocmd FileType tex set foldmarker={{{,}}}
+
+" some other file type specific things
+autocmd FileType html set shiftwidth=2 softtabstop=2
+" I prefer rest syntax
+autocmd FileType rst set syntax=rest
+autocmd FileType ruby set shiftwidth=2 softtabstop=2
+autocmd FileType tex set shiftwidth=2 softtabstop=2
 
 " when editing a file, always jump to the last cursor position
-:au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 

@@ -34,3 +34,8 @@ closetag.vim
 http://www.vim.org/scripts/script.php?script_id=13
 <C-_> to close a tag
 
+syntax files:
+glsl: http://www.vim.org/scripts/script.php?script_id=1002
+actionscript: http://www.vim.org/scripts/script.php?script_id=1061
+mxml: http://www.abdulqabiz.com/blog/archives/2007/10/12/vim-actionscript-and-mxml-syntax-files/
+rest: http://www.vim.org/scripts/script.php?script_id=973
