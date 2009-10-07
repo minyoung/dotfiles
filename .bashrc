@@ -38,7 +38,6 @@ esac
 export HISTCONTROL=ignoreboth
 export PAGER=less
 export EDITOR=vim
-export TERM=xterm-256color
 
 # common commands
 alias duh='du -h --max-depth=1'
