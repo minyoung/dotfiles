@@ -6,16 +6,16 @@ source ${HOME}/.screenrc
 
 setenv CURRENT_SCREEN_ROOT ${HOME}/some/path
 
-chdir ${CURRENT_SCREEN_ROOT}bare
-screen -t bare
+chdir ${CURRENT_SCREEN_ROOT}/bare
+screen -t 'bare'
 exec ls --color
 
 chdir ${CURRENT_SCREEN_ROOT}/deeply/nested/structure
-screen -t structure
+screen -t 'structure'
 exec ls --color
 
 chdir ${CURRENT_SCREEN_ROOT}/title/specified
-screen -t title
+screen -t 'title'
 exec ls --color
 
 select 0
