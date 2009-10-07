@@ -3,11 +3,15 @@ set nocompatible
 " pretty colors and looks
 " try my preferred colorscheme first (xoria256),
 " if that fails, then use a default colorscheme that *should* be present
-try
-    colorscheme xoria256
-catch /.*/
+if &t_Co == 256 || has("gui_running")
+    try
+        colorscheme xoria256
+    catch /.*/
+        colorscheme desert
+    endtry
+else
     colorscheme desert
-endtry
+endif
 syntax on
 syn sync fromstart
 set cursorline
