@@ -5,13 +5,27 @@
   [Layer]	{2}
 [end]
 
+# group web browsers and thunderbird
 [group] (workspace)
-[app] (name=thunderbird-bin)
 [app] (name=Navigator)
-[app] (name=pidgin)
-[app] (arora)
+[app] (name=arora)
+[app] (name=thunderbird-bin)
 [end]
 
+# group IM clients
+[group] (workspace)
+[app] (name=pidgin)
+[app] (name=skype)
+[end]
+
+# group xterms
 [group] (workspace)
 [app] (name=xterm)
 [end]
+
+# group pdf viewers
+[group] (workspace)
+[app] (name=evince)
+[app] (name=epdfview)
+[end]
+
