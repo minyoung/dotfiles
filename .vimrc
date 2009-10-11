@@ -155,6 +155,10 @@ nnoremap Y y$
 " more informative <C-g>
 nnoremap <C-g> 2<C-g>
 
+" only have cursorline in the current window
+autocmd WinLeave * set nocursorline
+autocmd WinEnter * set cursorline
+
 " some file type detection
 autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl set filetype=glsl
 autocmd BufNewFile,BufRead *.as set filetype=actionscript
