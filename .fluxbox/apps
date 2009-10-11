@@ -1,3 +1,4 @@
+# autostart an xterm for me :)
 [startup] {xterm}
 
 [app] (name=fbrun)

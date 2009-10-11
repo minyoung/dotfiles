@@ -15,9 +15,12 @@ fbsetbg -l
 xautolock -secure &
 
 # set the keyboard mouse acceleration
-xkbset ma 20 20 20 100 10
+${HOME}/bin/xkbset ma 20 20 20 100 10
 
-# skippy-xd &
+# ${HOME}/bin/skippy-xd &
+
+# launchy is quite nice :)
+launchy &
 
 # Change your keymap:
 #xmodmap "${HOME}/.Xmodmap"
