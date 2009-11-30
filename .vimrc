@@ -61,7 +61,7 @@ set formatoptions=tcroql
 set showcmd
 set wildmenu
 " set wildmode=list:longest
-set wildignore=*.o,*.obj,*.bak
+set wildignore=*.o,*.obj,*.bak,*.class
 
 " make the clipboard the default register to use
 set clipboard=unnamed,exclude:cons\|linux
@@ -163,22 +163,30 @@ autocmd WinEnter * set cursorline
 autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl set filetype=glsl
 autocmd BufNewFile,BufRead *.as set filetype=actionscript
 autocmd BufNewFile,BufRead *.mxml set filetype=mxml
+autocmd BufNewFile,BufRead *.tex set filetype=tex
 
-" let the default foldmethod be marker, which is the most common
+" just let the default foldmarker to {,}, which is the most common
+" and do not set foldmethod automatically
 set foldmarker={,}
-set foldmethod=marker
+" set foldmethod=marker
+autocmd FileType actionscript set foldmethod=marker
 autocmd FileType cpp set foldmethod=syntax
+autocmd FileType css set foldmethod=marker
 autocmd FileType html set foldmethod=indent
+autocmd FileType java set foldmethod=marker
+autocmd FileType javascript set foldmethod=marker
+autocmd FileType php set foldmethod=marker
 autocmd FileType python set foldmethod=indent
 autocmd FileType ruby set foldmethod=syntax
-autocmd FileType tex set foldmarker={{{,}}}
+autocmd FileType tex set foldmarker={{{,}}} foldmethod=marker
 
 " some other file type specific things
 autocmd FileType html set shiftwidth=2 softtabstop=2
+autocmd FileType jsp set shiftwidth=2 softtabstop=2
 " I prefer rest syntax
 autocmd FileType rst set syntax=rest
 autocmd FileType ruby set shiftwidth=2 softtabstop=2
-autocmd FileType tex set shiftwidth=2 softtabstop=2
+autocmd FileType tex set shiftwidth=2 softtabstop=2 textwidth=79
 
 " when editing a file, always jump to the last cursor position
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
