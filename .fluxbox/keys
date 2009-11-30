@@ -15,6 +15,10 @@ OnToolbar Mouse5 :NextWorkspace
 OnWindow Mod1 Mouse1 :MacroCmd {Raise} {Focus} {StartMoving}
 OnWindow Mod1 Mouse3 :MacroCmd {Raise} {Focus} {StartResizing NearestCorner}
 
+# win + wheel up/down to fade in/out a window
+OnWindow Mod4 Mouse4 :SetAlpha +20
+OnWindow Mod4 Mouse5 :SetAlpha -20
+
 # middle click a window's titlebar and drag to attach windows
 OnTitlebar Mouse2 :StartTabbing
 OnWindow Mod1 Mouse2 :MacroCmd {Raise} {Focus} {StartTabbing}

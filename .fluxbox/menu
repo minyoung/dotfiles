@@ -73,7 +73,6 @@
     [exec]  (foobar) {/home/min/bin/foobar} </home/min/bin/pixmaps/foobar2000.png>
     [exec]  (gtkpod) {gtkpod} </usr/share/icons/hicolor/16x16/apps/gtkpod.png>
     [nop] (Video)
-    [exec]  (gmplayer) {gmplayer} </usr/share/pixmaps/mplayer.xpm>
     [exec]  (smplayer) {smplayer} </usr/share/icons/hicolor/16x16/apps/smplayer.png>
     [nop] (Misc)
     [exec]  (fontypython) {fontypython} </usr/share/pixmaps/fontypython.png>

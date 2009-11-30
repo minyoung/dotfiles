@@ -4,23 +4,7 @@
 #
 # Lines starting with a '#' are ignored.
 
-# fluxbox doesn't seem to source the the bashrc :/
-# since I have stuff in there, source it now
-source ${HOME}/.bashrc
-# the LANG environment variable seems to just disappear :(
-# this environment variable should be set to get stuff working right
-export LANG=en_GB.UTF-8
-
 fbsetbg -l
-xautolock -secure &
-
-# set the keyboard mouse acceleration
-${HOME}/bin/xkbset ma 20 20 20 100 10
-
-# ${HOME}/bin/skippy-xd &
-
-# launchy is quite nice :)
-launchy &
 
 # Change your keymap:
 #xmodmap "${HOME}/.Xmodmap"
