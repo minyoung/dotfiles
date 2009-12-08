@@ -8,6 +8,7 @@ pager =
 [ui]
 username = Min-Young Wu <mwu368@gmail.com>
 ssh = ssh -C
+ignore = /home/min/.hgignore
 
 [color]
 status.modified = green

@@ -19,3 +19,6 @@
     added = yellow
     changed = green
     untracked = cyan
+
+[core]
+    excludesfile = /home/min/.gitignore
