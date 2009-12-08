@@ -1,5 +1,6 @@
 altscreen on
 autodetach on
+defutf8 "on"
 
 # setup screen to be 256 color
 term screen-256color
