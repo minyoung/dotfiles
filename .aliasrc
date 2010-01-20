@@ -1,0 +1,26 @@
+# aliases
+alias duh='du -h --max-depth=1'
+alias ls='ls --color=auto'
+alias ll='ls -l'
+alias la='ls -a'
+alias sl='ls'
+alias amke='make'
+
+alias rm='rm'
+alias rr='rm -rf'
+alias mi='mv -i'
+
+alias vm='valgrind --leak-check=full'
+
+alias dos2unix='recode dos/CR-LF..l1'
+alias unix2win='recode l1..windows-1250'
+alias unix2dos='recode l1..dos/CR-LF'
+
+alias sd='setxkbmap "us(dvorak)"'
+alias oe='setxkbmap us'
+
+alias p='python'
+
+alias j='jrun'
+alias m='make'
+alias h='htop'

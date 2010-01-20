@@ -20,7 +20,6 @@ if [[ -f ~/.dir_colors ]]; then
 else
 	eval `dircolors -b /etc/DIR_COLORS`
 fi
-alias ls="ls --color=auto"
 
 # Change the window title of X terminals 
 case $TERM in
@@ -37,32 +36,13 @@ esac
 shopt -s histappend
 
 # environment variables
-export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignorespace:ignoredups:erasedups
 export PAGER=less
 export EDITOR=vim
 
-# common commands
-alias duh='du -h --max-depth=1'
-alias l='ls -al'
-alias ll='ls -l'
-alias la='ls -a'
-alias rr='rm -fr'
-alias j='jrun'
-alias lz='unzip -l'
-alias p='python'
-alias ip='ipython'
-alias vm='valgrind --leak-check=full'
-alias mi='mv -i'
-alias dos2unix='recode dos/CR-LF..l1'
-alias unix2win='recode l1..windows-1250'
-alias unix2dos='recode l1..dos/CR-LF'
-
-
-# fix some typos
-alias sl='ls'
-alias amke='make'
-alias m='make'
-alias h='htop'
+if [[ -r ~/.aliasrc ]]; then
+    source ~/.aliasrc
+fi
 
 # my binary paths
 export PYTHONPATH=.:${HOME}/.python:${HOME}/.python/lib/python
