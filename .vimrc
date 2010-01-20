@@ -128,10 +128,15 @@ nmap <C-p> :tabprevious<CR>
 nnoremap Q gqap
 
 " resize windows
-map <C-Left> <C-w>1<
-map <C-Right> <C-w>1>
-map <C-Up> <C-w>1-
-map <C-Down> <C-w>1+
+map <C-w><C-h> <C-w>10<
+map <C-w><C-l> <C-w>10>
+map <C-w><C-k> <C-w>5-
+map <C-w><C-j> <C-w>5+
+" screen seems to cause this to break :/
+" map <C-Left> <C-w>1<
+" map <C-Right> <C-w>1>
+" map <C-Up> <C-w>1-
+" map <C-Down> <C-w>1+
 
 " jump around windows slightly easier
 map <C-j> <C-w>j
