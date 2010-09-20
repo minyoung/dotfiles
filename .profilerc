@@ -1,0 +1,7 @@
+export PATH+=:${HOME}/bin/System/Executables
+PATH+=:${HOME}/.python/bin
+PATH+=:${HOME}/.gem/ruby/1.8/bin
+
+export XDG_CONFIG_HOME=${HOME}/.local/config
+export XDG_DATA_HOME=${HOME}/.local/share
+

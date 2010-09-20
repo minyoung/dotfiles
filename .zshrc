@@ -2,19 +2,6 @@
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
-PAGER=less
-EDITOR=vim
-
-export PYTHONPATH=.:${HOME}/.python:${HOME}/.python/lib/python
-
-# locale
-export XMODIFIERS=@im=uim
-export GTK_IM_MODULE=uim
-export QT_IM_MODULE=uim
-
-typeset -U path
-path=($path ~/.python/bin)
-path=($path ~/.gem/ruby/1.8/bin)
 
 # options
 setopt INC_APPEND_HISTORY SHARE_HISTORY
@@ -43,10 +30,7 @@ PR_NO_COLOR="%{$terminfo[sgr0]%}"
 # PS1="$PR_GREEN%n $PR_BLUE%2c %(!.#.$)$PR_NO_COLOR "
 PS1='$PR_GREEN%n${PROMPT_HOST}$PR_BLUE%~ %(?.$PR_BLUE.$PR_RED)%(!.#.$)$PR_NO_COLOR '
 
-if [[ -r ~/.aliasrc ]]; then
-    source ~/.aliasrc
-fi
-
+[[ -r ${HOME}/.aliasrc ]] && source ${HOME}/.aliasrc
 
 autoload -U compinit && compinit
 zmodload zsh/complist
@@ -83,6 +67,3 @@ zstyle ':completion:*:(cd|mv|cp):*' ignore-parents parent pwd
 zstyle ':completion:*:(rm|kill|diff|cp|mv):*' ignore-line yes
 
 
-if [[ -z ${PROMPT_HOST} ]]; then
-    PROMPT_HOST=" "
-fi
