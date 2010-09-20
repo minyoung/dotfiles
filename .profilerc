@@ -1,4 +1,4 @@
-export PATH+=:${HOME}/bin/System/Executables
+export PATH=${PATH}:${HOME}/bin/System/Executables
 PATH+=:${HOME}/.python/bin
 PATH+=:${HOME}/.gem/ruby/1.8/bin
 
