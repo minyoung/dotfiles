@@ -1,36 +1,52 @@
-xoria256.vim
+xoria256
 http://www.vim.org/scripts/script.php?script_id=2140
 Low contrast 256 color scheme
 
-a.vim
+mustang
+http://hcalves.deviantart.com/art/Mustang-Vim-Colorscheme-98974484
+mustang colorscheme
+
+pathogen
+http://www.vim.org/scripts/script.php?script_id=2332
+separate plugins into separate folders
+
+NERD_tree
+http://www.vim.org/scripts/script.php?script_id=1658
+:NERDTree to explore filesystem as a tree
+
+bufexplorer
+http://www.vim.org/scripts/script.php?script_id=42
+<Leader>be to explore buffers
+
+alternate
 http://www.vim.org/scripts/script.php?script_id=31
 :A to alternate between .cpp/.h files
 
-snipMate.vim
+snipMate
 http://www.vim.org/scripts/script.php?script_id=2540
 Very cool snippets functionality
 
-commentToggle.vim
+commentToggle
 http://www.vim.org/scripts/script.php?script_id=2431
 <Leader>; to toggle comment on/off
 
-toggle_words.vim
+toggle_words
 http://www.vim.org/scripts/script.php?script_id=1676
 :ToggleWord to toggle word under cursor (true->false, etc)
 
-surround.vim
+surround
 http://www.vim.org/scripts/script.php?script_id=1697
 cs'" to change surrounding single quote to double quotes
 
-ZoomWinPlugin.vim
+ZoomWinPlugin
 http://www.vim.org/scripts/script.php?script_id=508
 <C-W>o to zoom in/out of current split window
 
-tasklist.vim
+tasklist
 http://www.vim.org/scripts/script.php?script_id=2607
 :TaskList to show a tasklist (TODO, FIXME, etc)
 
-closetag.vim
+closetag
 http://www.vim.org/scripts/script.php?script_id=13
 <C-_> to close a tag
 

@@ -1,5 +1,8 @@
 set nocompatible
 
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
+
 " pretty colors and looks
 " try my preferred colorscheme first (xoria256),
 " if that fails, then use a default colorscheme that *should* be present
@@ -7,7 +10,7 @@ if &t_Co == 256 || has("gui_running")
     try
         colorscheme xoria256
     catch /.*/
-        colorscheme desert
+        colorscheme mustang
     endtry
 else
     colorscheme desert
@@ -61,7 +64,7 @@ set formatoptions=tcroql
 set showcmd
 set wildmenu
 " set wildmode=list:longest
-set wildignore=*.o,*.obj,*.bak,*.class
+set wildignore=*.o,*.obj,*.bak,*.class,*.pyc,*.swp
 
 " make the clipboard the default register to use
 set clipboard=unnamed,exclude:cons\|linux
@@ -116,6 +119,10 @@ set rulerformat=%40(%=%t%m%r%y\ \ %l,%c\ \ %p%)
 " set statusline+=%<%P
 
 " setlocal spell spelllang=en
+
+" couldn't be bothered with the extra backup and swap files
+set nobackup
+set noswapfile
 
 " toggle fold with space
 nnoremap <space> za
