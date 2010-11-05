@@ -1,7 +1,7 @@
 dev-java/sun-jdk -doc nsplugin
 dev-lang/ghc doc
-dev-lang/php apache2 cgi ctype doc gd mysqli pcre pdo reflection session simplexml tokenizer -sqlite
-dev-lang/python doc tk
+dev-lang/php apache2 cgi ctype doc gd force-cgi-redirect json mssql mysqli pcre pdo reflection session simplexml tokenizer -sqlite
+dev-lang/python doc
 dev-lang/ruby doc
 sys-devel/gcc fortran gcj
 
@@ -9,13 +9,19 @@ app-doc/doxygen doc
 dev-python/epydoc doc
 dev-python/ipython doc
 
-dev-python/pygame doc
-dev-python/pyopengl doc
+dev-util/cmake vim-syntax
 
+dev-libs/boost doc
+dev-python/PyQt4 sql webkit
+dev-python/pygame doc
 dev-python/pygtk doc
-dev-python/PyQt4 doc examples webkit
+dev-python/pyopengl doc
+dev-python/twisted doc
 dev-python/wxpython doc
 x11-libs/gtk+ doc
-x11-libs/qt doc immqt-bc
 x11-libs/wxGTK doc
 
+x11-libs/qt-core qt3support
+x11-libs/qt-gui qt3support
+x11-libs/qt-opengl qt3support
+x11-libs/qt-sql qt3support

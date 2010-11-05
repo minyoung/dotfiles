@@ -1,27 +1,4 @@
-# dev-python/genshi doc
-# dev-python/routes doc
-# dev-python/pudge doc
-# dev-python/buildutils doc
-# dev-python/kid doc
-# dev-python/cherrypy doc
-# dev-python/simplejson doc
-# dev-python/pyparsing doc
-# dev-python/matplotlib doc
-# dev-libs/protobuf vim-syntax
-# dev-python/zsi doc twisted
-# dev-python/twisted doc
+dev-db/phpmyadmin vhosts
+dev-db/phppgadmin vhosts
 
-# dev-python/sqlalchemy doc
-# dev-python/sphinx doc
-dev-python/django doc
-dev-python/pylons doc genshi
-
-# dev-ruby/activesupport doc
-# dev-ruby/rake doc
-# dev-ruby/actionpack doc
-# dev-ruby/activerecord doc
-# dev-ruby/activeresource doc
-# dev-ruby/actionmailer doc
-dev-ruby/rails doc
-
-dev-php5/ZendFramework doc
+www-servers/tomcat -java5

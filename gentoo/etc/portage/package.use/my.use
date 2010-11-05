@@ -1,28 +1,32 @@
 app-admin/conky vim-syntax
 app-editors/emacs -X
 app-editors/vim vim-with-x
+app-portage/layman git mercurial subversion
+dev-db/postgresql pg-intdatetime
+dev-db/postgresql-base pg-intdatetime
+dev-db/postgresql-server pg-intdatetime
+dev-db/libpq pg-intdatetime
 dev-tex/latex-beamer doc examples
-dev-util/git -gtk
-dev-util/subversion -apache2
+dev-vcs/git -gtk curl subversion
+dev-vcs/subversion -apache2 -dso
+media-video/mplayer -openal
 net-fs/samba winbind
-net-im/pidgin gstreamer qq spell
+net-im/pidgin qq spell
+net-im/skype -qt-static
+net-misc/tigervnc server
 sys-block/gparted fat ntfs
 sys-fs/ntfs3g suid
-www-client/mozilla-firefox mozdevelop
+www-client/firefox mozdevelop
 x11-terms/rxvt-unicode xterm-color
 x11-wm/fluxbox vim-syntax
 
 app-i18n/uim m17n-lib
 
-# dev-games/ogre cegui cg devil doc
-# dev-games/cegui devil doc expat
+sys-apps/hal -crypt
 
-# dev-db/postgresql doc
+x11-base/xorg-server kdrive
 
-# dev-java/junit doc
-# www-apps/trac subversion
+net-misc/wicd ioctl
 
-# dev-db/hsqldb java6
-#jdbc-mysql and jdbc-postgresql pulls in <virtual/jdk-1.6.0
-# dev-java/jython -mysql -postgres
-
+net-dialup/ppp dhcp
+net-dialup/rp-pppoe -X

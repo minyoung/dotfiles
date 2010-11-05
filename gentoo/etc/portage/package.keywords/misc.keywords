@@ -1,22 +1,4 @@
-kde-misc/katapult
-x11-themes/gtk-engines-qtcurve
-x11-themes/qtcurve
-
-x11-misc/xvidcap
-net-misc/vncrec
-
-app-editors/efte
 dev-util/qt-creator
-app-editors/jext
-
 app-admin/keepassx
 
-dev-db/couchdb
-
-media-gfx/swftools
-
-x11-wm/xmonad
-dev-haskell/x11
-
-sci-libs/gts
-sci-libs/vtk
+net-print/cups

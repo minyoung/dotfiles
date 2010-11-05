@@ -1,5 +1,3 @@
-# app-emulation/virtualbox-ose
-# app-emulation/virtualbox-ose-additions
-# app-emulation/virtualbox-modules
-# dev-util/kbuild
-
+app-emulation/virtualbox-modules
+app-emulation/virtualbox-ose
+app-emulation/virtualbox-ose-additions

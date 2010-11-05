@@ -2,9 +2,9 @@ app-cdr/recorder
 
 app-emulation/wine
 
-app-text/djview4
 app-text/epdfview
 app-text/xchm
+app-misc/emelfm2
 
 app-text/pdftk
 media-gfx/keyjnote
@@ -15,7 +15,6 @@ dev-php/xdebug-client
 dev-php5/xdebug
 dev-python/winpdb
 dev-util/meld
-
 sci-libs/scipy
 
 media-gfx/fontypython
@@ -32,20 +31,26 @@ x11-wm/fluxbox
 dev-db/sqliteman
 www-client/arora
 
-sci-biology/stride
-sci-chemistry/vmd
+x11-wm/awesome
+sys-apps/halevt
+app-cdr/iat
 
 sys-libs/libixp
 x11-wm/wmii
 
-net-libs/webkit-gtk
-net-libs/libsoup
+dev-db/libpq
+dev-db/postgresql
+dev-db/postgresql-base
+dev-db/postgresql-server
 
-dev-python/pywebkitgtk
+net-im/skype
 
-dev-libs/ace
-
-# www-client/chromium
 # media-video/ffmpeg
+www-client/chromium
 
-dev-php5/ZendFramework
+net-libs/rb_libtorrent
+net-p2p/qbittorrent
+
+x11-misc/synergy-plus
+
+app-misc/dvtm
