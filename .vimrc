@@ -1,7 +1,18 @@
 set nocompatible
 
+let mapleader=","
+
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+
+map <leader><leader> ,c<space>
+let NERDSpaceDelims=1
+
+" let g:yankring_history_dir="$HOME/.vim"
+inoremap jj <esc>
+
+nnoremap / /\v
+vnoremap / /\v
 
 " pretty colors and looks
 " try my preferred colorscheme first (xoria256),
@@ -190,6 +201,7 @@ autocmd FileType javascript set foldmethod=marker
 autocmd FileType php set foldmethod=marker
 autocmd FileType python set foldmethod=indent
 autocmd FileType ruby set foldmethod=syntax
+autocmd FileType sh set foldmethod=marker
 autocmd FileType tex set foldmarker={{{,}}} foldmethod=marker
 
 " some other file type specific things

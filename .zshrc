@@ -66,4 +66,6 @@ zstyle ':completion:*:functions' ignored-patterns '_*'
 zstyle ':completion:*:(cd|mv|cp):*' ignore-parents parent pwd
 zstyle ':completion:*:(rm|kill|diff|cp|mv):*' ignore-line yes
 
+unsetopt EXTENDED_HISTORY
+unsetopt extendedhistory
 

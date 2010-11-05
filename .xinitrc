@@ -1,6 +1,7 @@
 #!/bin/sh
 
-[[ -r ${HOME}/.profilerc ]] && source ${HOME}/.profilerc
+# .profilerc seems to be sourced already
+# [[ -r ${HOME}/.profilerc ]] && source ${HOME}/.profilerc
 
 # start xautolock
 xautolock -secure &
