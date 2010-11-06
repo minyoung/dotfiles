@@ -1,3 +1,32 @@
+# environment variables
+export PAGER=less
+export EDITOR=vim
+
+export VIRTUALENV_DIR=${HOME}/.python/envs/
+export WORKON_HOME=${VIRTUALENV_DIR}
+source ${VIRTUALENV_DIR}/virtualenvwrapper_bashrc
+
+export GEMENV_HOME=${HOME}/.gem/envs
+source ${GEMENV_HOME}/gemenv_bashrc
+
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
+
+# java hack
+# wmname LG3D
+export AWT_TOOLKIT=MToolkit
+# export _JAVA_AWT_WM_NONREPARENTING=1
+
+# some package paths
+export PYTHONPATH=.:${HOME}/.python:${HOME}/.python/lib/python
+export GEM_PATH=${HOME}/.gem/ruby/1.8
+
+export PYTHONSTARTUP=${HOME}/.pythonrc
+
+if [[ -z ${PROMPT_HOST} ]]; then
+    PROMPT_HOST=" "
+fi
+
+
 # aliases
 alias duh='du -h --max-depth=1'
 alias ls='ls --color=auto'
@@ -24,3 +53,5 @@ alias p='python'
 alias j='jrun'
 alias m='make'
 alias h='htop'
+
+# vim: set ft=sh :
