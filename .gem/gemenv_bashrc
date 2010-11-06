@@ -1,0 +1,161 @@
+# gemenv - a lightweight rubygem environment management system
+#
+# A rubygem environment is defined by the GEM_HOME and GEM_PATH
+# environment variables.
+# * GEM_HOME => path where gems are installed to
+# * GEM_PATH => colon (:) separated list of search paths for rubygems
+#
+# This script helps to easily create, remove and switch between different
+# gem environments.
+#
+# All gem environments are in GEMENV_HOME (default: $HOME/.gemenvs)
+# Change the environment variable to change where gem environments are
+# stored.
+#
+# Usage:
+#
+# Create a new gem environment
+#   mkgemenv ENV_NAME
+#
+# Remove a gem environment
+#   rmgemenv ENV_NAME
+#
+# Switch to a gem environment
+#   gemenv ENV_NAME
+#
+# Stop using a gem environment
+#   deactivate
+#
+#
+#
+# Note: unlike virtualenv, ruby versions are *NOT* included in the gem
+# environment. For such a use case, please consider Ruby Version Manager
+#       http://rvm.beginrescueend.com/
+#
+#
+# Heavily inspired by:
+# - Ian Bicking's virtualenv
+#           http://virtualenv.openplans.org/
+# - Doug Hellmann's virtualenvwrapper
+#           http://www.doughellmann.com/projects/virtualenvwrapper/
+#
+# - where "heavily inspired" means copy and modify large sections thereof
+#
+
+
+if [ "GEMENV_HOME" = "" ] ; then
+    export GEMENV_HOME="$HOME/.gemenvs"
+fi
+
+function _gemenv_show_gemenv_options () {
+    (cd "$GEMENV_HOME"; for f in *; do [[ -d "$f" ]] && echo $f; done) 2>/dev/null | sort
+}
+
+function _gemenv_reset_autocomplete () {
+if [ -n "$BASH" ] ; then
+    _gemenvs () {
+        local cur="${COMP_WORDS[COMP_CWORD]}"
+        COMPREPLY=( $(compgen -W "`_gemenv_show_gemenv_options`" -- ${cur}) )
+    }
+
+    complete -o default -o nospace -F _gemenvs gemenv
+    complete -o default -o nospace -F _gemenvs rmgemenv
+elif [ -n "$ZSH_VERSION" ] ; then
+    compctl -g "`_gemenv_show_gemenv_options`" gemenv rmgemenv
+fi
+}
+
+function gemenv () {
+    typeset env_name="$1"
+    if [ "$env_name" = "" ] ; then
+        _gemenv_show_gemenv_options
+        return 1
+    fi
+
+    GEMENV_DIR="$GEMENV_HOME/$env_name"
+
+    if [ ! -d "$GEMENV_DIR" ] ; then
+        echo "ERROR: Environment '$GEMENV_DIR' is not a directory" >&2
+        return 1
+    fi
+
+    type deactivate >/dev/null 2>&1
+    if [ $? -eq 0 ] ; then
+        deactivate
+    fi
+
+    GEMENV_DIR="$GEMENV_HOME/$env_name"
+
+    _OLD_GEM_HOME="$GEM_HOME"
+    _OLD_GEM_PATH="$GEM_PATH"
+    _OLD_PATH="$PATH"
+    _OLD_PS1="$PS1"
+
+    export GEM_HOME="$GEMENV_DIR"
+    export GEM_PATH="$GEM_PATH:$GEMENV_DIR"
+    export PATH="$PATH:$GEMENV_DIR/bin"
+
+    PS1="($(basename $GEMENV_DIR))$PS1"
+
+    deactivate () {
+        GEM_HOME="$_OLD_GEM_HOME"
+        GEM_PATH="$_OLD_GEM_PATH"
+        PATH="$_OLD_PATH"
+        PS1="$_OLD_PS1"
+
+        # if empty, unset, instead of leaving empty
+        [[ -z "$GEM_HOME" ]] && unset GEM_HOME
+        [[ -z "$GEM_PATH" ]] && unset GEM_PATH
+
+        # cleaning up the environment a bit
+        unset _OLD_GEM_HOME
+        unset _OLD_GEM_PATH
+        unset _OLD_PATH
+        unset _OLD_PS1
+        unset GEMENV_DIR
+        unset -f deactivate
+    }
+
+    return 0
+}
+
+function mkgemenv () {
+    typeset env_name="$1"
+    if [ "$env_name" = "" ] ; then
+        echo "Please specify an enviroment." >&2
+        return 1
+    fi
+    if [ -d "$GEMENV_HOME/$env_name" ] ; then
+        echo "ERROR: Gem environment directory already exists." >&2
+        echo "Please specify a different environment name." >&2
+        return 1
+    fi
+    (cd "$GEMENV_HOME" && mkdir $env_name)
+    [ ! -d "$GEMENV_HOME/$env_name" ] && return 0
+    _gemenv_reset_autocomplete
+    gemenv $env_name
+}
+
+function rmgemenv () {
+    typeset env_name="$1"
+    if [ "$env_name" = "" ] ; then
+        echo "Please specify an enviroment." >&2
+        return 1
+    fi
+    env_dir="$GEMENV_HOME/$env_name"
+    if [ "$GEMENV_DIR" = "$env_dir" ] ; then
+        echo "ERROR: You cannot remove the active environment ('$env_name')." >&2
+        echo "Either switch to another environment, or run 'deactivate'." >&2
+        return 1
+    fi
+    if [ ! -d "$env_dir" ] ; then
+        echo "Gem environment ('$env_name') does not exist." >&2
+        return 0
+    fi
+    rm -rf "$env_dir"
+    _gemenv_reset_autocomplete
+}
+
+_gemenv_reset_autocomplete
+
+# vim: set ft=sh :
