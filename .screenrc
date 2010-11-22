@@ -11,4 +11,4 @@ term screen-256color
 
 # let me know that I'm in a screen session (bash prompt)
 # I don't particularly like caption or hardstatusline...
-setenv PROMPT_HOST "[screen] "
+setenv PROMPT_HOST "${PROMPT_HOST}[screen]"

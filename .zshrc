@@ -28,7 +28,7 @@ for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
 done
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 # PS1="$PR_GREEN%n $PR_BLUE%2c %(!.#.$)$PR_NO_COLOR "
-PS1='$PR_GREEN%n${PROMPT_HOST}$PR_BLUE%~ %(?.$PR_BLUE.$PR_RED)%(!.#.$)$PR_NO_COLOR '
+PS1='$PR_GREEN%n${PROMPT_HOST} $PR_BLUE%~ %(?.$PR_BLUE.$PR_RED)%(!.#.$)$PR_NO_COLOR '
 
 [[ -r ${HOME}/.aliasrc ]] && source ${HOME}/.aliasrc
 

@@ -23,7 +23,7 @@ export GEM_PATH=${HOME}/.gem/ruby/1.8
 export PYTHONSTARTUP=${HOME}/.pythonrc
 
 if [[ -z ${PROMPT_HOST} ]]; then
-    PROMPT_HOST=" "
+    PROMPT_HOST=""
 fi
 
 

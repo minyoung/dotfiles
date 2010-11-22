@@ -4,7 +4,7 @@
 
 # add @hostname to after name so I know where I am
 if [[ -z ${PROMPT_HOST} ]]; then
-    PROMPT_HOST="@`hostname` "
+    PROMPT_HOST="@`hostname`"
 fi
 
 # This file is sourced by bash for login shells.  The following line
