@@ -6,6 +6,7 @@ XTerm*selectToClipboard: true
 XTerm*faceName: :pixelsize=14
 ! XTerm*faceName: Microsoft YaHei:pixelsize=16
 XTerm*termName: xterm-256color
+XTerm*scrollBar: false
 
 URxvt.background: #1c1c1c
 URxvt.foreground: #d0d0d0

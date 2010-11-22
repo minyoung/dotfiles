@@ -12,7 +12,7 @@ xset m 500 50
 # set the keyboard mouse acceleration
 xkbset ma 20 20 20 100 10
 
-# use the right win key as the compose key
+# use the right alt key as the compose key
 setxkbmap -model pc104 -layout us -option "compose:ralt"
 
 # set some locale environment stuff

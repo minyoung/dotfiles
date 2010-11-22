@@ -8,7 +8,11 @@ call pathogen#runtime_append_all_bundles()
 map <leader><leader> ,c<space>
 let NERDSpaceDelims=1
 
-" let g:yankring_history_dir="$HOME/.vim"
+nmap <leader>n :NERDTreeToggle<CR>
+
+nmap <leader>y :YRShow<CR>
+let g:yankring_history_dir="$HOME/.vim"
+
 inoremap jj <esc>
 
 nnoremap / /\v

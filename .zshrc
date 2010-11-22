@@ -15,6 +15,7 @@ set MULTIOS
 set CORRECT
 bindkey -v
 unsetopt FLOW_CONTROL
+setopt NO_FLOW_CONTROL
 
 # colour stuff
 autoload colors zsh/terminfo

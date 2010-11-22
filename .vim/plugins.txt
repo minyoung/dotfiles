@@ -14,6 +14,14 @@ NERD_tree
 http://www.vim.org/scripts/script.php?script_id=1658
 :NERDTree to explore filesystem as a tree
 
+NERD_commenter
+http://www.vim.org/scripts/script.php?script_id=1218
+,c<space> to toggle comment (more options available)
+
+YankRing
+http://www.vim.org/scripts/script.php?script_id=1234
+:YRShow to open buffer of yanked content
+
 bufexplorer
 http://www.vim.org/scripts/script.php?script_id=42
 <Leader>be to explore buffers

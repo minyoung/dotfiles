@@ -2,6 +2,8 @@
 export PAGER=less
 export EDITOR=vim
 
+[[ -r ${HOME}/.localrc ]] && source ${HOME}/.localrc
+
 export VIRTUALENV_DIR=${HOME}/.python/envs/
 export WORKON_HOME=${VIRTUALENV_DIR}
 source ${VIRTUALENV_DIR}/virtualenvwrapper_bashrc
@@ -53,5 +55,7 @@ alias p='python'
 alias j='jrun'
 alias m='make'
 alias h='htop'
+
+stty -ixon
 
 # vim: set ft=sh :
