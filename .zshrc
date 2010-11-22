@@ -17,6 +17,25 @@ bindkey -v
 unsetopt FLOW_CONTROL
 setopt NO_FLOW_CONTROL
 
+# auto titling stuff
+function precmd {
+    # messy business escaping /...
+    local home=$(echo $HOME | sed 's/\//\\\//g')
+    local where=$(pwd | sed "s/^$home/~/")
+    echo -ne "\033]83;title 'zsh - $where'\007"
+    # echo -ne "\ekzsh - $where\e\\"
+}
+
+function preexec {
+    # local foo="$2 "
+    # local title=${${=foo}[1]}
+    # ^^ = command - arguments
+    local title=$2
+    echo -ne "\033]83;title '$title'\007"
+    # this also works, but it seems to output the command? :/
+    # echo -ne "\ek$title\e\\"
+}
+
 # colour stuff
 autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then

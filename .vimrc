@@ -219,3 +219,15 @@ autocmd FileType tex set shiftwidth=2 softtabstop=2 textwidth=79
 " when editing a file, always jump to the last cursor position
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
+" Function to set the screen title
+let g:home=expand('$HOME')
+function! SetTitle()
+    " expand('%:p') also expands the symlink values, which I don't want...
+    let l:title = 'vim - ' . substitute(expand('`pwd`') . expand('%'), '^' . g:home, '~', '')
+    " let l:truncTitle = strpart(l:title, 0, 15)
+    silent exe '!echo -e -n "\033k' . l:title . '\033\\"'
+endfunction
+
+" Run it every time we change buffers
+autocmd BufEnter * call SetTitle()
+
