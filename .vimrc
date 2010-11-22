@@ -197,11 +197,13 @@ autocmd BufNewFile,BufRead *.tex set filetype=tex
 set foldmarker={,}
 " set foldmethod=marker
 autocmd FileType actionscript set foldmethod=marker
+autocmd FileType c set foldmethod=syntax
 autocmd FileType cpp set foldmethod=syntax
 autocmd FileType css set foldmethod=marker
 autocmd FileType html set foldmethod=indent
 autocmd FileType java set foldmethod=marker
 autocmd FileType javascript set foldmethod=marker
+autocmd FileType objc set foldmethod=marker
 autocmd FileType php set foldmethod=marker
 autocmd FileType python set foldmethod=indent
 autocmd FileType ruby set foldmethod=syntax
@@ -224,8 +226,10 @@ let g:home=expand('$HOME')
 function! SetTitle()
     " expand('%:p') also expands the symlink values, which I don't want...
     let l:title = 'vim - ' . substitute(expand('`pwd`') . expand('%'), '^' . g:home, '~', '')
-    " let l:truncTitle = strpart(l:title, 0, 15)
+    " let l:title = strpart(l:title, 0, 15)
     silent exe '!echo -e -n "\033k' . l:title . '\033\\"'
+    " redraw might be needed?
+    " exe 'redraw!'
 endfunction
 
 " Run it every time we change buffers
