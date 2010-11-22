@@ -47,6 +47,18 @@ for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
     (( count = $count + 1 ))
 done
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
+
+# TP_RED="`tput setaf 1`"
+# TP_GREEN="`tput setaf 2`"
+# TP_YELLOW="`tput setaf 3`"
+# TP_BLUE="`tput setaf 4`"
+# TP_MAGENTA="`tput setaf 5`"
+# TP_CYAN="`tput setaf 6`"
+# TP_WHITE="`tput setaf 7`"
+
+# TP_BOLD="`tput bold`"
+# TP_RST="`tput sgr0`"
+
 # PS1="$PR_GREEN%n $PR_BLUE%2c %(!.#.$)$PR_NO_COLOR "
 PS1='$PR_GREEN%n${PROMPT_HOST} $PR_BLUE%~ %(?.$PR_BLUE.$PR_RED)%(!.#.$)$PR_NO_COLOR '
 

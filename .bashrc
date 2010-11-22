@@ -40,6 +40,17 @@ export HISTCONTROL=ignorespace:ignoredups:erasedups
 
 [[ -r ${HOME}/.aliasrc ]] && source ${HOME}/.aliasrc
 
+# TP_RED=`tput setaf 1`
+# TP_GREEN=`tput setaf 2`
+# TP_YELLOW=`tput setaf 3`
+# TP_BLUE=`tput setaf 4`
+# TP_MAGENTA=`tput setaf 5`
+# TP_CYAN=`tput setaf 6`
+# TP_WHITE=`tput setaf 7`
+
+# TP_BOLD=`tput bold`
+# TP_RST=`tput sgr0`
+
 # blue/red $ depending on exit status of previous command
 PS1='\[\e[1;32m\]\u${PROMPT_HOST} \[\e[1;34m\]\w \[\e[1;$(($??31:34))m\]\$\[\e[0m\] '
 
