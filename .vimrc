@@ -228,16 +228,22 @@ autocmd FileType tex set shiftwidth=2 softtabstop=2 textwidth=79
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Function to set the screen title
-let g:home=expand('$HOME')
 function! SetTitle()
-    " expand('%:p') also expands the symlink values, which I don't want...
-    let l:title = 'vim - ' . substitute(expand('`pwd`') . expand('%'), '^' . g:home, '~', '')
-    " let l:title = strpart(l:title, 0, 15)
+    " replace $HOME with ~
+    let l:filename = substitute(expand('%:p'), '^' . expand('$HOME'), '~', '')
+    " but if here is a symlink to $HOME, then rather use expand('~')
+    let l:filename = substitute(l:filename, '^' . expand('~'), '~', '')
+    " now escape "
+    let l:filename = substitute(l:filename, "\"", "\\\\\"", '')
+    let l:title = 'vim - ' . l:filename
+    " let l:truncTitle = strpart(l:title, 0, 15)
+    " echo l:title
     silent exe '!echo -e -n "\033k' . l:title . '\033\\"'
-    " redraw might be needed?
-    " exe 'redraw!'
+    " if $TERM =~ 'xterm'
+        " exe 'redraw!'
+    " endif
 endfunction
 
 " Run it every time we change buffers
-autocmd BufEnter * call SetTitle()
+" autocmd BufEnter * call SetTitle()
 
