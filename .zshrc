@@ -34,6 +34,11 @@ function preexec {
     echo -ne "\033]83;title '$title'\007"
     # this also works, but it seems to output the command? :/
     # echo -ne "\ek$title\e\\"
+
+u () {
+    set -A ud
+    ud[1+${1-1}]=
+    cd ${(j:../:)ud}
 }
 
 # colour stuff
