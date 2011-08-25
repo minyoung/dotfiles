@@ -20,5 +20,5 @@ export LANG=en_GB.UTF-8
 export XMODIFIERS=@im=ibus
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
-ibus-daemon -d
+ibus-daemon -d -x
 

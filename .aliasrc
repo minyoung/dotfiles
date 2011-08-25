@@ -4,6 +4,7 @@ export EDITOR=vim
 
 [[ -r ${HOME}/.localrc ]] && source ${HOME}/.localrc
 
+export PIP_DOWNLOAD_CACHE=${HOME}/.pip/cache
 export VIRTUALENV_DIR=${HOME}/.python/envs/
 export WORKON_HOME=${VIRTUALENV_DIR}
 source ${VIRTUALENV_DIR}/virtualenvwrapper_bashrc

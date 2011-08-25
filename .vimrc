@@ -9,9 +9,7 @@ map <leader><leader> ,c<space>
 let NERDSpaceDelims=1
 
 nmap <leader>n :NERDTreeToggle<CR>
-
-nmap <leader>y :YRShow<CR>
-let g:yankring_history_dir="$HOME/.vim"
+nmap <leader>m :BufExplorer<CR>
 
 inoremap jj <esc>
 
@@ -146,6 +144,10 @@ nnoremap <space> za
 nmap <C-n> :tabnext<CR>
 nmap <C-p> :tabprevious<CR>
 
+" move between buffers easier
+nmap <A-n> :bnext<CR>
+nmap <A-p> :bprevious<CR>
+
 " format paragraph
 nnoremap Q gqap
 
@@ -187,10 +189,12 @@ autocmd WinLeave * set nocursorline
 autocmd WinEnter * set cursorline
 
 " some file type detection
-autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl set filetype=glsl
+autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl,*.fsh,*.vsh set filetype=glsl
 autocmd BufNewFile,BufRead *.as set filetype=actionscript
 autocmd BufNewFile,BufRead *.mxml set filetype=mxml
 autocmd BufNewFile,BufRead *.tex set filetype=tex
+autocmd BufNewFile,BufRead *.mako set filetype=mako
+autocmd BufNewFile,BufRead *.thrift set filetype=thrift
 
 " just let the default foldmarker to {,}, which is the most common
 " and do not set foldmethod automatically
@@ -199,6 +203,7 @@ set foldmarker={,}
 autocmd FileType actionscript set foldmethod=marker
 autocmd FileType c set foldmethod=syntax
 autocmd FileType cpp set foldmethod=syntax
+autocmd FileType cs set foldmethod=syntax
 autocmd FileType css set foldmethod=marker
 autocmd FileType html set foldmethod=indent
 autocmd FileType java set foldmethod=marker
@@ -209,6 +214,7 @@ autocmd FileType python set foldmethod=indent
 autocmd FileType ruby set foldmethod=syntax
 autocmd FileType sh set foldmethod=marker
 autocmd FileType tex set foldmarker={{{,}}} foldmethod=marker
+autocmd FileType thrift set foldmethod=marker
 
 " some other file type specific things
 autocmd FileType html set shiftwidth=2 softtabstop=2
