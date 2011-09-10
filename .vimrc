@@ -55,6 +55,11 @@ set smartcase
 
 " folding
 set foldenable
+
+" Don't screw up folds when inserting text that might affect them, until
+" leaving insert mode. Foldmethod is local to the window.
+autocmd InsertEnter * let w:last_fdm=&foldmethod | setlocal foldmethod=manual
+autocmd InsertLeave * let &l:foldmethod=w:last_fdm
 " see near end of file for more folding stuff
 
 " tab stuff
@@ -140,13 +145,17 @@ set noswapfile
 " toggle fold with space
 nnoremap <space> za
 
-" move between tabs easier
-nmap <C-n> :tabnext<CR>
-nmap <C-p> :tabprevious<CR>
+set winaltkeys=no
 
 " move between buffers easier
 nmap <A-n> :bnext<CR>
 nmap <A-p> :bprevious<CR>
+
+" move between tabs easier
+nmap <C-n> :tabnext<CR>
+nmap <C-p> :tabprevious<CR>
+
+set hidden
 
 " format paragraph
 nnoremap Q gqap
@@ -156,11 +165,6 @@ map <C-w><C-h> <C-w>10<
 map <C-w><C-l> <C-w>10>
 map <C-w><C-k> <C-w>5-
 map <C-w><C-j> <C-w>5+
-" screen seems to cause this to break :/
-" map <C-Left> <C-w>1<
-" map <C-Right> <C-w>1>
-" map <C-Up> <C-w>1-
-" map <C-Down> <C-w>1+
 
 " jump around windows slightly easier
 map <C-j> <C-w>j
@@ -238,7 +242,7 @@ function! SetTitle()
     let l:title = 'vim - ' . l:filename
     " let l:truncTitle = strpart(l:title, 0, 15)
     " echo l:title
-    silent exe '!echo -e -n "\033k' . l:title . '\033\\"'
+    " silent exe '!echo -e -n "\033k' . l:title . '\033\\"'
     " if $TERM =~ 'xterm'
         " exe 'redraw!'
     " endif

@@ -1,0 +1,37 @@
+# vim: filetype=python
+
+import atexit
+import os
+import readline
+import rlcompleter
+import sys
+
+history_path = os.path.expanduser('~/.pythonhist')
+
+class irlcompleter(rlcompleter.Completer):
+    def complete(self, text, state):
+        if text == "":
+            readline.insert_text('\t')
+            return None
+        else:
+            return rlcompleter.Completer.complete(self,text,state)
+
+# You could change this line to bind another key instead tab.
+readline.parse_and_bind("tab: complete")
+readline.set_completer(irlcompleter().complete)
+
+# Create a blank history file if it doesn't exist already
+if not os.path.exists(history_path) and not os.path.isdir(history_path):
+    try:
+        open(history_path, 'w').close()
+    # Gracefully ignore things if historyPath is not writable
+    except IOError:
+        pass
+
+# Read the history file in for autocompletion and save it on exit
+if os.access(history_path, os.R_OK):
+    readline.read_history_file(history_path)
+
+if os.access(history_path, os.W_OK):
+    atexit.register(lambda x=history_path: readline.write_history_file(x))
+

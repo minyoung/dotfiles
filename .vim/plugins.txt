@@ -10,17 +10,25 @@ pathogen
 http://www.vim.org/scripts/script.php?script_id=2332
 separate plugins into separate folders
 
+command-t
+http://www.vim.org/scripts/script.php?script_id=3025
+fast fuzzy file finding
+
 NERD_tree
 http://www.vim.org/scripts/script.php?script_id=1658
 :NERDTree to explore filesystem as a tree
+
+NERD_tree__ack
+http://www.vim.org/scripts/script.php?script_id=3357
+NERDTree + ack
 
 NERD_commenter
 http://www.vim.org/scripts/script.php?script_id=1218
 ,c<space> to toggle comment (more options available)
 
-YankRing
-http://www.vim.org/scripts/script.php?script_id=1234
-:YRShow to open buffer of yanked content
+buftabs
+http://www.vim.org/scripts/script.php?script_id=1664
+show buffers in statsbar when idle
 
 bufexplorer
 http://www.vim.org/scripts/script.php?script_id=42
@@ -34,10 +42,6 @@ snipMate
 http://www.vim.org/scripts/script.php?script_id=2540
 Very cool snippets functionality
 
-commentToggle
-http://www.vim.org/scripts/script.php?script_id=2431
-<Leader>; to toggle comment on/off
-
 toggle_words
 http://www.vim.org/scripts/script.php?script_id=1676
 :ToggleWord to toggle word under cursor (true->false, etc)
@@ -49,14 +53,6 @@ cs'" to change surrounding single quote to double quotes
 ZoomWinPlugin
 http://www.vim.org/scripts/script.php?script_id=508
 <C-W>o to zoom in/out of current split window
-
-tasklist
-http://www.vim.org/scripts/script.php?script_id=2607
-:TaskList to show a tasklist (TODO, FIXME, etc)
-
-closetag
-http://www.vim.org/scripts/script.php?script_id=13
-<C-_> to close a tag
 
 syntax files:
 glsl: http://www.vim.org/scripts/script.php?script_id=1002

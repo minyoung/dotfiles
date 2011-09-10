@@ -3,6 +3,3 @@
 <x11-libs/gtk+-2
 <dev-lang/python-2.5
 <dev-db/sqlite-3
-
->sci-chemistry/vmd-1.8.6-r1
-

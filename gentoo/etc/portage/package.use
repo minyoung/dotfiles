@@ -1,0 +1,116 @@
+games-fps/nexuiz maps
+games-fps/unreal-tournament-goty S3TC
+games-simulation/singularity music
+games-strategy/ufo-ai -mmx
+games-strategy/warzone2100 videos
+games-strategy/wesnoth editor tools
+
+dev-java/sun-jdk -doc nsplugin
+dev-lang/ghc doc
+dev-lang/php apache2 cgi ctype doc gd force-cgi-redirect json mssql mysqli pcre pdo reflection session simplexml tokenizer -sqlite
+dev-lang/python doc
+dev-lang/ruby doc
+sys-devel/gcc fortran gcj
+
+app-doc/doxygen doc
+dev-python/epydoc doc
+dev-python/ipython doc
+
+dev-util/cmake vim-syntax
+
+dev-libs/boost doc
+dev-python/PyQt4 sql webkit
+dev-python/pygame doc
+dev-python/pygtk doc
+dev-python/pyopengl doc
+dev-python/twisted doc
+dev-python/wxpython doc
+x11-libs/gtk+ doc
+x11-libs/wxGTK doc tiff
+
+# x11-libs/qt-assistant qt3support
+# x11-libs/qt-core qt3support
+# x11-libs/qt-gui qt3support
+# x11-libs/qt-opengl qt3support
+# x11-libs/qt-sql qt3support
+dev-db/freetds mssql
+dev-db/sqlite fts3
+dev-libs/apr-util -sqlite
+dev-libs/libxml2 icu
+dev-python/pycairo numeric
+dev-python/imaging -X
+media-libs/libtheora encode
+net-print/cups gnutls
+sys-fs/udev extras
+x11-libs/cairo glitz xcb
+x11-libs/libX11 xcb
+
+www-apps/wordpress vhosts
+www-apps/joomla vhosts
+www-apps/drupal vhosts
+
+media-libs/gd fontconfig
+sys-block/parted device-mapper
+# sys-auth/consolekit policykit
+app-admin/conky vim-syntax
+app-editors/emacs -X
+app-editors/vim vim-with-x
+app-portage/layman git mercurial subversion
+dev-db/postgresql pg-intdatetime
+dev-db/postgresql-base pg-intdatetime
+dev-db/postgresql-server pg-intdatetime
+dev-db/libpq pg-intdatetime
+dev-tex/latex-beamer doc examples
+dev-vcs/git -gtk curl subversion
+dev-vcs/subversion -apache2 -dso
+media-video/mplayer -openal
+net-fs/samba winbind
+net-im/pidgin mxit qq spell
+net-im/skype -qt-static
+net-misc/tigervnc server
+sys-block/gparted fat ntfs
+sys-fs/ntfs3g suid
+www-client/firefox mozdevelop
+x11-terms/rxvt-unicode xterm-color
+x11-wm/fluxbox vim-syntax
+
+app-i18n/uim m17n-lib
+dev-games/ogre cegui cg devil doc
+dev-games/cegui devil doc expat
+
+dev-java/junit doc
+www-apps/trac subversion
+
+dev-db/hsqldb java6
+# jdbc-mysql and jdbc-postgresql pulls in <virtual/jdk-1.6.0
+dev-java/jython -mysql -postgres
+
+sys-apps/hal -crypt
+
+x11-base/xorg-server kdrive
+
+x11-libs/qt-gui mng
+
+net-misc/wicd ioctl
+
+net-dialup/ppp dhcp
+net-dialup/rp-pppoe -X
+
+net-misc/remmina rdesktop vnc
+
+dev-libs/openssl kerberos
+app-doc/doxygen -latex
+# app-text/texlive extra
+# media-libs/freetype kpathsea
+# app-text/lcdf-typetools kpathsea
+
+# sys-auth/pambase consolekit
+
+sys-fs/cryptsetup dynamic
+
+media-libs/libgpod ios
+media-sound/clementine ios ipod -dbus -udev
+dev-db/phpmyadmin vhosts
+dev-db/phppgadmin vhosts
+
+www-servers/tomcat -java5

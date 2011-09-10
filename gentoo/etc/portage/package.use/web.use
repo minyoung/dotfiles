@@ -1,4 +1,0 @@
-dev-db/phpmyadmin vhosts
-dev-db/phppgadmin vhosts
-
-www-servers/tomcat -java5
