@@ -37,6 +37,7 @@ alias ll='ls -l'
 alias la='ls -a'
 alias sl='ls'
 alias amke='make'
+alias g='git'
 
 alias rm='rm'
 alias rr='rm -rf'

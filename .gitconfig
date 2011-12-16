@@ -1,6 +1,9 @@
 [alias]
-    llog = log --date=local
-    l = log --oneline
+    b = branch
+    ci = commit
+    co = checkout
+    l = log
+    ls = log --decorate=short --oneline
     s = status
 
 [user]
@@ -26,11 +29,9 @@
     untracked = cyan
 
 [core]
-    excludesfile = /home/min/.gitignore
+    excludesfile = $HOME/.gitignore
 
 [branch "master"]
     remote = origin
     merge = refs/heads/master
 
-; git config branch.master.remote origin
-; git config branch.master.merge refs/heads/master
