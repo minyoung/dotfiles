@@ -8,46 +8,45 @@ mustang colorscheme
 
 pathogen
 http://www.vim.org/scripts/script.php?script_id=2332
+https://github.com/tpope/vim-pathogen
 separate plugins into separate folders
 
-command-t
+Command-T
 http://www.vim.org/scripts/script.php?script_id=3025
+https://github.com/wincent/Command-T
 fast fuzzy file finding
 
-NERD_tree
+nerdtree
 http://www.vim.org/scripts/script.php?script_id=1658
+https://github.com/scrooloose/nerdtree
 :NERDTree to explore filesystem as a tree
 
 NERD_tree__ack
 http://www.vim.org/scripts/script.php?script_id=3357
 NERDTree + ack
 
-NERD_commenter
+nerdcommenter
 http://www.vim.org/scripts/script.php?script_id=1218
+https://github.com/scrooloose/nerdcommenter
 ,c<space> to toggle comment (more options available)
-
-buftabs
-http://www.vim.org/scripts/script.php?script_id=1664
-show buffers in statsbar when idle
 
 bufexplorer
 http://www.vim.org/scripts/script.php?script_id=42
+https://github.com/vim-scripts/bufexplorer.zip
 <Leader>be to explore buffers
 
 alternate
 http://www.vim.org/scripts/script.php?script_id=31
+https://github.com/vim-scripts/a.vim
 :A to alternate between .cpp/.h files
 
 snipMate
 http://www.vim.org/scripts/script.php?script_id=2540
 Very cool snippets functionality
 
-toggle_words
-http://www.vim.org/scripts/script.php?script_id=1676
-:ToggleWord to toggle word under cursor (true->false, etc)
-
 surround
 http://www.vim.org/scripts/script.php?script_id=1697
+https://github.com/tpope/vim-surround
 cs'" to change surrounding single quote to double quotes
 
 ZoomWinPlugin

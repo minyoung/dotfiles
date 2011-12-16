@@ -1,15 +1,8 @@
 set nocompatible
 
+call pathogen#infect()
+
 let mapleader=","
-
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
-
-map <leader><leader> ,c<space>
-let NERDSpaceDelims=1
-
-nmap <leader>n :NERDTreeToggle<CR>
-nmap <leader>m :BufExplorer<CR>
 
 inoremap jj <esc>
 
@@ -56,11 +49,15 @@ set smartcase
 " folding
 set foldenable
 
+" just set the default foldmarker to {,}, which is the most common
+" filetypes.vimrc will set foldmethod as appropriate
+set foldmarker={,}
+" set foldmethod=marker
+
 " Don't screw up folds when inserting text that might affect them, until
 " leaving insert mode. Foldmethod is local to the window.
 autocmd InsertEnter * let w:last_fdm=&foldmethod | setlocal foldmethod=manual
 autocmd InsertLeave * let &l:foldmethod=w:last_fdm
-" see near end of file for more folding stuff
 
 " tab stuff
 set expandtab
@@ -145,17 +142,9 @@ set noswapfile
 " toggle fold with space
 nnoremap <space> za
 
-set winaltkeys=no
-
-" move between buffers easier
-nmap <A-n> :bnext<CR>
-nmap <A-p> :bprevious<CR>
-
 " move between tabs easier
 nmap <C-n> :tabnext<CR>
 nmap <C-p> :tabprevious<CR>
-
-set hidden
 
 " format paragraph
 nnoremap Q gqap
@@ -188,66 +177,37 @@ nnoremap Y y$
 " more informative <C-g>
 nnoremap <C-g> 2<C-g>
 
+" tab and shift-tab to indent and unindent
+vmap <tab> >gv
+vmap <s-tab> <gv
+
 " only have cursorline in the current window
 autocmd WinLeave * set nocursorline
 autocmd WinEnter * set cursorline
 
-" some file type detection
-autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl,*.fsh,*.vsh set filetype=glsl
-autocmd BufNewFile,BufRead *.as set filetype=actionscript
-autocmd BufNewFile,BufRead *.mxml set filetype=mxml
-autocmd BufNewFile,BufRead *.tex set filetype=tex
-autocmd BufNewFile,BufRead *.mako set filetype=mako
-autocmd BufNewFile,BufRead *.thrift set filetype=thrift
-
-" just let the default foldmarker to {,}, which is the most common
-" and do not set foldmethod automatically
-set foldmarker={,}
-" set foldmethod=marker
-autocmd FileType actionscript set foldmethod=marker
-autocmd FileType c set foldmethod=syntax
-autocmd FileType cpp set foldmethod=syntax
-autocmd FileType cs set foldmethod=syntax
-autocmd FileType css set foldmethod=marker
-autocmd FileType html set foldmethod=indent
-autocmd FileType java set foldmethod=marker
-autocmd FileType javascript set foldmethod=marker
-autocmd FileType objc set foldmethod=marker
-autocmd FileType php set foldmethod=marker
-autocmd FileType python set foldmethod=indent
-autocmd FileType ruby set foldmethod=syntax
-autocmd FileType sh set foldmethod=marker
-autocmd FileType tex set foldmarker={{{,}}} foldmethod=marker
-autocmd FileType thrift set foldmethod=marker
-
-" some other file type specific things
-autocmd FileType html set shiftwidth=2 softtabstop=2
-autocmd FileType jsp set shiftwidth=2 softtabstop=2
-" I prefer rest syntax
-autocmd FileType rst set syntax=rest
-autocmd FileType ruby set shiftwidth=2 softtabstop=2
-autocmd FileType tex set shiftwidth=2 softtabstop=2 textwidth=79
+" random
+set hidden
+set winaltkeys=no
 
 " when editing a file, always jump to the last cursor position
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-" Function to set the screen title
-function! SetTitle()
-    " replace $HOME with ~
-    let l:filename = substitute(expand('%:p'), '^' . expand('$HOME'), '~', '')
-    " but if here is a symlink to $HOME, then rather use expand('~')
-    let l:filename = substitute(l:filename, '^' . expand('~'), '~', '')
-    " now escape "
-    let l:filename = substitute(l:filename, "\"", "\\\\\"", '')
-    let l:title = 'vim - ' . l:filename
-    " let l:truncTitle = strpart(l:title, 0, 15)
-    " echo l:title
-    " silent exe '!echo -e -n "\033k' . l:title . '\033\\"'
-    " if $TERM =~ 'xterm'
-        " exe 'redraw!'
-    " endif
-endfunction
 
-" Run it every time we change buffers
-" autocmd BufEnter * call SetTitle()
+" nerd_commenter
+map <leader><leader> ,c<space>
+let NERDSpaceDelims=1
 
+" nerd_tree
+nmap <leader>n :NERDTreeToggle<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
+let NERDTreeConfirmDeleteBookmark=0
+
+" command-t
+nmap <leader>m :CommandTBuffer<CR>
+
+if filereadable(expand("$HOME/.vim/local.vimrc"))
+    source $HOME/.vim/local.vimrc
+end
+
+source $HOME/.vim/filetypes.vimrc
