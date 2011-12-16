@@ -7,12 +7,14 @@ export EDITOR=vim
 export PIP_DOWNLOAD_CACHE=${HOME}/.pip/cache
 export VIRTUALENV_DIR=${HOME}/.python/envs/
 export WORKON_HOME=${VIRTUALENV_DIR}
-source ${VIRTUALENV_DIR}/virtualenvwrapper_bashrc
+VIRTUALENV_WRAPPER=${VIRTUALENV_DIR}/virtualenvwrapper.sh
+[[ -s $VIRTUALENV_WRAPPER ]] && source $VIRTUALENV_WRAPPER
 
 export GEMENV_HOME=${HOME}/.gem/envs
 source ${GEMENV_HOME}/gemenv_bashrc
 
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
+[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # java hack
 # wmname LG3D
