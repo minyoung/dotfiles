@@ -29,7 +29,7 @@
     untracked = cyan
 
 [core]
-    excludesfile = $HOME/.gitignore
+    excludesfile = ~/.gitignore
 
 [branch "master"]
     remote = origin
