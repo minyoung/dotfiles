@@ -17,14 +17,21 @@ bindkey -v
 unsetopt FLOW_CONTROL
 setopt NO_FLOW_CONTROL
 
+function set_title {
+    if [[ "$TERM" == screen* ]]; then
+        print -Pn "\ek$1:q\e\\"
+    elif [[ "$TERM" == xterm* ]]; then
+        print -Pn "\e]1;$1:q\a"
+    fi
+}
+
 # auto titling stuff
 function precmd {
-    # messy business escaping /...
-    # replacing $HOME with ~ and also now escape "
-    # local where=$(pwd | sed "s/^$home/~/" | sed "s/\"/\\\\\"/g")
-    local where=$(pwd | sed "s|^$HOME|~|" | sed "s|\"|\\\\\"|g")
-    # echo -ne "\033]83;title \"zsh - $where\"\007"
-    [[ -n $PROMPT_HOST ]] && echo -ne "\ekzsh - $where\e\\"
+    # more escaping is needed to cover all cases,
+    # but good enough for a start...
+    local home=$(echo $HOME | sed 's/\//\\\//g')
+    local where=$(pwd | sed "s/^$home/~/")
+    set_title "zsh - $where"
 }
 
 function preexec {
@@ -32,12 +39,7 @@ function preexec {
     # local title=${${=foo}[1]}
     # ^^ = command - arguments
     local title=$2
-    # wow, what a mess, escaping \ and " is...
-    title=$(echo $title | sed 's|\\|\\\\\\\\\\|g' | sed "s|\"|\\\\\"|g")
-    # echo "title \"$title\""
-    # echo -ne "\033]83;title \"$title\"\007"
-    # this also works, but it seems to output the command? :/
-    [[ -n $PROMPT_HOST ]] && echo -ne "\ek$title\e\\"
+    set_title "$title"
 }
 
 u () {

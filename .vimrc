@@ -192,6 +192,18 @@ set winaltkeys=no
 " when editing a file, always jump to the last cursor position
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
+" Function to set the screen title
+function! SetTitle()
+    " get current filename, replacing ' with \'
+    let l:filename = substitute(expand('%:~:.'), "'", '\\''', '')
+    let l:title = 'vim - ' . l:filename
+    " let l:truncTitle = strpart(l:title, 0, 15)
+    silent exe "!set_title.sh '" . l:title . "'"
+endfunction
+
+" Run it every time we change buffers
+autocmd BufEnter * call SetTitle()
+
 
 " nerd_commenter
 map <leader><leader> ,c<space>
