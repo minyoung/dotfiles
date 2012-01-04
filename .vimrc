@@ -189,6 +189,12 @@ autocmd WinEnter * set cursorline
 set hidden
 set winaltkeys=no
 
+if v:version >= 703
+    " persistent undo
+    set undodir=~/.vim/undodir
+    set undofile
+endif
+
 " when editing a file, always jump to the last cursor position
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
