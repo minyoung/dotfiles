@@ -2,6 +2,7 @@
     b = branch
     ci = commit
     co = checkout
+    d = diff
     l = log
     ls = log --decorate=short --oneline
     s = status

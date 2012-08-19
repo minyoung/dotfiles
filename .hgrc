@@ -1,14 +1,20 @@
+[diff]
+git = true
+
 [extensions]
-crecord =
-; http://bitbucket.org/edgimar/crecord/wiki/Home
-; choose what to commit with line-level granularity
 color =
+hgext.purge =
+mq =
 pager =
+
+[pager]
+pager = less --quit-if-one-screen --RAW-CONTROL-CHARS --chop-long-lines --no-init
+attend = annotate, cat, diff, email, export, grep, glog, heads, help, incoming, locate, log, ougoing, parents, qdiff, status, show, showconfig, tags, tip
 
 [ui]
 username = Min-Young Wu <mwu368@gmail.com>
 ssh = ssh -C
-ignore = /home/min/.hgignore
+ignore = ~/.hgignore
 
 [color]
 status.modified = green
@@ -29,7 +35,9 @@ diff.inserted = green bold
 diff.changed = white bold
 diff.trailingwhitespace = bold red_background
 
-[pager]
-attend = annotate diff help log
+[alias]
+b = bookmarks
+show = log -pv -l 1
+log = log -v
 
 ; vim: set ft=dosini :

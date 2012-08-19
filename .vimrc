@@ -45,6 +45,7 @@ set incsearch
 " useful for searching
 set ignorecase
 set smartcase
+set infercase
 
 " folding
 set foldenable
@@ -52,7 +53,8 @@ set foldenable
 " just set the default foldmarker to {,}, which is the most common
 " filetypes.vimrc will set foldmethod as appropriate
 set foldmarker={,}
-" set foldmethod=marker
+" shortcut key to help with manual folding
+vmap <leader>f :fold<CR>
 
 " Don't screw up folds when inserting text that might affect them, until
 " leaving insert mode. Foldmethod is local to the window.
@@ -78,7 +80,7 @@ set formatoptions=tcroql
 " command stuff
 set showcmd
 set wildmenu
-" set wildmode=list:longest
+set wildmode=list:longest
 set wildignore=*.o,*.obj,*.bak,*.class,*.pyc,*.swp
 
 " make the clipboard the default register to use
@@ -189,7 +191,10 @@ autocmd WinEnter * set cursorline
 set hidden
 set winaltkeys=no
 
-if v:version >= 703
+" mksession
+set sessionoptions=buffers,curdir,folds,tabpages,winsize
+
+if exists("+undofile")
     " persistent undo
     set undodir=~/.vim/undodir
     set undofile
@@ -217,15 +222,20 @@ let NERDSpaceDelims=1
 
 " nerd_tree
 nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeFind<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
 let NERDTreeConfirmDeleteBookmark=0
 
-" command-t
+" CommandT
 nmap <leader>m :CommandTBuffer<CR>
+let g:CommandTMaxHeight=20
 
+" SuperTab
+let g:SuperTabDefaultCompletionType='<c-n>'
+let g:SuperTabLongestEnhanced=1
+
+source $HOME/.vim/filetypes.vimrc
 if filereadable(expand("$HOME/.vim/local.vimrc"))
     source $HOME/.vim/local.vimrc
 end
-
-source $HOME/.vim/filetypes.vimrc

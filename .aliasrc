@@ -1,5 +1,11 @@
 source_if_exists() { [[ -s $1 ]] && source $1 }
 
+fux_tmux_env() {
+    if [[ -n $TMUX ]]; then
+        eval $(tmux showenv | grep -vE "^-" | awk -F = '{print "export "$1"=\""$2"\""}')
+    fi
+}
+
 # environment variables
 export PAGER=less
 export EDITOR=vim
@@ -16,14 +22,15 @@ source_if_exists "$HOME/.rvm/scripts/rvm"
 # python/ruby package paths
 export PYTHONPATH=.:${HOME}/.python:${HOME}/.python/lib/python
 export GEM_PATH=${HOME}/.gem/ruby/1.8
+export CLASSPATH=.:${HOME}/.java/lib/\*
+export PERL5LIB="${HOME}/.perl/share/perl/5.8.8/:${HOME}/.perl/lib/perl/5.8.8/"
 
 # general python setup
 export PYTHONSTARTUP=${HOME}/.pythonrc
 export PIP_DOWNLOAD_CACHE=${HOME}/.pip/cache
 export VIRTUALENV_DIR=${HOME}/.python/envs/
 export WORKON_HOME=${VIRTUALENV_DIR}
-VIRTUALENV_WRAPPER=${VIRTUALENV_DIR}/virtualenvwrapper.sh
-source_if_exists $VIRTUALENV_WRAPPER
+source_if_exists "$HOME/.python/bin/virtualenvwrapper.sh"
 
 # my subset of virtualenv for ruby
 export GEMENV_HOME=${HOME}/.gem/envs
@@ -47,6 +54,7 @@ alias p='python'
 alias m='make'
 alias h='htop'
 alias j='jrun'
+alias ta='[[ -n $TMUX ]] && fix_tmux_env || ( tmux attach || tmux new-session "echo \"= New TMUX session =\" ; zsh" )'
 
 # common flags
 alias ll='ls -l'

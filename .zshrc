@@ -29,8 +29,8 @@ function set_title {
 function precmd {
     # more escaping is needed to cover all cases,
     # but good enough for a start...
-    local home=$(echo $HOME | sed 's/\//\\\//g')
-    local where=$(pwd | sed "s/^$home/~/")
+    local home="$(echo $HOME | sed 's/\//\\\//g')"
+    local where="$(pwd | sed "s/^$home/~/")"
     set_title "zsh - $where"
 }
 
@@ -38,7 +38,7 @@ function preexec {
     # local foo="$2 "
     # local title=${${=foo}[1]}
     # ^^ = command - arguments
-    local title=$2
+    local title="$2"
     set_title "$title"
 }
 
