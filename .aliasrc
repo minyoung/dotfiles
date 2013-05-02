@@ -4,6 +4,12 @@ source_if_exists() { [[ -s $1 ]] && source $1 }
 export PAGER=less
 export EDITOR=vim
 
+# force less to interpret raw control characters
+export LESS=-FRX
+
+# prevent git from searching for $HOME/.git
+export GIT_CEILING_DIRECTORIES="${HOME}"
+
 # java hack
 # wmname LG3D
 export AWT_TOOLKIT=MToolkit
@@ -42,11 +48,13 @@ alias dos2unix='recode dos/CR-LF..l1'
 alias unix2win='recode l1..windows-1250'
 alias unix2dos='recode l1..dos/CR-LF'
 
+alias gri='git rebase --interactive'
+
 # common programs
 alias g='git'
+alias h='hg'
 alias p='python'
 alias m='make'
-alias h='htop'
 alias j='jrun'
 
 # common flags

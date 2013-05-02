@@ -2,9 +2,13 @@
     b = branch
     ci = commit
     co = checkout
+    cp = cherry-pick
     d = diff
     l = log
+    lg = log --pretty=format:'%C(yellow)%h %Creset-%Cred%d %Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
     ls = log --decorate=short --oneline
+    r = rebase
+    ri = rebase --interactive
     s = status
 
 [user]

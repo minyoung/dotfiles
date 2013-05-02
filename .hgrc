@@ -2,10 +2,15 @@
 git = true
 
 [extensions]
+; crecord =
+; http://bitbucket.org/edgimar/crecord/wiki/Home
+; choose what to commit with line-level granularity
 color =
 hgext.purge =
 mq =
 pager =
+parentrevspec =
+hgshelve = ~/.hgext/hgshelve.py
 
 [pager]
 pager = less --quit-if-one-screen --RAW-CONTROL-CHARS --chop-long-lines --no-init
@@ -35,9 +40,13 @@ diff.inserted = green bold
 diff.changed = white bold
 diff.trailingwhitespace = bold red_background
 
+[pager]
+pager = less --quit-if-one-screen --RAW-CONTROL-CHARS --chop-long-lines --no-init
+attend = annotate, cat, diff, email, export, grep, glog, heads, help, incoming, locate, log, outgoing, parents, qdiff, status, show, showconfig, tags, tip
+
 [alias]
 b = bookmarks
 show = log -pv -l 1
-log = log -v
+log = log -fv
 
 ; vim: set ft=dosini :
