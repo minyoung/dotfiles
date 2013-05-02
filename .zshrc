@@ -60,6 +60,17 @@ for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
 done
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
+function __git_prompt() {
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || \
+    ref=$(git rev-parse --short HEAD 2> /dev/null) || return
+    echo "(± $PR_GREEN${ref#refs/heads/})"
+}
+
+function __hg_prompt() {
+    hg root &> /dev/null || return
+    echo '(☿)'
+}
+
 # TP_RED="`tput setaf 1`"
 # TP_GREEN="`tput setaf 2`"
 # TP_YELLOW="`tput setaf 3`"
@@ -72,7 +83,13 @@ PR_NO_COLOR="%{$terminfo[sgr0]%}"
 # TP_RST="`tput sgr0`"
 
 # PS1="$PR_GREEN%n $PR_BLUE%2c %(!.#.$)$PR_NO_COLOR "
-PS1='$PR_GREEN%n${PROMPT_HOST} $PR_BLUE%~ %(?.$PR_BLUE.$PR_RED)%(!.#.$)$PR_NO_COLOR '
+
+PS1='$PR_GREEN%n${PROMPT_HOST}\
+$(__git_prompt)$(__hg_prompt)\
+ $PR_BLUE%~\
+ %(?.$PR_BLUE.$PR_RED)
+%(!.#.$)$PR_NO_COLOR '
+RPROMPT='$PR_YELLOW$(date "+%F %T %Z")$PR_NO_COLOR'
 
 [[ -r ${HOME}/.aliasrc ]] && source ${HOME}/.aliasrc
 
