@@ -1,11 +1,5 @@
 source_if_exists() { [[ -s $1 ]] && source $1 }
 
-fux_tmux_env() {
-    if [[ -n $TMUX ]]; then
-        eval $(tmux showenv | grep -vE "^-" | awk -F = '{print "export "$1"=\""$2"\""}')
-    fi
-}
-
 # environment variables
 export PAGER=less
 export EDITOR=vim
@@ -54,7 +48,6 @@ alias p='python'
 alias m='make'
 alias h='htop'
 alias j='jrun'
-alias ta='[[ -n $TMUX ]] && fix_tmux_env || ( tmux attach || tmux new-session "echo \"= New TMUX session =\" ; zsh" )'
 
 # common flags
 alias ll='ls -l'
@@ -67,6 +60,20 @@ alias vm='valgrind --leak-check=full'
 alias sl='ls'
 alias amke='make'
 
+# probably what I want to do with regards to tmux, i.e.
+# fix ssh-agent forwarding or attach or create a new session
+alias ta='[[ -n $TMUX ]] && fix_tmux_env || (
+    tmux attach || tmux new-session "echo \"= New TMUX session =\" ; zsh"
+)'
+
+# reload some of the environment variables for tmux
+# most notably this fixes ssh-agent forwarding
+fix_tmux_env() {
+  if [[ -n $TMUX ]]; then
+    eval $(tmux showenv | grep -vE "^-" | awk -F = '{print "export "$1"=\""$2"\""}')
+    ssh-add -l
+  fi
+}
 
 source_if_exists ${HOME}/.localrc
 
