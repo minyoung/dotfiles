@@ -130,3 +130,6 @@ zstyle ':completion:*:(rm|kill|diff|cp|mv):*' ignore-line yes
 unsetopt EXTENDED_HISTORY
 unsetopt extendedhistory
 
+__git_files () {
+    _wanted files expl "local files" _files
+}
