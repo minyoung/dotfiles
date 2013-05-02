@@ -30,11 +30,59 @@ function set_title {
 function precmd {
     # good enough for a start...
     set_title "zsh - ${$(pwd)/$HOME/~}"
+
+    if [[ -z "$LAST_COMMAND_START_TIME" ]]; then
+        return
+    fi
+    local duration=$(($(date +%s%N) / 1000000 - $LAST_COMMAND_START_TIME))
+
+    count-commands.py log_command_end $LAST_COMMAND_START_TIME $duration
+
+    local last_command=$LAST_COMMAND
+    unset LAST_COMMAND
+    unset LAST_COMMAND_START_TIME
+
+    # < 2s is below the threshold where I care
+    # > 12hrs is above the threshold where I care
+    if (( $duration < 2000 || $duration > 43200000 )); then
+      return
+    fi
+
+    # commands in the blacklist aren't very interesting since they're bound by
+    # user input
+    local -a blacklist
+    blacklist=( vim man less )
+    if (( ${blacklist[(i)$last_command]} <= ${#blacklist} )); then
+        return
+    fi
+
+    local hours=""
+    if [[ $duration -ge 3600000 ]]; then
+        hours="$((duration / 3600000))h "
+        duration=$((duration % 3600000))
+    fi
+
+    local minutes=""
+    if [[ $duration -ge 60000 ]]; then
+        minutes="$((duration / 60000))m "
+        duration=$((duration % 60000))
+    fi
+
+    local seconds="${$((duration / 1000.0)):0:5}s"
+    local elapsed="Elapsed: ${hours}${minutes}${seconds}"
+    echo "\033[31m${(r:${#elapsed}::-::+:)}---+"
+    echo "\033[31m|\033[0m ${elapsed} \033[31m|"
+    echo "\033[31m${(r:${#elapsed}::-::+:)}---+"
 }
 
 function preexec {
-    # local command=${${=${2}}[1]}
+    local command=${${=${2}}[1]}
     # ^^ = command line - arguments
+    export LAST_COMMAND=$(basename $command)
+    export LAST_COMMAND_START_TIME=$(($(date +%s%N)/1000000))
+
+    count-commands.py log_command $LAST_COMMAND_START_TIME $@
+
     set_title "$2"
 }
 
