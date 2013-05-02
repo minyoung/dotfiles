@@ -4,8 +4,11 @@ call pathogen#infect()
 
 let mapleader=","
 
+noremap <F1> <esc>
 inoremap jj <esc>
+inoremap kk <esc>
 
+" very magic search by default
 nnoremap / /\v
 vnoremap / /\v
 
@@ -13,13 +16,9 @@ vnoremap / /\v
 " try my preferred colorscheme first (xoria256),
 " if that fails, then use a default colorscheme that *should* be present
 if &t_Co == 256 || has("gui_running")
-    try
-        colorscheme xoria256
-    catch /.*/
-        colorscheme mustang
-    endtry
+    colorscheme xoria256
 else
-    colorscheme desert
+    colorscheme delek
 endif
 syntax on
 syn sync fromstart
@@ -38,9 +37,12 @@ set fileencoding=utf-8
 " backspace over stuff
 set backspace=indent,eol,start
 
-" searching, incsearch with hlsearch is annoying
-set nohlsearch
+" searching, incsearch is amazing
 set incsearch
+" hlsearch is useful, but the highlighting staying around is annoying, so
+" that's what the next mapping is for :D
+set hlsearch
+nnoremap <esc> <esc>:noh<cr><esc>
 
 " useful for searching
 set ignorecase
@@ -53,6 +55,7 @@ set foldenable
 " just set the default foldmarker to {,}, which is the most common
 " filetypes.vimrc will set foldmethod as appropriate
 set foldmarker={,}
+" set foldmethod=marker
 " shortcut key to help with manual folding
 vmap <leader>f :fold<CR>
 
@@ -80,8 +83,8 @@ set formatoptions=tcroql
 " command stuff
 set showcmd
 set wildmenu
-set wildmode=list:longest
-set wildignore=*.o,*.obj,*.bak,*.class,*.pyc,*.swp
+set wildmode=longest:full
+set wildignore=*.o,*.obj,*.bak,*.class,*.pyc,*.swp,.git,.hg,_bin
 
 " make the clipboard the default register to use
 set clipboard=unnamed,exclude:cons\|linux
@@ -126,10 +129,10 @@ set rulerformat=%40(%=%t%m%r%y\ \ %l,%c\ \ %p%)
 
 " set laststatus=2
 " set statusline=
-" set statusline+=%-3.3n\
-" set statusline+=%f\
+" set statusline+=%-3.3n
+" set statusline+=%f
 " set statusline+=%h%m%r%w
-" set statusline+=\[%{strlen(&ft)?&ft:'none'}]
+" set statusline+=[%{strlen(&ft)?&ft:'none'}]
 " set statusline+=%=
 " set statusline+=0x%-8B
 " set statusline+=%-14(%l,%c%V%)
@@ -140,6 +143,9 @@ set rulerformat=%40(%=%t%m%r%y\ \ %l,%c\ \ %p%)
 " couldn't be bothered with the extra backup and swap files
 set nobackup
 set noswapfile
+
+" really liking the ability to jump to definition: <C-]>
+set tags=tags;/
 
 " toggle fold with space
 nnoremap <space> za
@@ -168,6 +174,7 @@ noremap 0 ^
 noremap ^ 0
 noremap ` '
 noremap ' `
+noremap _ g_
 
 " easier increment and decrement
 nnoremap + <C-a>
@@ -187,17 +194,44 @@ vmap <s-tab> <gv
 autocmd WinLeave * set nocursorline
 autocmd WinEnter * set cursorline
 
+" number the lines
+if exists('+relativenumber')
+    set relativenumber
+else
+    set number
+endif
+set numberwidth=5
+
 " random
 set hidden
 set winaltkeys=no
+nmap K <nop>
+
+" write with sudo
+cnoremap w!! w !sudo tee % >/dev/null
 
 " mksession
 set sessionoptions=buffers,curdir,folds,tabpages,winsize
 
+" persistent undo
 if exists("+undofile")
-    " persistent undo
     set undodir=~/.vim/undodir
     set undofile
+endif
+
+" highlight things over 80 columns
+if exists('+colorcolumn')
+  set colorcolumn=81
+  highlight ColorColumn ctermbg=52 guibg=#5f0000
+else
+  highlight OverLength ctermbg=darkred ctermfg=white
+  function! HighlightCode()
+    match OverLength '\%81v'
+  endfunction
+  call HighlightCode()
+  " wrap in function so that it works for splits
+  autocmd WinEnter * call HighlightCode()
+  " autocmd BufWinEnter * let w:m1=matchadd('OverLength', '\%81v', -1)
 endif
 
 " when editing a file, always jump to the last cursor position
@@ -215,9 +249,17 @@ endfunction
 " Run it every time we change buffers
 autocmd BufEnter * call SetTitle()
 
+" my color overrides
+if colors_name == "xoria256"
+    highlight Folded                                  ctermbg=234  guibg=#1c1c1c
+    highlight CursorLine                              ctermbg=235  guibg=#262626
+    highlight Visual      ctermfg=none guifg=none     ctermbg=238  guibg=#444444
+    highlight LineNr      ctermfg=240  guifg=#585858  ctermbg=234  guibg=#1c1c1c
+endif
+
 
 " nerd_commenter
-map <leader><leader> ,c<space>
+map <leader>; ,c<space>
 let NERDSpaceDelims=1
 
 " nerd_tree
@@ -229,11 +271,21 @@ let NERDTreeConfirmDeleteBookmark=0
 
 " CommandT
 nmap <leader>m :CommandTBuffer<CR>
+nmap <leader>g :CommandTTag<CR>
 let g:CommandTMaxHeight=20
 
 " SuperTab
 let g:SuperTabDefaultCompletionType='<c-n>'
 let g:SuperTabLongestEnhanced=1
+
+" Vimux
+nmap <leader>x :VimuxPromptCommand<cr>
+nmap <leader>. :VimuxRunLastCommand<cr>
+
+function VimuxSetPane()
+  let g:_VimTmuxRunnerPane = input("Pane? ")
+endfunction
+nmap <leader>z :call VimuxSetPane()<cr>
 
 source $HOME/.vim/filetypes.vimrc
 if filereadable(expand("$HOME/.vim/local.vimrc"))

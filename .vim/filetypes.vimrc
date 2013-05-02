@@ -15,8 +15,9 @@ autocmd FileType css set foldmethod=marker
 autocmd FileType html set foldmethod=indent
 autocmd FileType java set foldmethod=marker
 autocmd FileType javascript set foldmethod=marker
+autocmd FileType nerdtree set nofoldenable
 autocmd FileType objc set foldmethod=marker
-autocmd FileType php set foldmethod=marker
+autocmd FileType php set foldmethod=indent
 autocmd FileType python set foldmethod=indent
 autocmd FileType ruby set foldmethod=syntax
 autocmd FileType sh set foldmethod=marker
@@ -28,6 +29,9 @@ autocmd FileType html set shiftwidth=2 softtabstop=2
 autocmd FileType javascript set shiftwidth=2 softtabstop=2
 autocmd FileType jsp set shiftwidth=2 softtabstop=2
 autocmd FileType php set shiftwidth=2 softtabstop=2
+autocmd FileType python set shiftwidth=4 softtabstop=4
 autocmd FileType rst set syntax=rest
 autocmd FileType ruby set shiftwidth=2 softtabstop=2
 autocmd FileType tex set shiftwidth=2 softtabstop=2 textwidth=79
+
+autocmd FileType qf set nofoldenable
