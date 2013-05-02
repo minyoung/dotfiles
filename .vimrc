@@ -211,6 +211,7 @@ nmap K <nop>
 cnoremap w!! w !sudo tee % >/dev/null
 
 " mksession
+" I just don't want blank, help and options
 set sessionoptions=buffers,curdir,folds,tabpages,winsize
 
 " persistent undo
