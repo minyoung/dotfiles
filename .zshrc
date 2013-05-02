@@ -4,7 +4,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # options
-setopt INC_APPEND_HISTORY SHARE_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 setopt PROMPT_SUBST
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
@@ -27,19 +28,14 @@ function set_title {
 
 # auto titling stuff
 function precmd {
-    # more escaping is needed to cover all cases,
-    # but good enough for a start...
-    local home="$(echo $HOME | sed 's/\//\\\//g')"
-    local where="$(pwd | sed "s/^$home/~/")"
-    set_title "zsh - $where"
+    # good enough for a start...
+    set_title "zsh - ${$(pwd)/$HOME/~}"
 }
 
 function preexec {
-    # local foo="$2 "
-    # local title=${${=foo}[1]}
-    # ^^ = command - arguments
-    local title="$2"
-    set_title "$title"
+    # local command=${${=${2}}[1]}
+    # ^^ = command line - arguments
+    set_title "$2"
 }
 
 u () {
@@ -96,8 +92,8 @@ RPROMPT='$PR_YELLOW$(date "+%F %T %Z")$PR_NO_COLOR'
 autoload -U compinit && compinit
 zmodload zsh/complist
 _force_rehash() {
-  (( CURRENT == 1 )) && rehash
-  return 1     # Because we didn't really complete anything
+    (( CURRENT == 1 )) && rehash
+    return 1     # Because we didn't really complete anything
 }
 zstyle ':completion:::::' completer _force_rehash _complete _approximate
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX + $#SUFFIX) / 3 )) )'
