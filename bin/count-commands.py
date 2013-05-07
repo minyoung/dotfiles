@@ -32,24 +32,25 @@ def _get_db():
 def _create_command_table(db):
     db.execute('''
         CREATE TABLE IF NOT EXISTS commands (
+            uuid TEXT,
             timestamp INTEGER,
             duration INTEGER DEFAULT -1,
             command TEXT,
             user_string TEXT,
-            expanded_string TEXT)''')
+            expanded_string TEXT,
+            PRIMARY KEY(uuid))''')
     db.execute(
         '''CREATE INDEX IF NOT EXISTS ix_commands_command
             ON commands(command)''')
-    db.execute(
-        '''CREATE INDEX IF NOT EXISTS ix_commands_timestamp
-            ON commands(timestamp)''')
 
 
-def _insert_command(db, timestamp, user_string, expanded_string):
+def _insert_command(db, uuid, timestamp, user_string, expanded_string):
     command = user_string.split()[0]
     db.execute('''
-        INSERT INTO commands (timestamp, command, user_string, expanded_string)
-        VALUES (?, ?, ?, ?)''', [
+        INSERT INTO commands
+            (uuid, timestamp, command, user_string, expanded_string)
+        VALUES (?, ?, ?, ?, ?)''', [
+            uuid,
             timestamp,
             command,
             user_string,
@@ -81,14 +82,15 @@ def _print_command_info(user_command):
 
 
 def log_command(args):
-    timestamp = int(args[0])
-    user_string = args[1]
-    expanded_string = args[3]
+    uuid = args[0]
+    timestamp = float(args[1])
+    user_string = args[2]
+    expanded_string = args[4]
 
     try:
         db = _get_db()
         _create_command_table(db)
-        _insert_command(db, timestamp, user_string, expanded_string)
+        _insert_command(db, uuid, timestamp, user_string, expanded_string)
     except Exception, e:
         # logging the command is only best effort, so don't care about failures
         print "{0}: {1}".format(e.__class__.__name__, e)
@@ -96,23 +98,19 @@ def log_command(args):
     _print_command_info(expanded_string)
 
 
-def _update_command_end(db, timestamp, duration):
-    db.execute('''
-        UPDATE commands
-        SET duration = ?
-        WHERE timestamp = ?''', [
-            duration,
-            timestamp])
+def _update_command_end(db, uuid, duration):
+    db.execute('''UPDATE commands SET duration = ?  WHERE uuid = ?''',
+                [duration, uuid])
     db.commit()
     db.close()
 
 
 def log_command_end(args):
-    timestamp = int(args[0])
-    duration = int(args[1])
+    uuid = args[0]
+    duration = float(args[1])
     try:
         db = _get_db()
-        _update_command_end(db, timestamp, duration)
+        _update_command_end(db, uuid, duration)
     except Exception, e:
         print "{0}: {1}".format(e.__class__.__name__, e)
 

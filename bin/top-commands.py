@@ -9,7 +9,7 @@ from texttable import Texttable
 
 
 DB_PATH = os.path.expanduser('~/bin/Data/count-commands/commands.sqlite3')
-TIMESTAMP = int(time() - 1000 * 60 * 60 * 24 * 7 * 4 * 6)
+TIMESTAMP = int(time() - 60 * 60 * 24 * 7 * 4 * 6)
 
 
 def execute_scalar(db, query, *args):

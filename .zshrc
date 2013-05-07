@@ -18,6 +18,9 @@ bindkey -v
 unsetopt FLOW_CONTROL
 setopt NO_FLOW_CONTROL
 
+# used in precmd for time calculations
+zmodload zsh/mathfunc
+
 function set_title {
     if [[ "$TERM" == screen* ]]; then
         print -Pn "\ek$1:q\e\\"
@@ -34,17 +37,18 @@ function precmd {
     if [[ -z "$LAST_COMMAND_START_TIME" ]]; then
         return
     fi
-    local duration=$(($(date +%s%N) / 1000000 - $LAST_COMMAND_START_TIME))
+    local duration=$(($(date +%s.%N) - $LAST_COMMAND_START_TIME))
 
-    count-commands.py log_command_end $LAST_COMMAND_START_TIME $duration
+    count-commands.py log_command_end $LAST_COMMAND_ID $duration
 
     local last_command=$LAST_COMMAND
     unset LAST_COMMAND
+    unset LAST_COMMAND_ID
     unset LAST_COMMAND_START_TIME
 
     # < 2s is below the threshold where I care
     # > 12hrs is above the threshold where I care
-    if (( $duration < 2000 || $duration > 43200000 )); then
+    if (( $duration < 2 || $duration > 43200 )); then
       return
     fi
 
@@ -57,18 +61,17 @@ function precmd {
     fi
 
     local hours=""
-    if [[ $duration -ge 3600000 ]]; then
-        hours="$((duration / 3600000))h "
-        duration=$((duration % 3600000))
+    if [[ $duration -ge 3600 ]]; then
+        hours="$((int(duration) / 3600))h "
+        duration=$((duration % 3600))
     fi
 
     local minutes=""
-    if [[ $duration -ge 60000 ]]; then
-        minutes="$((duration / 60000))m "
-        duration=$((duration % 60000))
+    if [[ $duration -ge 60 ]]; then
+        minutes="$((int(duration) / 60))m "
     fi
 
-    local seconds="${$((duration / 1000.0)):0:5}s"
+    local seconds="${$((fmod(duration, 60))):0:5}s"
     local elapsed="Elapsed: ${hours}${minutes}${seconds}"
     echo "\033[31m${(r:${#elapsed}::-::+:)}---+"
     echo "\033[31m|\033[0m ${elapsed} \033[31m|"
@@ -79,9 +82,10 @@ function preexec {
     local command=${${=${2}}[1]}
     # ^^ = command line - arguments
     export LAST_COMMAND=$(basename $command)
-    export LAST_COMMAND_START_TIME=$(($(date +%s%N)/1000000))
+    export LAST_COMMAND_ID=$(uuidgen -t)
+    export LAST_COMMAND_START_TIME=$(date +%s.%N)
 
-    count-commands.py log_command $LAST_COMMAND_START_TIME $@
+    count-commands.py log_command $LAST_COMMAND_ID $LAST_COMMAND_START_TIME $@
 
     set_title "$2"
 }
