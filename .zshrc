@@ -111,7 +111,7 @@ PR_NO_COLOR="%{$terminfo[sgr0]%}"
 function __git_prompt() {
     ref=$(git symbolic-ref HEAD 2> /dev/null) || \
     ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-    echo "(± $PR_GREEN${ref#refs/heads/})"
+    echo "$PR_CYAN(± ${ref#refs/heads/})$PR_NO_COLOR"
 }
 
 function __hg_prompt() {
