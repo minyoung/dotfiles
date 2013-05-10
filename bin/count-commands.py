@@ -93,7 +93,8 @@ def log_command(args):
         _insert_command(db, uuid, timestamp, user_string, expanded_string)
     except Exception, e:
         # logging the command is only best effort, so don't care about failures
-        print "{0}: {1}".format(e.__class__.__name__, e)
+        print format_str("{red}!!{reset} {0}: {1} {red}!!{reset}",
+                e.__class__.__name__, e)
 
     _print_command_info(expanded_string)
 
@@ -112,7 +113,8 @@ def log_command_end(args):
         db = _get_db()
         _update_command_end(db, uuid, duration)
     except Exception, e:
-        print "{0}: {1}".format(e.__class__.__name__, e)
+        print format_str("{red}!!{reset} {0}: {1} {red}!!{reset}",
+                e.__class__.__name__, e)
 
 
 if __name__ == '__main__':
