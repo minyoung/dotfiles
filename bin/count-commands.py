@@ -10,10 +10,13 @@ import time
 
 DB_PATH = os.path.expanduser('~/bin/Data/count-commands/commands.sqlite3')
 COLORS = {
+    'red': '\033[31m',
+    'light_red': '\033[91m',
+    'green': '\033[92m',
+    'yellow': '\033[93m',
+    'gray': '\033[37m',
     'cyan': '\033[96m',
     'reset': '\033[0m',
-    'yellow': '\033[93m',
-    'red': '\033[31m',
 }
 
 
@@ -42,7 +45,7 @@ def normalize_user_string(user_string):
     return ' '.join(user_string.strip().split())
 
 
-def print_box(text_block, color=COLORS['red']):
+def print_box(text_block, color=COLORS['gray']):
     formatted_lines = text_block.split('\n')
     clean_lines = re.sub('\033\\[\\d+m', '', text_block.replace('\t', ' ' * 6))\
                     .split('\n')
@@ -147,14 +150,22 @@ def print_command_end_info(timestamp, row):
         if normalized.startswith(ignore_string):
             return
 
+    if duration > 3600:
+        elapsed_color = COLORS['red']
+    elif duration > 60:
+        elapsed_color = COLORS['light_red']
+    else:
+        elapsed_color = COLORS['green']
+
     print_box(format_str(
             "{cyan}{cwd}\n"
-            "{yellow}{start} {red}~ {yellow}{end}{reset}\n"
-            "Elapsed: {duration}\n\n"
-            "{user_command}",
+            "{yellow}{start} {red}~ {yellow}{end}\n"
+            "{elapsed_color}Elapsed: {duration}\n\n"
+            "{reset}{user_command}",
             cwd=os.getcwd(),
             start=time.strftime('%F %T %Z', time.localtime(row['timestamp'])),
             end=time.strftime('%F %T %Z', time.localtime(timestamp)),
+            elapsed_color=elapsed_color,
             duration=format_duration(duration),
             user_command=row['expanded_string']))
 
