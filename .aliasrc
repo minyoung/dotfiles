@@ -68,11 +68,17 @@ alias vm='valgrind --leak-check=full'
 alias sl='ls'
 alias amke='make'
 
-# probably what I want to do with regards to tmux, i.e.
+# do what I usually want to happen with regards to tmux, i.e.
 # fix ssh-agent forwarding or attach or create a new session
-alias ta='[[ -n $TMUX ]] && fix_tmux_env || (
-    tmux attach || tmux new-session "echo \"= New TMUX session =\" ; zsh"
-)'
+ta() {
+  # reload some of the environment variables for tmux
+  # most notably this fixes ssh-agent forwarding
+  if [[ -n "$TMUX" ]]; then
+    fix_tmux_env
+    return
+  fi
+  tmux attach "$@" || tmux new-session 'echo "= New TMUX session =" ; zsh'
+}
 
 # reload some of the environment variables for tmux
 # most notably this fixes ssh-agent forwarding
