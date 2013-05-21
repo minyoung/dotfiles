@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import collections
+import itertools
 import os
 import sqlite3
 import sys
@@ -49,7 +50,7 @@ def top(db):
 
 def sub(db, command, *filters):
     counts = collections.defaultdict(int)
-    user_filter = '%s %s' % (command, ' '.join(filters))
+    user_filter = ' '.join(itertools.chain([command], filters))
     total = 0
 
     query = '''
