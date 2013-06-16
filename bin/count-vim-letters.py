@@ -349,4 +349,5 @@ if __name__ == '__main__':
     stats = main(args)
     s = stats.suffix_trie
     stats.print_stats()
-    code.interact(local=locals())
+    if interactive:
+        code.interact(local=locals())
