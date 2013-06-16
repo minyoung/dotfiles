@@ -1,60 +1,57 @@
-xoria256
-http://www.vim.org/scripts/script.php?script_id=2140
-Low contrast 256 color scheme
+xoria256: Soft pastel gamma on dark background
+    http://www.vim.org/scripts/script.php?script_id=2140
+    git clone --recursive https://github.com/noah/vim256-color.git
 
-mustang
-http://hcalves.deviantart.com/art/Mustang-Vim-Colorscheme-98974484
-mustang colorscheme
+pathogen: manage your runtimepath
+    http://www.vim.org/scripts/script.php?script_id=2332
+    https://github.com/tpope/vim-pathogen
 
-pathogen
-http://www.vim.org/scripts/script.php?script_id=2332
-https://github.com/tpope/vim-pathogen
-separate plugins into separate folders
+Command-T: Fast file navigation for VIM
+    http://www.vim.org/scripts/script.php?script_id=3025
+    https://github.com/wincent/Command-T
 
-Command-T
-http://www.vim.org/scripts/script.php?script_id=3025
-https://github.com/wincent/Command-T
-fast fuzzy file finding
+NERDtree: A tree explorer plugin for vim
+    http://www.vim.org/scripts/script.php?script_id=1658
+    https://github.com/scrooloose/nerdtree
 
-nerdtree
-http://www.vim.org/scripts/script.php?script_id=1658
-https://github.com/scrooloose/nerdtree
-:NERDTree to explore filesystem as a tree
+NERDcommenter: Vim plugin for intensely orgasmic commenting
+    http://www.vim.org/scripts/script.php?script_id=1218
+    https://github.com/scrooloose/nerdcommenter
 
-NERD_tree__ack
-http://www.vim.org/scripts/script.php?script_id=3357
-NERDTree + ack
+Fugitive: a Git wrapper so awesome, it should be illegal
+    http://www.vim.org/scripts/script.php?script_id=2975
+    https://github.com/tpope/vim-fugitive.git
 
-nerdcommenter
-http://www.vim.org/scripts/script.php?script_id=1218
-https://github.com/scrooloose/nerdcommenter
-,c<space> to toggle comment (more options available)
+surround: quoting/parenthesizing made simple
+    http://www.vim.org/scripts/script.php?script_id=1697
+    https://github.com/tpope/vim-surround
 
-bufexplorer
-http://www.vim.org/scripts/script.php?script_id=42
-https://github.com/vim-scripts/bufexplorer.zip
-<Leader>be to explore buffers
+bufexplorer: Buffer Explorer / Browser
+    http://www.vim.org/scripts/script.php?script_id=42
+    https://github.com/vim-scripts/bufexplorer.zip
 
-alternate
-http://www.vim.org/scripts/script.php?script_id=31
-https://github.com/vim-scripts/a.vim
-:A to alternate between .cpp/.h files
+EasyMotion: Vim motions on speed! 
+    http://www.vim.org/scripts/script.php?script_id=3526
+    https://github.com/Lokaltog/vim-easymotion
 
-snipMate
-http://www.vim.org/scripts/script.php?script_id=2540
-Very cool snippets functionality
+UltiSnips: The Ultimate Snippet Solution for Vim
+    https://github.com/MarcWeber/ultisnips.git
 
-surround
-http://www.vim.org/scripts/script.php?script_id=1697
-https://github.com/tpope/vim-surround
-cs'" to change surrounding single quote to double quotes
+SuperTab: Perform all your vim insert mode completions with Tab
+    http://www.vim.org/scripts/script.php?script_id=1643
+    https://github.com/ervandew/supertab
 
-ZoomWinPlugin
-http://www.vim.org/scripts/script.php?script_id=508
-<C-W>o to zoom in/out of current split window
+vim-snippets: default snippets
+    https://github.com/honza/vim-snippets
+
+ZoomWinPlugin: Zoom in/out of windows (toggle between one window and multi-window)
+    http://www.vim.org/scripts/script.php?script_id=508
+    https://github.com/vim-scripts/ZoomWin
 
 syntax files:
-glsl: http://www.vim.org/scripts/script.php?script_id=1002
-actionscript: http://www.vim.org/scripts/script.php?script_id=1061
-mxml: http://www.abdulqabiz.com/blog/archives/2007/10/12/vim-actionscript-and-mxml-syntax-files/
-rest: http://www.vim.org/scripts/script.php?script_id=973
+    glsl: http://www.vim.org/scripts/script.php?script_id=1002
+    actionscript: http://www.vim.org/scripts/script.php?script_id=1061
+    mxml: http://www.abdulqabiz.com/blog/archives/2007/10/12/vim-actionscript-and-mxml-syntax-files/
+    rest: http://www.vim.org/scripts/script.php?script_id=973
+
+# vim: set foldmethod=indent foldlevel=0 :

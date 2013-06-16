@@ -1,5 +1,6 @@
 set nocompatible
 
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
 let mapleader=","
@@ -42,7 +43,7 @@ set incsearch
 " hlsearch is useful, but the highlighting staying around is annoying, so
 " that's what the next mapping is for :D
 set hlsearch
-nnoremap <esc> <esc>:noh<cr><esc>
+nnoremap <esc> <esc>:nohlsearch<cr><esc>
 
 " useful for searching
 set ignorecase
