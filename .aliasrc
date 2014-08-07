@@ -48,14 +48,19 @@ alias dos2unix='recode dos/CR-LF..l1'
 alias unix2win='recode l1..windows-1250'
 alias unix2dos='recode l1..dos/CR-LF'
 
+# git
 alias gri='git rebase --interactive'
+alias gfrp='git fetch && git rebase origin/master && git push origin HEAD:master'
+function gfr() {
+  git fetch && git rebase ${1:-origin/master}
+}
 
 # common programs
 alias g='git'
 alias h='hg'
 alias p='python'
 alias m='make'
-alias j='jrun'
+# alias j='jrun'
 
 # common flags
 alias ll='ls -l'
@@ -89,6 +94,34 @@ fix_tmux_env() {
   fi
 }
 
-source_if_exists ${HOME}/.localrc
+# sometimes, you just want to keep on retrying until it succeeds
+just_do_it() {
+  echo "Just doing it"
+  eval "$@"
+  while [[ $? != 0 ]]; do
+    sleep 2
+    echo "Just doing it again"
+    eval "$@"
+  done
+}
+
+# only add it if it's not already in PATH
+add_PATH() {
+  echo ":${PATH}:" | grep ":$1:" &> /dev/null
+  if [[ $? != 0 ]]; then
+      export PATH="${PATH}:$1"
+  fi
+}
+
+remove_PATH() {
+  WIP=":${PATH}:"
+  WIP=${WIP//:$1:/:}
+  WIP=${WIP%:}
+  WIP=${WIP#:}
+  export PATH="${WIP}"
+}
+
+source_if_exists "${HOME}/.sh/jump/jump.sh"
+source_if_exists "${HOME}/.localrc"
 
 # vim: set ft=sh :

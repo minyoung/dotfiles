@@ -121,9 +121,8 @@ $(__git_prompt)$(__hg_prompt)\
 %(!.#.$)$PR_NO_COLOR '
 RPROMPT='$PR_YELLOW$(date "+%F %T %Z")$PR_NO_COLOR'
 
-[[ -r ${HOME}/.aliasrc ]] && source ${HOME}/.aliasrc
-
-autoload -U compinit && compinit
+fpath=($HOME/.zsh/completion $fpath)
+autoload -U compinit && compinit -i
 zmodload zsh/complist
 _force_rehash() {
     (( CURRENT == 1 )) && rehash
@@ -163,3 +162,5 @@ unsetopt extendedhistory
 __git_files () {
     _wanted files expl "local files" _files
 }
+
+[[ -r ${HOME}/.aliasrc ]] && source ${HOME}/.aliasrc
