@@ -289,6 +289,11 @@ function VimuxSetPane()
 endfunction
 nmap <leader>z :call VimuxSetPane()<cr>
 
+" for sharing copy buffer and clipboard over ssh
+" couples with ssh-forwarding port 8377 and clipper
+" nnoremap <leader>y :call system('nc localhost 8377', @0)<CR>
+" vnoremap <leader>y y:call system('nc localhost 8377', @0)<CR>
+
 source $HOME/.vim/filetypes.vimrc
 if filereadable(expand("$HOME/.vim/local.vimrc"))
     source $HOME/.vim/local.vimrc
