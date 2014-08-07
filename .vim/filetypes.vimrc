@@ -4,7 +4,9 @@ autocmd BufNewFile,BufRead *.as set filetype=actionscript
 autocmd BufNewFile,BufRead *.mxml set filetype=mxml
 autocmd BufNewFile,BufRead *.tex set filetype=tex
 autocmd BufNewFile,BufRead *.mako set filetype=mako
+autocmd BufNewFile,BufRead *.mm set filetype=objcpp
 autocmd BufNewFile,BufRead *.thrift set filetype=thrift
+autocmd BufNewFile,BufRead BUCK set filetype=python shiftwidth=2 softtabstop=2
 
 " foldmethods
 autocmd FileType actionscript set foldmethod=marker
@@ -12,11 +14,13 @@ autocmd FileType c set foldmethod=syntax
 autocmd FileType cpp set foldmethod=syntax
 autocmd FileType cs set foldmethod=syntax
 autocmd FileType css set foldmethod=marker
+autocmd FileType go set foldmethod=marker
 autocmd FileType html set foldmethod=indent
 autocmd FileType java set foldmethod=marker
 autocmd FileType javascript set foldmethod=marker
 autocmd FileType nerdtree set nofoldenable
 autocmd FileType objc set foldmethod=marker
+autocmd FileType objcpp set foldmethod=marker
 autocmd FileType php set foldmethod=indent
 autocmd FileType python set foldmethod=indent
 autocmd FileType ruby set foldmethod=syntax
@@ -33,5 +37,10 @@ autocmd FileType python set shiftwidth=4 softtabstop=4
 autocmd FileType rst set syntax=rest
 autocmd FileType ruby set shiftwidth=2 softtabstop=2
 autocmd FileType tex set shiftwidth=2 softtabstop=2 textwidth=79
+autocmd FileType objc set shiftwidth=2 softtabstop=2
 
 autocmd FileType qf set nofoldenable
+
+autocmd FileType go set colorcolumn=0 nolist
+autocmd FileType objc set colorcolumn=0 nowrap
+autocmd FileType objcpp set colorcolumn=0 nowrap

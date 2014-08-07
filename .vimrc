@@ -88,7 +88,7 @@ set wildmode=longest:full
 set wildignore=*.o,*.obj,*.bak,*.class,*.pyc,*.swp,.git,.hg,_bin
 
 " make the clipboard the default register to use
-set clipboard=unnamed,exclude:cons\|linux
+" set clipboard=unnamed,exclude:cons\|linux
 
 " don't redraw during macros
 set lazyredraw
@@ -169,6 +169,10 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-h> <C-w>h
 map <C-l> <C-w>l
+
+" 'scroll' up/down faster
+nnoremap <C-e> 5<C-e>
+nnoremap <C-y> 5<C-y>
 
 " useful remappings
 noremap 0 ^

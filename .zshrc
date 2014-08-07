@@ -18,6 +18,8 @@ bindkey -v
 unsetopt FLOW_CONTROL
 setopt NO_FLOW_CONTROL
 
+bindkey "^R" history-incremental-search-backward
+
 # used in precmd for time calculations
 zmodload zsh/mathfunc
 
