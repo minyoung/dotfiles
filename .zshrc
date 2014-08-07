@@ -69,15 +69,36 @@ for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
 done
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
+function __find_toplevel() {
+    local d
+    d=$PWD
+    while : ; do
+        if test -d "$d/$1" ; then
+            echo "$d"
+            return
+        fi
+        test "$d" = / -o "$d" = "$HOME" && break
+        d=$(cd "$d/.." && echo "$PWD")
+    done
+}
+
 function __git_prompt() {
+    local ref
     ref=$(git symbolic-ref HEAD 2> /dev/null) || \
     ref=$(git rev-parse --short HEAD 2> /dev/null) || return
     echo "$PR_CYAN(± ${ref#refs/heads/})$PR_NO_COLOR"
 }
 
 function __hg_prompt() {
-    hg root &> /dev/null || return
-    echo '(☿)'
+    local hg
+    hg=$(__find_toplevel ".hg")
+    if test -n "$hg" ; then
+        local br file
+        for file in "$hg/.hg/bookmarks.current" "$hg/.hg/branch" ; do
+          test -f "$file" && { read br < "$file" ; break; }
+        done
+        echo "$PR_CYAN(☿ $br)$PR_NO_COLOR"
+    fi
 }
 
 # TP_RED="`tput setaf 1`"
