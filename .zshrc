@@ -31,8 +31,8 @@ function set_title {
     fi
 }
 
-# auto titling stuff
 function precmd {
+    # auto titling stuff
     # good enough for a start...
     set_title "zsh - ${$(pwd)/$HOME/~}"
 
@@ -49,7 +49,7 @@ function preexec {
     # ^^ = command line - arguments
     set_title "$2"
 
-    export LAST_COMMAND_ID=$(uuidgen -t)
+    export LAST_COMMAND_ID=$(uuidgen)
     count-commands.py log_command $LAST_COMMAND_ID $@
 }
 
