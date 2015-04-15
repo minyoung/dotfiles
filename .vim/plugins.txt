@@ -30,7 +30,7 @@ bufexplorer: Buffer Explorer / Browser
     http://www.vim.org/scripts/script.php?script_id=42
     https://github.com/vim-scripts/bufexplorer.zip
 
-EasyMotion: Vim motions on speed! 
+EasyMotion: Vim motions on speed!
     http://www.vim.org/scripts/script.php?script_id=3526
     https://github.com/Lokaltog/vim-easymotion
 
@@ -47,6 +47,9 @@ vim-snippets: default snippets
 ZoomWinPlugin: Zoom in/out of windows (toggle between one window and multi-window)
     http://www.vim.org/scripts/script.php?script_id=508
     https://github.com/vim-scripts/ZoomWin
+
+vim-go: Go development plugin for Vim
+    https://github.com/fatih/vim-go
 
 syntax files:
     glsl: http://www.vim.org/scripts/script.php?script_id=1002

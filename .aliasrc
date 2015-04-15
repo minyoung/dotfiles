@@ -20,14 +20,13 @@ source_if_exists "$HOME/.pythonbrew/etc/bashrc"
 source_if_exists "$HOME/.rvm/scripts/rvm"
 
 # python/ruby package paths
-export PYTHONPATH=.:${HOME}/.python:${HOME}/.python/lib/python
+export PYTHONPATH=.:${HOME}/.python:${HOME}/.python/lib
 export GEM_PATH=${HOME}/.gem/ruby/1.8
 export CLASSPATH=.:${HOME}/.java/lib/\*
 export PERL5LIB="${HOME}/.perl/share/perl/5.8.8/:${HOME}/.perl/lib/perl/5.8.8/"
 
 # general python setup
 export PYTHONSTARTUP=${HOME}/.pythonrc
-export PIP_DOWNLOAD_CACHE=${HOME}/.pip/cache
 export VIRTUALENV_DIR=${HOME}/.python/envs/
 export WORKON_HOME=${VIRTUALENV_DIR}
 source_if_exists "$HOME/.python/bin/virtualenvwrapper.sh"

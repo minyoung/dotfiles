@@ -29,6 +29,7 @@ autocmd FileType tex set foldmarker={{{,}}} foldmethod=marker
 autocmd FileType thrift set foldmethod=marker
 
 " some other file type specific things
+autocmd FileType go set noexpandtab shiftwidth=8
 autocmd FileType html set shiftwidth=2 softtabstop=2
 autocmd FileType javascript set shiftwidth=2 softtabstop=2
 autocmd FileType jsp set shiftwidth=2 softtabstop=2

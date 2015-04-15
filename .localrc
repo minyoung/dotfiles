@@ -5,8 +5,11 @@ function zle-line-init zle-keymap-select {
   RPROMPT='${vi_mode}$PR_YELLOW$(date "+%F %T %Z")$PR_NO_COLOR'
     zle reset-prompt
 }
-zle -N zle-line-init
+# re-initializing the command line somehow breaks my inline git prompt :/
+# zle -N zle-line-init
 zle -N zle-keymap-select
 RPROMPT='${PR_CYAN}[INS] $PR_YELLOW$(date "+%F %T %Z")$PR_NO_COLOR'
+
+alias gciam='git commit --amend --no-edit'
 
 # vim: set ft=sh :

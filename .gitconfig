@@ -1,6 +1,7 @@
 [alias]
     b = branch
     ci = commit
+    ciam = commit --amend --no-edit
     co = checkout
     cp = cherry-pick
     d = diff
