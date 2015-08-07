@@ -15,9 +15,10 @@ export GIT_CEILING_DIRECTORIES="${HOME}"
 export AWT_TOOLKIT=MToolkit
 # export _JAVA_AWT_WM_NONREPARENTING=1
 
-# pythonbrew and rvm (python/ruby version managers)
-source_if_exists "$HOME/.pythonbrew/etc/bashrc"
-source_if_exists "$HOME/.rvm/scripts/rvm"
+# shell helper/extensions
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which scmpuff > /dev/null; then eval "$(scmpuff init -s)"; fi
 
 # python/ruby package paths
 export PYTHONPATH=.:${HOME}/.python:${HOME}/.python/lib
