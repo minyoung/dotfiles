@@ -51,6 +51,15 @@ ZoomWinPlugin: Zoom in/out of windows (toggle between one window and multi-windo
 vim-go: Go development plugin for Vim
     https://github.com/fatih/vim-go
 
+YouCompleteMe: auto-completion
+    https://github.com/Valloric/YouCompleteMe
+
+HiCursorWords: highlight the current word under the cursor
+    https://github.com/OrelSokolov/HiCursorWords
+
+Bracketed paste mode: making paste just work (basically my plugin/term.vim)
+    https://github.com/ConradIrwin/vim-bracketed-paste
+
 syntax files:
     glsl: http://www.vim.org/scripts/script.php?script_id=1002
     actionscript: http://www.vim.org/scripts/script.php?script_id=1061

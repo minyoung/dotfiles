@@ -23,7 +23,16 @@ else
 endif
 syntax on
 syn sync fromstart
+
+" I don't like hunting for a small cursor
 set cursorline
+
+" only have cursorline in the current window
+autocmd WinLeave * set nocursorline
+autocmd WinEnter * set cursorline
+
+" sometimes WinEnter isn't triggered, so here's a backup
+map <leader>l :set cursorline<cr>
 
 " enable filetype detection and stuff
 filetype on
@@ -64,6 +73,9 @@ vmap <leader>f :fold<CR>
 " leaving insert mode. Foldmethod is local to the window.
 autocmd InsertEnter * let w:last_fdm=&foldmethod | setlocal foldmethod=manual
 autocmd InsertLeave * let &l:foldmethod=w:last_fdm
+
+" toggle fold with space
+nnoremap <space> za
 
 " tab stuff
 set expandtab
@@ -148,9 +160,6 @@ set noswapfile
 " really liking the ability to jump to definition: <C-]>
 set tags=tags;/
 
-" toggle fold with space
-nnoremap <space> za
-
 " move between tabs easier
 nmap <C-n> :tabnext<CR>
 nmap <C-p> :tabprevious<CR>
@@ -194,10 +203,6 @@ nnoremap <C-g> 2<C-g>
 " tab and shift-tab to indent and unindent
 vmap <tab> >gv
 vmap <s-tab> <gv
-
-" only have cursorline in the current window
-autocmd WinLeave * set nocursorline
-autocmd WinEnter * set cursorline
 
 " number the lines
 if exists('+relativenumber')
@@ -279,24 +284,21 @@ let NERDTreeConfirmDeleteBookmark=0
 nmap <leader>m :CommandTBuffer<CR>
 nmap <leader>g :CommandTTag<CR>
 let g:CommandTMaxHeight=20
+let g:CommandTTraverseSCM='pwd'
+
+" CtrlP
+" let g:ctrlp_map = '<c-t>'
+" nmap <leader>t :CtrlP<CR>
+" nmap <leader>m :CtrlPBuffer<CR>
+" let g:ctrlp_working_path_mode = '0'
 
 " SuperTab
 let g:SuperTabDefaultCompletionType='<c-n>'
 let g:SuperTabLongestEnhanced=1
 
-" Vimux
-nmap <leader>x :VimuxPromptCommand<cr>
-nmap <leader>. :VimuxRunLastCommand<cr>
-
-function VimuxSetPane()
-  let g:_VimTmuxRunnerPane = input("Pane? ")
-endfunction
-nmap <leader>z :call VimuxSetPane()<cr>
-
-" for sharing copy buffer and clipboard over ssh
-" couples with ssh-forwarding port 8377 and clipper
-" nnoremap <leader>y :call system('nc localhost 8377', @0)<CR>
-" vnoremap <leader>y y:call system('nc localhost 8377', @0)<CR>
+" YCM
+set completeopt-=preview
+let g:ycm_add_preview_to_completeopt = 0
 
 source $HOME/.vim/filetypes.vimrc
 if filereadable(expand("$HOME/.vim/local.vimrc"))
