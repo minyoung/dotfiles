@@ -26,6 +26,9 @@ if ARCHIVE.endswith('.tar.gz') or ARCHIVE.endswith('.tgz'):
 elif ARCHIVE.endswith('.gz'):
     subprocess.call(['gzip', 'l', ARCHIVE])
 
+if ARCHIVE.endswith('.tar'):
+    subprocess.call(['tar', 'tvf', ARCHIVE])
+
 elif ARCHIVE.endswith('.tar.bz2') or ARCHIVE.endswith('.tbz2'):
     subprocess.call(['tar', 'tvjf', ARCHIVE])
 
