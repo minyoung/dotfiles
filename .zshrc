@@ -2,6 +2,8 @@
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
+REPORTTIME=3
+KEYTIMEOUT=1
 
 # options
 setopt INC_APPEND_HISTORY
@@ -12,11 +14,12 @@ setopt HIST_IGNORE_SPACE
 setopt NO_BEEP
 setopt AUTO_CD
 setopt EXTENDED_GLOB
-set MULTIOS
-set CORRECT
-bindkey -v
+setopt MULTIOS
+setopt CORRECT
 unsetopt FLOW_CONTROL
-setopt NO_FLOW_CONTROL
+unsetopt EXTENDED_HISTORY
+
+bindkey -v
 
 bindkey "^R" history-incremental-search-backward
 
@@ -162,9 +165,6 @@ compdef _gnu_generic python ln
 zstyle ':completion:*:functions' ignored-patterns '_*'
 zstyle ':completion:*:(cd|mv|cp):*' ignore-parents parent pwd
 zstyle ':completion:*:(rm|kill|diff|cp|mv):*' ignore-line yes
-
-unsetopt EXTENDED_HISTORY
-unsetopt extendedhistory
 
 __git_files () {
     _wanted files expl "local files" _files

@@ -54,6 +54,7 @@ alias gfrp='git fetch && git rebase origin/master && git push origin HEAD:master
 function gfr() {
   git fetch && git rebase ${1:-origin/master}
 }
+alias gciam='git commit --amend --no-edit'
 
 # common programs
 alias g='git'
