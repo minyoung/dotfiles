@@ -123,6 +123,11 @@ $(__git_prompt)$(__hg_prompt)\
 %(!.#.$)$PR_NO_COLOR '
 RPROMPT='$PR_YELLOW$(date "+%F %T %Z")$PR_NO_COLOR'
 
+if [[ -s "${HOME}/.sh/prompt/errorcode.sh" ]]; then
+    source "${HOME}/.sh/prompt/errorcode.sh"
+    precmd_functions+=(_errorcode_prompt)
+fi
+
 fpath=($HOME/.zsh/completion $fpath)
 autoload -U compinit && compinit -i
 zmodload zsh/complist
