@@ -39,6 +39,11 @@ function precmd {
     # good enough for a start...
     set_title "zsh - ${$(pwd)/$HOME/~}"
 
+    # if [[ "${last_command_time}" != "" ]]; then
+        # local time_taken
+        # time_taken=$(( `date +%s` - ${last_command_time} ))
+    # fi
+
     if [[ -z "$LAST_COMMAND_ID" ]]; then
         return
     fi
@@ -51,6 +56,8 @@ function preexec {
     # local command=${${=${2}}[1]}
     # ^^ = command line - arguments
     set_title "$2"
+
+    # last_command_time="`date +%s`"
 
     export LAST_COMMAND_ID=$(uuidgen)
     count-commands.py log_command $LAST_COMMAND_ID $@
