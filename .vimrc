@@ -293,6 +293,15 @@ let g:CommandTTraverseSCM='pwd'
 " nmap <leader>t :CtrlP<CR>
 " nmap <leader>m :CtrlPBuffer<CR>
 " let g:ctrlp_working_path_mode = '0'
+" let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:10'
+" let g:ctrlp_switch_buffer = ''
+" let g:ctrlp_clear_cache_on_exit = '0'
+" let g:ctrlp_prompt_mappings = {
+"     \ 'PrtSelectMove("j")': ['<c-n>'],
+"     \ 'PrtSelectMove("k")': ['<c-p>'],
+"     \ 'PrtHistory(-1)':     ['<c-j>'],
+"     \ 'PrtHistory(1)':      ['<c-k>'],
+" \ }
 
 " SuperTab
 let g:SuperTabDefaultCompletionType='<c-n>'
