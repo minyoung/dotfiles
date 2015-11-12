@@ -258,7 +258,9 @@ function! SetTitle()
 endfunction
 
 " Run it every time we change buffers
-autocmd BufEnter * call SetTitle()
+" autocmd BufEnter * call SetTitle()
+set title
+set titlestring=%f
 
 " my color overrides
 if colors_name == "xoria256"
