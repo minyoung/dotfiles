@@ -34,6 +34,9 @@ autocmd WinEnter * set cursorline
 " sometimes WinEnter isn't triggered, so here's a backup
 map <leader>l :set cursorline<cr>
 
+" sometimes I get garbage on the screen...
+nmap <leader>r :redraw!<cr>
+
 " enable filetype detection and stuff
 filetype on
 filetype plugin on
