@@ -53,11 +53,19 @@ alias urldecode='python -c "import sys, urllib; print urllib.unquote_plus(sys.ar
 
 # git
 alias gri='git rebase --interactive'
-alias gfrp='git fetch && git rebase origin/master && git push origin HEAD:master'
 function gfr() {
-  git fetch && git rebase ${1:-origin/master}
+  remote="${1:-origin}"
+  branch="${2:-master}"
+  git fetch "$remote" && git rebase "${remote}/${branch}"
+}
+function gfrp() {
+  remote="${1:-origin}"
+  branch="${2:-master}"
+  git fetch "$remote" && git rebase "${remote}/${branch}" && git push "$remote" "HEAD:${branch}"
 }
 alias gciam='git commit --amend --no-edit'
+alias grbc='git rebase --continue'
+alias gsu='git submodule update --init --recursive'
 
 # common programs
 alias g='git'
