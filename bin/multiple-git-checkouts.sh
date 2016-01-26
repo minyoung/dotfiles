@@ -14,25 +14,12 @@ EOHELP
   exit 1
 fi
 
-# for when you don't have realpath...
+# sometimes you don't have `readlink -f`
 function abspath() {
-    pushd . > /dev/null
-    if [ -d "$1" ]; then
-        cd "$1"
-        dirs -l +0
-    else
-        cd "`dirname \"$1\"`"
-        cur_dir=`dirs -l +0`
-        if [ "$cur_dir" == "/" ]; then
-            echo "$cur_dir`basename \"$1\"`"
-        else
-            echo "$cur_dir/`basename \"$1\"`"
-        fi
-    fi
-    popd > /dev/null;
+  (cd "$1" && pwd -P)
 }
 
-source=$(realpath "$1")
+source=$(abspath "$1")
 destination="$2"
 
 mkdir "$destination"
@@ -40,7 +27,7 @@ mkdir "$destination"
 pushd "$destination"
 git init
 cd .git
-for i in branches config hooks info objects refs packed-refs ; do
+for i in branches config hooks info modules objects refs packed-refs ; do
   rm -rf $i
   ln -s "$source/.git/$i" $i
 done
