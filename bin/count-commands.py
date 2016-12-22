@@ -1,6 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-import itertools
 import os
 import re
 import sqlite3
@@ -51,14 +50,14 @@ def print_box(text_block, color=COLORS['gray']):
                     .split('\n')
     line_length = max(map(len, clean_lines))
 
-    print format_str('{color}+-{0}-+{reset}', '-' * line_length, color=color)
-    for line, clean in itertools.izip(formatted_lines, clean_lines):
-        print format_str(
+    print(format_str('{color}+-{0}-+{reset}', '-' * line_length, color=color))
+    for line, clean in zip(formatted_lines, clean_lines):
+        print(format_str(
                 '{color}|{reset} {line}{padding} {color}|',
                 color=color,
                 line=line,
-                padding=' ' * (line_length - len(clean)))
-    print format_str('{color}+-{0}-+{reset}', '-' * line_length, color=color)
+                padding=' ' * (line_length - len(clean))))
+    print(format_str('{color}+-{0}-+{reset}', '-' * line_length, color=color))
 
 
 def get_db():
@@ -118,10 +117,10 @@ def log_command(args):
         create_command_table(db)
         insert_command(db, uuid, timestamp, user_string, expanded_string)
         db.close()
-    except Exception, e:
+    except Exception as e:
         # logging the command is only best effort, so don't care about failures
-        print format_str("{red}!!{reset} {0}: {1} {red}!!{reset}",
-                e.__class__.__name__, e)
+        print(format_str("{red}!!{reset} {0}: {1} {red}!!{reset}",
+                e.__class__.__name__, e))
 
     print_command_info(timestamp, expanded_string)
 
@@ -179,9 +178,9 @@ def log_command_end(args):
         row = update_command_end(db, uuid, timestamp)
         db.close()
         print_command_end_info(timestamp, row)
-    except Exception, e:
-        print format_str("{red}!!{reset} {0}: {1} {red}!!{reset}",
-                e.__class__.__name__, e)
+    except Exception as e:
+        print(format_str("{red}!!{reset} {0}: {1} {red}!!{reset}",
+                e.__class__.__name__, e))
 
 
 if __name__ == '__main__':
@@ -190,4 +189,4 @@ if __name__ == '__main__':
         if action in ['log_command', 'log_command_end']:
             globals()[action](sys.argv[2:])
         else:
-            print 'Unknown count-commands action: %s' % action
+            print('Unknown count-commands action: %s' % action)
