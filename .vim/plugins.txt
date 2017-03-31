@@ -26,6 +26,13 @@ surround: quoting/parenthesizing made simple
     http://www.vim.org/scripts/script.php?script_id=1697
     https://github.com/tpope/vim-surround
 
+SuperTab: Perform all your vim insert mode completions with Tab
+    http://www.vim.org/scripts/script.php?script_id=1643
+    https://github.com/ervandew/supertab
+
+vim-lastplace: Intelligently reopen files at your last edit position
+    https://github.com/farmergreg/vim-lastplace.git
+
 bufexplorer: Buffer Explorer / Browser
     http://www.vim.org/scripts/script.php?script_id=42
     https://github.com/vim-scripts/bufexplorer.zip
@@ -36,10 +43,6 @@ EasyMotion: Vim motions on speed!
 
 UltiSnips: The Ultimate Snippet Solution for Vim
     https://github.com/MarcWeber/ultisnips.git
-
-SuperTab: Perform all your vim insert mode completions with Tab
-    http://www.vim.org/scripts/script.php?script_id=1643
-    https://github.com/ervandew/supertab
 
 vim-snippets: default snippets
     https://github.com/honza/vim-snippets
@@ -55,7 +58,7 @@ YouCompleteMe: auto-completion
     https://github.com/Valloric/YouCompleteMe
 
 HiCursorWords: highlight the current word under the cursor
-    https://github.com/OrelSokolov/HiCursorWords
+    https://github.com/pboettch/vim-highlight-cursor-words
 
 Bracketed paste mode: making paste just work (basically my plugin/term.vim)
     https://github.com/ConradIrwin/vim-bracketed-paste

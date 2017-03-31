@@ -23,6 +23,7 @@ else
 endif
 syntax on
 syn sync fromstart
+set synmaxcol=120
 
 " I don't like hunting for a small cursor
 set cursorline
@@ -249,7 +250,7 @@ else
 endif
 
 " when editing a file, always jump to the last cursor position
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+" autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Function to set the screen title
 function! SetTitle()
@@ -288,7 +289,7 @@ let NERDTreeConfirmDeleteBookmark=0
 " CommandT
 nmap <leader>m :CommandTBuffer<CR>
 nmap <leader>g :CommandTTag<CR>
-let g:CommandTMaxHeight=20
+let g:CommandTMaxHeight=10
 let g:CommandTTraverseSCM='pwd'
 
 " CtrlP
