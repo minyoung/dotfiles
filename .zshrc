@@ -98,7 +98,9 @@ function __git_prompt() {
     local ref
     ref=$(git symbolic-ref HEAD 2> /dev/null) || \
     ref=$(git rev-parse --short HEAD 2> /dev/null) || return
-    echo "$PR_CYAN(± ${ref#refs/heads/})$PR_NO_COLOR"
+    ref="${ref#refs/heads/}"
+    ref="${ref/#user\/$USER\//…/}"
+    echo "$PR_CYAN(± ${ref})$PR_NO_COLOR"
 }
 
 function __hg_prompt() {

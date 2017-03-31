@@ -6,11 +6,15 @@
     cp = cherry-pick
     d = diff
     l = log
-    lg = log --pretty=format:'%C(yellow)%h %Creset-%Cred%d %Creset%s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-    ls = log --decorate=short --oneline
+    lg = log --graph --pretty=format:'%C(yellow)%h %C(reset)-%C(red)%d %C(reset)%s %C(green)(%cr) %C(bold blue)<%an>%C(reset)'
+    ls = log --decorate=short --graph --oneline
     r = rebase
     ri = rebase --interactive
     s = status
+    root = rev-parse --show-toplevel
+
+[diff]
+    submodule = log
 
 [user]
     name = Min-Young Wu
