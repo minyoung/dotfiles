@@ -27,7 +27,7 @@ mkdir "$destination"
 pushd "$destination"
 git init
 cd .git
-for i in branches config hooks info modules objects refs packed-refs ; do
+for i in branches config hooks info lfs logs modules objects refs packed-refs ; do
   rm -rf $i
   ln -s "$source/.git/$i" $i
 done
