@@ -1,7 +1,45 @@
 set nocompatible
 
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" Vundle, the plug-in manager for Vim
+" https://github.com/VundleVim/Vundle.vim
+Plugin 'VundleVim/Vundle.vim'
+
+" Fast file navigation for VIM
+" https://github.com/wincent/Command-T
+Plugin 'wincent/Command-T'
+
+" A tree explorer plugin for vim
+" https://github.com/scrooloose/nerdtree
+Plugin 'scrooloose/nerdtree'
+
+" Vim plugin for intensely orgasmic commenting
+" https://github.com/scrooloose/nerdcommenter
+Plugin 'scrooloose/nerdcommenter'
+
+" xoria256: Soft pastel gamma on dark background
+" https://github.com/noah/vim256-color.git
+Plugin 'noah/vim256-color'
+
+" Perform all your vim insert mode completions with Tab
+" https://github.com/ervandew/supertab
+Plugin 'ervandew/supertab'
+
+" A Git wrapper so awesome, it should be illegal
+" https://github.com/tpope/vim-fugitive.git
+Plugin 'tpope/vim-fugitive'
+
+" Quoting/parenthesizing made simple
+" https://github.com/tpope/vim-surround
+Plugin 'tpope/vim-surround'
+
+" Intelligently reopen files at your last edit position
+" https://github.com/farmergreg/vim-lastplace.git
+Plugin 'farmergreg/vim-lastplace'
+
+call vundle#end()
 
 let mapleader=","
 
