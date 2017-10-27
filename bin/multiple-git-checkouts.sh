@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [[ -z "$1" || -z "$2" ]] ; then
   cat <<EOHELP
 Usage: $(basename $0) SOURCE DESTINATION
@@ -25,11 +27,12 @@ destination="$2"
 mkdir "$destination"
 
 pushd "$destination"
-git init
+mkdir .git
 cd .git
 for i in branches config hooks info lfs logs modules objects refs packed-refs ; do
-  rm -rf $i
   ln -s "$source/.git/$i" $i
 done
+echo 'ref: refs/heads/master' > HEAD
+cp "$source/.git/description" description
 
 popd
