@@ -1,15 +1,3 @@
-" some file type detection
-autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl,*.fsh,*.vsh set filetype=glsl
-autocmd BufNewFile,BufRead *.as set filetype=actionscript
-autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
-autocmd BufNewFile,BufRead *.mxml set filetype=mxml
-autocmd BufNewFile,BufRead *.tex set filetype=tex
-autocmd BufNewFile,BufRead *.mako set filetype=mako
-autocmd BufNewFile,BufRead *.mm set filetype=objcpp
-autocmd BufNewFile,BufRead *.thrift set filetype=thrift
-autocmd BufNewFile,BufRead *.ts set filetype=javascript
-autocmd BufNewFile,BufRead BUCK set filetype=python shiftwidth=2 softtabstop=2
-
 " foldmethods
 autocmd FileType actionscript set foldmethod=marker
 autocmd FileType c set foldmethod=syntax

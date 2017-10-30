@@ -353,7 +353,10 @@ let g:SuperTabLongestEnhanced=1
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
 
-source $HOME/.vim/filetypes.vimrc
+" helper files
+if filereadable(expand("$HOME/.vim/ftplugin.vim"))
+    source $HOME/.vim/ftplugin.vim
+end
 if filereadable(expand("$HOME/.vim/local.vimrc"))
     source $HOME/.vim/local.vimrc
 end
