@@ -19,19 +19,10 @@ autocmd FileType tex set foldmarker={{{,}}} foldmethod=marker
 autocmd FileType thrift set foldmethod=marker
 
 " some other file type specific things
-autocmd FileType cpp set shiftwidth=2
-autocmd FileType eruby set shiftwidth=2
 autocmd FileType go set noexpandtab shiftwidth=8
-autocmd FileType html set shiftwidth=2 softtabstop=2
-autocmd FileType javascript set shiftwidth=2 softtabstop=2
-autocmd FileType jsp set shiftwidth=2 softtabstop=2
-autocmd FileType php set shiftwidth=2 softtabstop=2
 autocmd FileType python set shiftwidth=4 softtabstop=4
 autocmd FileType rst set syntax=rest
-autocmd FileType ruby set shiftwidth=2 softtabstop=2
-autocmd FileType tex set shiftwidth=2 softtabstop=2 textwidth=79
-autocmd FileType objc set shiftwidth=2 softtabstop=2
-autocmd FileType yaml set shiftwidth=2 softtabstop=2
+autocmd FileType tex set textwidth=79
 
 autocmd FileType qf set nofoldenable
 

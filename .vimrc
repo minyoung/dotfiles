@@ -55,9 +55,9 @@ vnoremap / /\v
 " try my preferred colorscheme first (xoria256),
 " if that fails, then use a default colorscheme that *should* be present
 if &t_Co == 256 || has("gui_running")
-    colorscheme xoria256
+  colorscheme xoria256
 else
-    colorscheme delek
+  colorscheme delek
 endif
 syntax on
 syn sync fromstart
@@ -121,8 +121,8 @@ nnoremap <space> za
 
 " tab stuff
 set expandtab
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set smarttab
 
 " indentation
@@ -268,8 +268,8 @@ set sessionoptions=buffers,curdir,folds,tabpages,winsize
 
 " persistent undo
 if exists("+undofile")
-    set undodir=~/.vim/undodir
-    set undofile
+  set undodir=~/.vim/undodir
+  set undofile
 endif
 
 " highlight things over 80 columns
@@ -292,11 +292,11 @@ endif
 
 " Function to set the screen title
 function! SetTitle()
-    " get current filename, replacing ' with \'
-    let l:filename = substitute(expand('%:~:.'), "'", '\\''', '')
-    let l:title = 'vim - ' . l:filename
-    " let l:truncTitle = strpart(l:title, 0, 15)
-    silent exe "!set_title.sh '" . l:title . "'"
+  " get current filename, replacing ' with \'
+  let l:filename = substitute(expand('%:~:.'), "'", '\\''', '')
+  let l:title = 'vim - ' . l:filename
+  " let l:truncTitle = strpart(l:title, 0, 15)
+  silent exe "!set_title.sh '" . l:title . "'"
 endfunction
 
 " Run it every time we change buffers
@@ -306,10 +306,10 @@ set titlestring=%f
 
 " my color overrides
 if colors_name == "xoria256"
-    highlight Folded                                  ctermbg=234  guibg=#1c1c1c
-    highlight CursorLine                              ctermbg=235  guibg=#262626
-    highlight Visual      ctermfg=none guifg=none     ctermbg=238  guibg=#444444
-    highlight LineNr      ctermfg=240  guifg=#585858  ctermbg=234  guibg=#1c1c1c
+  highlight Folded                                  ctermbg=234  guibg=#1c1c1c
+  highlight CursorLine                              ctermbg=235  guibg=#262626
+  highlight Visual      ctermfg=none guifg=none     ctermbg=238  guibg=#444444
+  highlight LineNr      ctermfg=240  guifg=#585858  ctermbg=234  guibg=#1c1c1c
 endif
 
 
@@ -355,8 +355,8 @@ let g:ycm_add_preview_to_completeopt = 0
 
 " helper files
 if filereadable(expand("$HOME/.vim/ftplugin.vim"))
-    source $HOME/.vim/ftplugin.vim
+  source $HOME/.vim/ftplugin.vim
 end
 if filereadable(expand("$HOME/.vim/local.vimrc"))
-    source $HOME/.vim/local.vimrc
+  source $HOME/.vim/local.vimrc
 end
