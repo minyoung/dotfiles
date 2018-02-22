@@ -329,6 +329,10 @@ nmap <leader>m :CommandTBuffer<CR>
 nmap <leader>g :CommandTTag<CR>
 let g:CommandTMaxHeight=10
 let g:CommandTTraverseSCM='pwd'
+let g:CommandTAcceptSelectionCommand='e'
+let g:CommandTAcceptSelectionTabCommand='tabe'
+let g:CommandTAcceptSelectionSplitCommand='sp'
+let g:CommandTAcceptSelectionVSplitCommand='vs'
 
 " CtrlP
 " let g:ctrlp_map = '<c-t>'
