@@ -115,6 +115,17 @@ function __hg_prompt() {
     fi
 }
 
+function __docker_prompt() {
+  container_id="${$(egrep -o ":cpu:/docker/.*" /proc/self/cgroup)#:cpu:/docker/}"
+  if test -n "$container_id"; then
+    container_name="$(docker inspect -f '{{ .Name }}' "$container_id")"
+    echo "${PR_YELLOW}[⏅ ${container_name#/}]${PR_NO_COLOR}"
+  fi
+}
+# Container name won't change over the life of the shell right? So, let's just
+# grab it once into a variable
+DOCKER_PROMPT="$(__docker_prompt)"
+
 # TP_RED="`tput setaf 1`"
 # TP_GREEN="`tput setaf 2`"
 # TP_YELLOW="`tput setaf 3`"
@@ -128,7 +139,7 @@ function __hg_prompt() {
 
 # PS1="$PR_GREEN%n $PR_BLUE%2c %(!.#.$)$PR_NO_COLOR "
 
-PS1='$PR_GREEN%n${PROMPT_HOST}\
+PS1='$PR_GREEN%n${PROMPT_HOST}${DOCKER_PROMPT}\
 $(__git_prompt)$(__hg_prompt)\
  $PR_BLUE%~\
  %(?.$PR_BLUE.$PR_RED)
