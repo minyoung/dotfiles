@@ -94,6 +94,16 @@ function __find_toplevel() {
     done
 }
 
+function __host_prompt() {
+    test -n "$SSH_CONNECTION" && echo -n "@$(hostname)"
+    # don't usually care about the tmux session name since I only have 1 session
+    # current session name: tmux display-message -p '#S'
+    test -n "$TMUX" && echo -n "[tmux]"
+    echo "$SCREEN"
+}
+# we can cache the host prompt for the life of the shell
+HOST_PROMPT="$(__host_prompt)"
+
 function __git_prompt() {
     local ref
     ref=$(git symbolic-ref HEAD 2> /dev/null) || \
@@ -116,11 +126,11 @@ function __hg_prompt() {
 }
 
 function __docker_prompt() {
-  container_id="${$(egrep -o ":cpu:/docker/.*" /proc/self/cgroup)#:cpu:/docker/}"
-  if test -n "$container_id"; then
-    container_name="$(docker inspect -f '{{ .Name }}' "$container_id")"
-    echo "${PR_YELLOW}[⏅ ${container_name#/}]${PR_NO_COLOR}"
-  fi
+    container_id="${$(egrep -o ":cpu:/docker/.*" /proc/self/cgroup)#:cpu:/docker/}"
+    if test -n "$container_id"; then
+        container_name="$(docker inspect -f '{{ .Name }}' "$container_id")"
+        echo "${PR_YELLOW}[⏅ ${container_name#/}]${PR_NO_COLOR}"
+    fi
 }
 # Container name won't change over the life of the shell right? So, let's just
 # grab it once into a variable
@@ -139,7 +149,7 @@ DOCKER_PROMPT="$(__docker_prompt)"
 
 # PS1="$PR_GREEN%n $PR_BLUE%2c %(!.#.$)$PR_NO_COLOR "
 
-PS1='$PR_GREEN%n${PROMPT_HOST}${DOCKER_PROMPT}\
+PS1='$PR_GREEN%n${HOST_PROMPT}${DOCKER_PROMPT}\
 $(__git_prompt)$(__hg_prompt)\
  $PR_BLUE%~\
  %(?.$PR_BLUE.$PR_RED)

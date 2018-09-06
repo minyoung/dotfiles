@@ -52,5 +52,4 @@ export HISTCONTROL=ignorespace:ignoredups:erasedups
 # TP_RST=`tput sgr0`
 
 # blue/red $ depending on exit status of previous command
-PS1='\[\e[1;32m\]\u${PROMPT_HOST} \[\e[1;34m\]\w \[\e[1;$(($??31:34))m\]\$\[\e[0m\] '
-
+PS1='\[\e[1;32m\]\u${HOST_PROMPT} \[\e[1;34m\]\w \[\e[1;$(($??31:34))m\]\$\[\e[0m\] '

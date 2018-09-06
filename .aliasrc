@@ -1,4 +1,4 @@
-source_if_exists() { [[ -s $1 ]] && source $1 }
+source_if_exists() { [[ -s "$1" ]] && source "$1" || true ; }
 
 # environment variables
 export PAGER=less
@@ -35,10 +35,6 @@ source_if_exists "$HOME/.python/bin/virtualenvwrapper.sh"
 # my subset of virtualenv for ruby
 export GEMENV_HOME=${HOME}/.gem/envs
 source_if_exists ${GEMENV_HOME}/gemenv_bashrc
-
-if [[ -z ${PROMPT_HOST} ]]; then
-    PROMPT_HOST=""
-fi
 
 # disable start/stop output control
 stty -ixon
@@ -119,17 +115,17 @@ just_do_it() {
 
 # only add it if it's not already in PATH
 add_PATH() {
-  echo ":${PATH}:" | grep ":$1:" &> /dev/null
+  echo ":${PATH}:" | grep --silent ":$1:"
   if [[ $? != 0 ]]; then
-      export PATH="${PATH}:$1"
+    export PATH="${PATH}:$1"
   fi
 }
 
 remove_PATH() {
   WIP=":${PATH}:"
-  WIP=${WIP//:$1:/:}
-  WIP=${WIP%:}
-  WIP=${WIP#:}
+  WIP="${WIP//:$1:/:}"
+  WIP="${WIP%:}"
+  WIP="${WIP#:}"
   export PATH="${WIP}"
 }
 

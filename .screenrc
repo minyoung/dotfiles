@@ -11,7 +11,7 @@ term screen-256color
 
 # let me know that I'm in a screen session (bash prompt)
 # I don't particularly like caption or hardstatusline...
-setenv PROMPT_HOST "${PROMPT_HOST}[screen]"
+setenv SCREEN "[screen]"
 
 aclchg :window: -rwx #?
 aclchg :window: +x title
