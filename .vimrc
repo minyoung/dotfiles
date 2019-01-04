@@ -308,7 +308,7 @@ set titlestring=%f
 if colors_name == "xoria256"
   highlight Folded                                  ctermbg=234  guibg=#1c1c1c
   highlight CursorLine                              ctermbg=235  guibg=#262626
-  highlight Visual      ctermfg=none guifg=none     ctermbg=238  guibg=#444444
+  highlight Visual      ctermfg=NONE guifg=NONE     ctermbg=238  guibg=#444444
   highlight LineNr      ctermfg=240  guifg=#585858  ctermbg=234  guibg=#1c1c1c
 endif
 

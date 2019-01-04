@@ -126,7 +126,7 @@ function __hg_prompt() {
 }
 
 function __docker_prompt() {
-    container_id="${$(egrep -o ":cpu:/docker/.*" /proc/self/cgroup)#:cpu:/docker/}"
+    container_id="${$(egrep -o ":cpuset:/docker/.*" /proc/self/cgroup)#:cpuset:/docker/}"
     if test -n "$container_id"; then
         container_name="$(docker inspect -f '{{ .Name }}' "$container_id")"
         echo "${PR_YELLOW}[⏅ ${container_name#/}]${PR_NO_COLOR}"
