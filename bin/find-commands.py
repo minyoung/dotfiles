@@ -69,28 +69,30 @@ def find_commands(db, *filters):
     RE_CACHE[user_filter] = user_re
 
     query = '''
-    SELECT timestamp, duration, user_string
+    SELECT hostname, timestamp, duration, user_string
     FROM commands
-    WHERE
-        timestamp > ?
-        AND user_string REGEXP ?
+    WHERE timestamp > ? AND user_string REGEXP ?
+    ORDER BY timestamp
     '''
 
     table = Texttable()
     table.set_deco(Texttable.HEADER)
-    table.set_cols_align(('r', 'r', 'l'))
-    table.header(('date', 'duration', 'command'))
+    table.set_cols_align(('l', 'r', 'r', 'l'))
+    table.header(('host', 'date', 'duration', 'command'))
 
-    max_command_width = 0
+    host_width = 6
+    max_command_width = 9
     now = time.time()
     for row in db.execute(query, (TIMESTAMP, user_filter)):
-        max_command_width = max(max_command_width, len(row[2]))
+        host_width = max(host_width, len(row[0]))
+        max_command_width = max(max_command_width, len(row[3]))
         table.add_row((
-            format_time(row[0], now),
-            format_duration(row[1]) if row[1] > 0 else '',
-            highlight(row[2], user_re)))
+            row[0],
+            format_time(row[1], now),
+            format_duration(row[2]) if row[2] > 0 else '',
+            highlight(row[3], user_re)))
 
-    table.set_cols_width((30, 10, max_command_width + 2))
+    table.set_cols_width((host_width, 30, 10, max_command_width + 2))
 
     print table.draw()
 

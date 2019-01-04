@@ -1,7 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import os
 import re
+import socket
 import sqlite3
 import sys
 import time
@@ -73,6 +74,7 @@ def create_command_table(db):
     db.execute('''
         CREATE TABLE IF NOT EXISTS commands (
             uuid TEXT,
+            hostname TEXT,
             timestamp INTEGER,
             duration INTEGER DEFAULT -1,
             command TEXT,
@@ -88,9 +90,10 @@ def insert_command(db, uuid, timestamp, user_string, expanded_string):
     command = user_string.split()[0]
     db.execute('''
         INSERT INTO commands
-            (uuid, timestamp, command, user_string, expanded_string)
-        VALUES (?, ?, ?, ?, ?)''', [
+            (uuid, hostname, timestamp, command, user_string, expanded_string)
+        VALUES (?, ?, ?, ?, ?, ?)''', [
             uuid,
+            socket.gethostname(),
             timestamp,
             command,
             user_string,
