@@ -10,4 +10,10 @@ function zle-line-init zle-keymap-select {
 zle -N zle-keymap-select
 RPROMPT='${PR_CYAN}[INS] $PR_YELLOW$(date "+%F %T %Z")$PR_NO_COLOR'
 
+psg() {
+    # first line is the header
+    # and don't print out self
+    ps -ef | awk "NR==1 { print \$0 } ; \$2==PROCINFO[\"pid\"] { next } ; /$1/ { print \$0 }"
+}
+
 # vim: set ft=sh :
