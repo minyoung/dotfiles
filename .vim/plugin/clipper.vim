@@ -1,5 +1,7 @@
+" brew install clipper
+let g:clipper_command=get(g:, 'clipper_command', 'socat localhost 8377')
 function Clip()
-  call system('socat localhost 8377', @0)
+  call system(g:clipper_command, @0)
 endfunction
 
 command! Clip call Clip()
