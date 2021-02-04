@@ -17,6 +17,7 @@ autocmd FileType ruby set foldmethod=syntax
 autocmd FileType sh set foldmethod=marker
 autocmd FileType tex set foldmarker={{{,}}} foldmethod=marker
 autocmd FileType thrift set foldmethod=marker
+autocmd FileType yaml set foldmethod=indent
 
 " some other file type specific things
 autocmd FileType go set noexpandtab shiftwidth=8

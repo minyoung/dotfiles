@@ -63,9 +63,16 @@ alias gciam='git commit --amend --no-edit'
 alias grbc='git rebase --continue'
 alias gsu='git submodule update --init --recursive'
 
+# kubectl
+alias kg='kubectl get'
+alias kd='kubectl describe'
+alias ke='kubectl exec -it'
+alias kl='kubectl logs'
+
 # common programs
 alias g='git'
 alias h='hg'
+alias k='kubectl'
 alias p='python'
 alias m='make'
 # alias j='jrun'
@@ -104,11 +111,11 @@ fix_tmux_env() {
 
 # sometimes, you just want to keep on retrying until it succeeds
 just_do_it() {
-  echo "Just doing it"
+  echo "Just doing it: $@"
   eval "$@"
   while [[ $? != 0 ]]; do
     sleep 2
-    echo "Just doing it again"
+    echo "Just doing it again: $@"
     eval "$@"
   done
 }

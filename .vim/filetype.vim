@@ -17,4 +17,5 @@ augroup filetypedetect
   autocmd BufNewFile,BufRead *.ts,*.tsx setfiletype javascript
   autocmd BufNewFile,BufRead BUCK setfiletype python shiftwidth=2 softtabstop=2
   autocmd BufNewFile,BufRead BUILD setfiletype python
+  autocmd BufNewFile,BufRead Dockerfile.* setfiletype dockerfile
 augroup end
