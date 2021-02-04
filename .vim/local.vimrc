@@ -9,3 +9,6 @@ endif
 
 " newer versions of netcat don't automatically close the socket...
 let g:clipper_command='netcat -N localhost 8377'
+
+let g:gh_trace = 1
+let g:gh_open_command = 'fn() { echo "$@" | '.g:clipper_command.'; }; fn '

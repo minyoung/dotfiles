@@ -25,7 +25,7 @@ Plugin 'noah/vim256-color'
 
 " Perform all your vim insert mode completions with Tab
 " https://github.com/ervandew/supertab
-Plugin 'ervandew/supertab'
+" Plugin 'ervandew/supertab'
 
 " A Git wrapper so awesome, it should be illegal
 " https://github.com/tpope/vim-fugitive.git
@@ -38,6 +38,18 @@ Plugin 'tpope/vim-surround'
 " Intelligently reopen files at your last edit position
 " https://github.com/farmergreg/vim-lastplace.git
 Plugin 'farmergreg/vim-lastplace'
+
+" Open the link of current line on github
+" https://github.com/ruanyl/vim-gh-line
+Plugin 'ruanyl/vim-gh-line'
+
+" Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
+" https://github.com/neoclide/coc.nvim
+Plugin 'neoclide/coc.nvim'
+
+" Go development plugin for Vim
+" https://github.com/fatih/vim-go
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 
@@ -350,12 +362,55 @@ let g:CommandTAcceptSelectionVSplitCommand='vs'
 " \ }
 
 " SuperTab
-let g:SuperTabDefaultCompletionType='<c-n>'
-let g:SuperTabLongestEnhanced=1
+" let g:SuperTabDefaultCompletionType='<c-n>'
+" let g:SuperTabLongestEnhanced=1
 
 " YCM
 set completeopt-=preview
 let g:ycm_add_preview_to_completeopt = 0
+
+" vim-go
+" disable vim-go :GoDef short cut (gd)
+" this is handled by LanguageClient [LC]
+let g:go_def_mapping_enabled = 0
+let g:go_fmt_command = "goimports"
+
+" CoC
+" set signcolumn=yes
+set updatetime=300
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap <leader>rn <Plug>(coc-rename)
 
 " helper files
 if filereadable(expand("$HOME/.vim/ftplugin.vim"))
