@@ -1,4 +1,4 @@
-source_if_exists() { [[ -s "$1" ]] && source "$1" || true ; }
+source_if_exists() { [[ -s "$1" ]] && source "$1" "" || true ; }
 
 # environment variables
 export PAGER=less
