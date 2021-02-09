@@ -19,6 +19,7 @@ export AWT_TOOLKIT=MToolkit
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which scmpuff > /dev/null; then eval "$(scmpuff init -s)"; fi
+source_if_exists "${HOME}/bin/Programs/fzf/current/shell/completion.$(basename $SHELL)"
 
 # python/ruby package paths
 export PYTHONPATH=.:${HOME}/.python:${HOME}/.python/lib

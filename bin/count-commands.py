@@ -142,7 +142,7 @@ def print_command_end_info(timestamp, row):
     if duration < 1 or duration > 43200:
         return
 
-    ignored_commands = ['vim', 'man', 'less', 'tmux']
+    ignored_commands = ['vim', 'man', 'less', 'tmux', 'nvim']
     if row['command'] in ignored_commands:
         return
 
