@@ -24,6 +24,20 @@ setup_program() {
   ln -s "Programs/$program/current/$binary" .
 }
 
+bitwarden() {
+  program="$1"
+  version="$2"
+  os=linux
+  if [[ $(uname -s) == "Darwin" ]]; then
+    os=macos
+  fi
+  curl --location \
+    "https://github.com/bitwarden/cli/releases/download/v${version}/bw-${os}-${version}.zip" \
+    --output "${version}.zip"
+  unzip "${version}.zip"
+  chmod +x bw
+}
+
 docker-compose() {
   program="$1"
   version="$2"
@@ -86,6 +100,7 @@ neovim() {
   tar --strip-components 1 --extract --file "${version}.tar.gz"
 }
 
+setup_program bitwarden 1.14.0 bw
 setup_program docker-compose 1.28.2
 setup_program fzf 0.25.1 bin/fzf
 setup_program gcloud 326.0.0 bin/gcloud
