@@ -1,6 +1,7 @@
 set nocompatible
 
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " Vundle, the plug-in manager for Vim
@@ -50,7 +51,15 @@ Plugin 'neoclide/coc.nvim'
 
 " Go development plugin for Vim
 " https://github.com/fatih/vim-go
-Plugin 'fatih/vim-go'
+" Plugin 'fatih/vim-go'
+
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+
+Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
+
+Plugin 'simnalamburt/vim-mundo'
 
 call vundle#end()
 
@@ -358,7 +367,7 @@ let g:go_fmt_command = "goimports"
 " CoC
 " set signcolumn=yes
 set updatetime=300
-" autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
