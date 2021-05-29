@@ -30,3 +30,5 @@ autocmd FileType qf set nofoldenable
 autocmd FileType go set colorcolumn=0 nolist
 autocmd FileType objc set colorcolumn=0 nowrap
 autocmd FileType objcpp set colorcolumn=0 nowrap
+
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
