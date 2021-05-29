@@ -1,3 +1,22 @@
+[alias]
+    b = branch
+    ci = commit
+    ciam = commit --amend --no-edit
+    co = checkout
+    cp = cherry-pick
+    d = diff
+    l = log
+    lg = log --graph --pretty=format:'%C(yellow)%h %C(reset)-%C(red)%d %C(reset)%s %C(green)(%cr) %C(bold blue)<%an>%C(reset)'
+    ls = log --decorate=short --graph --oneline
+    r = rebase
+    ri = rebase --interactive
+    s = status
+    root = rev-parse --show-toplevel
+    upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
+
+[diff]
+    submodule = log
+
 [user]
     name = Min-Young Wu
     email = mwu368@gmail.com

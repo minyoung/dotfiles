@@ -77,7 +77,7 @@ else
 endif
 syntax on
 syn sync fromstart
-set synmaxcol=120
+set synmaxcol=250
 
 " I don't like hunting for a small cursor
 set cursorline
@@ -166,8 +166,8 @@ set lazyredraw
 " main thing is adding longest
 set completeopt=longest,menu,preview
 
-" don't use the mouse, let the terminal handle the mouse stuff
-set mouse=
+" use the mouse if possible
+" set mouse=a
 
 " keep context
 set scrolloff=5
