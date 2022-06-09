@@ -248,8 +248,8 @@ nnoremap <C-e> 5<C-e>
 nnoremap <C-y> 5<C-y>
 
 " useful remappings
-noremap 0 ^
-noremap ^ 0
+" noremap 0 ^
+" noremap ^ 0
 noremap ` '
 noremap ' `
 noremap _ g_

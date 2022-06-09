@@ -1,7 +1,8 @@
 if colors_name == "xoria256"
-    hi Folded                                  ctermbg=234  guibg=#1c1c1c
-    hi CursorLine                              ctermbg=235  guibg=#262626
-    hi Visual       ctermfg=NONE   guifg=NONE  ctermbg=238  guibg=#444444
+    hi Folded                                    ctermbg=234  guibg=#1c1c1c
+    hi CursorLine                                ctermbg=235  guibg=#262626
+    hi Visual       ctermfg=NONE  guifg=NONE     ctermbg=238  guibg=#444444
+    hi CocFloating  ctermfg=252   guifg=#d0d0d0  ctermbg=237  guibg=#3a3a3a
 endif
 
 set wildignore+=node_modules,dist,coverage,trajectories

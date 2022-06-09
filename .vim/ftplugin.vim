@@ -20,14 +20,14 @@ autocmd FileType thrift set foldmethod=marker
 autocmd FileType yaml set foldmethod=indent
 
 " some other file type specific things
-autocmd FileType go set noexpandtab shiftwidth=8
+autocmd FileType go set noexpandtab shiftwidth=4 tabstop=4
 autocmd FileType python set shiftwidth=4 softtabstop=4
 autocmd FileType rst set syntax=rest
 autocmd FileType tex set textwidth=79
 
 autocmd FileType qf set nofoldenable
 
-autocmd FileType go set colorcolumn=0 nolist
+autocmd FileType go set colorcolumn=120 nolist
 autocmd FileType objc set colorcolumn=0 nowrap
 autocmd FileType objcpp set colorcolumn=0 nowrap
 
