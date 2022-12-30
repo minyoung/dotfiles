@@ -13,7 +13,9 @@ set colorcolumn=0
 " let g:clipper_command='socat TCP:localhost:8377 STDIN'
 
 " newer versions of netcat don't automatically close the socket...
-let g:clipper_command='netcat -N localhost 8400'
+" let g:clipper_command='netcat -N localhost 8400'
+
+let g:clipper_command='pbcopy'
 
 let g:gh_trace = 1
 let g:gh_open_command = 'fn() { echo "$@" | '.g:clipper_command.'; }; fn '

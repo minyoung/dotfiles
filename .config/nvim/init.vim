@@ -11,7 +11,6 @@ Plugin 'VundleVim/Vundle.vim'
 " Command-line fuzzy finder
 " https://github.com/junegunn/fzf
 Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
 
 " A tree explorer plugin for vim
 " https://github.com/scrooloose/nerdtree
@@ -52,9 +51,6 @@ Plugin 'neoclide/coc.nvim'
 " Go development plugin for Vim
 " https://github.com/fatih/vim-go
 " Plugin 'fatih/vim-go'
-
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
 
 Plugin 'leafgarland/typescript-vim'
 Plugin 'peitalin/vim-jsx-typescript'
