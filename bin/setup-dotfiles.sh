@@ -20,7 +20,8 @@ symlink .inputrc
 symlink .tmux.conf
 
 # git
-copy .gitconfig
+symlink .gitconfig
+copy .gitconfig.local
 symlink .gitaliases
 
 # shell
