@@ -50,12 +50,16 @@ docker-compose() {
 scmpuff() {
   program="$1"
   version="$2"
-  os=linux_x64
+  os=linux
+  arch=$(uname -m)
   if [[ $(uname -s) == "Darwin" ]]; then
-    os=mac_x64
+    os=macOS
+  fi
+  if [[ "$arch" == "x86_64" ]]; then
+    arch=x64
   fi
   curl --location \
-    "https://github.com/mroth/scmpuff/releases/download/v${version}/scmpuff_${version}_${os}.tar.gz" \
+    "https://github.com/mroth/scmpuff/releases/download/v${version}/scmpuff_${version}_${os}_${arch}.tar.gz" \
     --output "${version}.tar.gz"
   tar --extract --file "${version}.tar.gz"
 }
@@ -67,8 +71,12 @@ gcloud() {
   if [[ $(uname -s) == "Darwin" ]]; then
     os=darwin
   fi
+  arch="$(uname -m)"
+  if [[ "$arch" == arm64 ]]; then
+    arch=arm
+  fi
   curl --location \
-    "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-${os}-$(uname -m).tar.gz" \
+    "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-${version}-${os}-${arch}.tar.gz" \
     --output "${version}.tar.gz"
   tar --strip-components 1 --extract --file "${version}.tar.gz"
 }
@@ -78,13 +86,12 @@ fzf() {
   version="$2"
   os=linux_amd64
   if [[ $(uname -s) == "Darwin" ]]; then
-    os=darwin_amd64
+    os="darwin_$(uname -m)"
   fi
-  git clone https://github.com/junegunn/fzf .
   curl --location \
-    "https://github.com/junegunn/fzf/releases/download/0.25.1/fzf-${version}-${os}.tar.gz" \
-    --output "${version}.tar.gz"
-  tar --directory bin --extra --file "${version}.tar.gz"
+    "https://github.com/junegunn/fzf/releases/download/${version}/fzf-${version}-${os}.zip" \
+    --output "${version}.zip"
+  unzip "${version}.zip" -d bin
 }
 
 neovim() {
@@ -100,9 +107,9 @@ neovim() {
   tar --strip-components 1 --extract --file "${version}.tar.gz"
 }
 
-setup_program bitwarden 1.14.0 bw
-setup_program docker-compose 1.28.2
-setup_program fzf 0.25.1 bin/fzf
-setup_program gcloud 326.0.0 bin/gcloud
-setup_program neovim 0.4.4 bin/nvim
-setup_program scmpuff 0.3.0
+# setup_program bitwarden 1.14.0 bw
+# setup_program docker-compose 1.28.2
+setup_program fzf 0.35.1 bin/fzf
+setup_program gcloud 412.0.0 bin/gcloud
+setup_program neovim 0.8.2 bin/nvim
+setup_program scmpuff 0.5.0

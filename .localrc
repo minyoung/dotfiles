@@ -1,5 +1,7 @@
 alias vim='vim -W ~/bin/Data/vim-logs/`date "+%Y%m%d-%H%M%S"`.log'
 
+add_PATH "$HOME/bin"
+
 function zle-line-init zle-keymap-select {
   vi_mode="$PR_CYAN${${KEYMAP/vicmd/[CMD]}/(main|viins)/[INS]}$PR_NO_COLOR "
   RPROMPT='${vi_mode}$PR_YELLOW$(date "+%F %T %Z")$PR_NO_COLOR'
