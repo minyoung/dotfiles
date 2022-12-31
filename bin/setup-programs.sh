@@ -105,6 +105,7 @@ neovim() {
     "https://github.com/neovim/neovim/releases/download/v${version}/nvim-${os}.tar.gz" \
     --output "${version}.tar.gz"
   tar --strip-components 1 --extract --file "${version}.tar.gz"
+  nvim +PlugInstall +qall
 }
 
 # setup_program bitwarden 1.14.0 bw

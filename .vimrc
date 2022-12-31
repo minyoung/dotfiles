@@ -1,57 +1,50 @@
 set nocompatible
 
-" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" Vundle, the plug-in manager for Vim
-" https://github.com/VundleVim/Vundle.vim
-Plugin 'VundleVim/Vundle.vim'
-
+call plug#begin()
 " Command-line fuzzy finder
 " https://github.com/junegunn/fzf
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
 " A tree explorer plugin for vim
 " https://github.com/scrooloose/nerdtree
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 
 " Vim plugin for intensely orgasmic commenting
 " https://github.com/scrooloose/nerdcommenter
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 
 " xoria256: Soft pastel gamma on dark background
 " https://github.com/noah/vim256-color.git
-Plugin 'noah/vim256-color'
+Plug 'noah/vim256-color'
 
 " Perform all your vim insert mode completions with Tab
 " https://github.com/ervandew/supertab
-" Plugin 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 
 " A Git wrapper so awesome, it should be illegal
 " https://github.com/tpope/vim-fugitive.git
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Quoting/parenthesizing made simple
 " https://github.com/tpope/vim-surround
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Intelligently reopen files at your last edit position
 " https://github.com/farmergreg/vim-lastplace.git
-Plugin 'farmergreg/vim-lastplace'
+Plug 'farmergreg/vim-lastplace'
 
 " Open the link of current line on github
 " https://github.com/ruanyl/vim-gh-line
-Plugin 'ruanyl/vim-gh-line'
+Plug 'ruanyl/vim-gh-line'
 
 " Intellisense engine for vim8 & neovim, full language server protocol support as VSCode
 " https://github.com/neoclide/coc.nvim
-Plugin 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" CocInstall coc-go
+" CocInstall coc-tsserver
 
-" Go development plugin for Vim
-" https://github.com/fatih/vim-go
-Plugin 'fatih/vim-go'
-
-call vundle#end()
+call plug#end()
 
 let mapleader=","
 
@@ -337,22 +330,12 @@ let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
 let NERDTreeConfirmDeleteBookmark=0
 
 " fzf
-nmap <leader>t :FZF<CR>
+nmap <leader>t :GFiles<CR>
 nmap <leader>m :Buffers<CR>
 
 " SuperTab
 " let g:SuperTabDefaultCompletionType='<c-n>'
 " let g:SuperTabLongestEnhanced=1
-
-" YCM
-set completeopt-=preview
-let g:ycm_add_preview_to_completeopt = 0
-
-" vim-go
-" disable vim-go :GoDef short cut (gd)
-" this is handled by LanguageClient [LC]
-let g:go_def_mapping_enabled = 0
-let g:go_fmt_command = "goimports"
 
 " CoC
 " set signcolumn=yes
@@ -398,47 +381,3 @@ end
 if filereadable(expand("$HOME/.vim/local.vimrc"))
   source $HOME/.vim/local.vimrc
 end
-
-" vim-go
-" disable vim-go :GoDef short cut (gd)
-" this is handled by LanguageClient [LC]
-let g:go_def_mapping_enabled = 0
-let g:go_fmt_command = "goimports"
-" autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-
-" CoC
-" set signcolumn=yes
-set updatetime=300
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-nmap <leader>rn <Plug>(coc-rename)

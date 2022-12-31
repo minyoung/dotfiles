@@ -50,7 +50,10 @@ symlink .vim/ftplugin
 symlink .vim/ftplugin.vim
 symlink .vim/plugin
 copy .vim/local.vimrc
-if [[ ! -d ".vim/bundle/Vundle.vim" ]]; then
-  git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
-  vim +VundleInstall +qall
-fi
+
+vim_plug=https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs $vim_plug
+vim +PlugInstall +qall
+
+curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim \
+  --create-dirs $vim_plug
