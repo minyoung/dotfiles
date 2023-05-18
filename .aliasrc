@@ -53,12 +53,12 @@ alias urldecode='python -c "import sys, urllib; print urllib.unquote_plus(sys.ar
 alias gri='git rebase --interactive'
 function gfr() {
   remote="${1:-origin}"
-  branch="${2:-master}"
+  branch="${2:-$(basename $(git symbolic-ref refs/remotes/origin/HEAD))}"
   git fetch "$remote" && git rebase "${remote}/${branch}"
 }
 function gfrp() {
   remote="${1:-origin}"
-  branch="${2:-master}"
+  branch="${2:-$(basename $(git symbolic-ref refs/remotes/origin/HEAD))}"
   git fetch "$remote" && git rebase "${remote}/${branch}" && git push "$remote" "HEAD:${branch}"
 }
 alias gciam='git commit --amend --no-edit'
