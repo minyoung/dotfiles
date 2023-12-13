@@ -1,8 +1,8 @@
-source_if_exists() { [[ -s "$1" ]] && source "$1" "" || true ; }
+source_if_exists() { [[ -s "$1" ]] && source "$1" "" || true; }
 
 # environment variables
 export PAGER=less
-export EDITOR=vim
+export EDITOR=nvim
 
 # force less to interpret raw control characters
 export LESS=-iR
@@ -16,11 +16,10 @@ export AWT_TOOLKIT=MToolkit
 # export _JAVA_AWT_WM_NONREPARENTING=1
 
 # shell helper/extensions
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-if which scmpuff > /dev/null; then eval "$(scmpuff init -s)"; fi
-source_if_exists "${HOME}/bin/Programs/fzf/current/shell/completion.$(basename $SHELL)"
-[[ -x /opt/homebrew/bin/brew ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+if which rbenv >/dev/null; then eval "$(rbenv init -)"; fi
+if which pyenv >/dev/null; then eval "$(pyenv init -)"; fi
+if which scmpuff >/dev/null; then eval "$(scmpuff init -s)"; fi
+if which brew >/dev/null; then eval "$(brew shellenv)"; fi
 
 # python/ruby package paths
 export PYTHONPATH=.:${HOME}/.python:${HOME}/.python/lib
@@ -34,9 +33,9 @@ export VIRTUALENV_DIR=${HOME}/.python/envs/
 export WORKON_HOME=${VIRTUALENV_DIR}
 source_if_exists "$HOME/.python/bin/virtualenvwrapper.sh"
 
-# my subset of virtualenv for ruby
-export GEMENV_HOME=${HOME}/.gem/envs
-source_if_exists ${GEMENV_HOME}/gemenv_bashrc
+# nvm
+export NVM_DIR="$HOME/.nvm"
+source_if_exists "$NVM_DIR/nvm.sh"
 
 # disable start/stop output control
 stty -ixon
@@ -52,14 +51,14 @@ alias urldecode='python -c "import sys, urllib; print urllib.unquote_plus(sys.ar
 # git
 alias gri='git rebase --interactive'
 function gfr() {
-  remote="${1:-origin}"
-  branch="${2:-$(basename $(git symbolic-ref refs/remotes/origin/HEAD))}"
-  git fetch "$remote" && git rebase "${remote}/${branch}"
+	remote="${1:-origin}"
+	branch="${2:-$(basename $(git symbolic-ref refs/remotes/origin/HEAD))}"
+	git fetch "$remote" && git rebase "${remote}/${branch}"
 }
 function gfrp() {
-  remote="${1:-origin}"
-  branch="${2:-$(basename $(git symbolic-ref refs/remotes/origin/HEAD))}"
-  git fetch "$remote" && git rebase "${remote}/${branch}" && git push "$remote" "HEAD:${branch}"
+	remote="${1:-origin}"
+	branch="${2:-$(basename $(git symbolic-ref refs/remotes/origin/HEAD))}"
+	git fetch "$remote" && git rebase "${remote}/${branch}" && git push "$remote" "HEAD:${branch}"
 }
 alias gciam='git commit --amend --no-edit'
 alias grbc='git rebase --continue'
@@ -93,49 +92,49 @@ alias amke='make'
 # do what I usually want to happen with regards to tmux, i.e.
 # fix ssh-agent forwarding or attach or create a new session
 ta() {
-  # reload some of the environment variables for tmux
-  # most notably this fixes ssh-agent forwarding
-  if [[ -n "$TMUX" ]]; then
-    fix_tmux_env
-    return
-  fi
-  tmux attach "$@" || tmux new-session 'echo "= New TMUX session =" ; zsh'
+	# reload some of the environment variables for tmux
+	# most notably this fixes ssh-agent forwarding
+	if [[ -n "$TMUX" ]]; then
+		fix_tmux_env
+		return
+	fi
+	tmux attach "$@" || tmux new-session 'echo "= New TMUX session =" ; zsh'
 }
 
 # reload some of the environment variables for tmux
 # most notably this fixes ssh-agent forwarding
 fix_tmux_env() {
-  if [[ -n $TMUX ]]; then
-    eval $(tmux showenv | grep -vE "^-" | awk -F = '{print "export "$1"=\""$2"\""}')
-    ssh-add -l
-  fi
+	if [[ -n $TMUX ]]; then
+		eval $(tmux showenv | grep -vE "^-" | awk -F = '{print "export "$1"=\""$2"\""}')
+		ssh-add -l
+	fi
 }
 
 # sometimes, you just want to keep on retrying until it succeeds
 just_do_it() {
-  echo "Just doing it: $@"
-  eval "$@"
-  while [[ $? != 0 ]]; do
-    sleep 2
-    echo "Just doing it again: $@"
-    eval "$@"
-  done
+	echo "Just doing it: $@"
+	eval "$@"
+	while [[ $? != 0 ]]; do
+		sleep 2
+		echo "Just doing it again: $@"
+		eval "$@"
+	done
 }
 
 # only add it if it's not already in PATH
 add_PATH() {
-  echo ":${PATH}:" | grep --silent ":$1:"
-  if [[ $? != 0 ]]; then
-    export PATH="${PATH}:$1"
-  fi
+	echo ":${PATH}:" | grep --silent ":$1:"
+	if [[ $? != 0 ]]; then
+		export PATH="${PATH}:$1"
+	fi
 }
 
 remove_PATH() {
-  WIP=":${PATH}:"
-  WIP="${WIP//:$1:/:}"
-  WIP="${WIP%:}"
-  WIP="${WIP#:}"
-  export PATH="${WIP}"
+	WIP=":${PATH}:"
+	WIP="${WIP//:$1:/:}"
+	WIP="${WIP%:}"
+	WIP="${WIP#:}"
+	export PATH="${WIP}"
 }
 
 source_if_exists "${HOME}/.sh/jump/jump.sh"

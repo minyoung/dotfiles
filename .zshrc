@@ -200,4 +200,5 @@ __git_files () {
     _wanted files expl "local files" _files
 }
 
-[[ -r ${HOME}/.aliasrc ]] && source ${HOME}/.aliasrc
+[ -f ${HOME}/.aliasrc ] && source ${HOME}/.aliasrc
+[ -f ${HOME}/.fzf.zsh ] && source ${HOME}/.fzf.zsh
