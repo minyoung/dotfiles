@@ -13,9 +13,9 @@ vim.opt.swapfile = false
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.breakindent = true
-vim.opt.shiftround = true
 
 vim.opt.expandtab = true
+vim.opt.shiftround = true
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.smarttab = true

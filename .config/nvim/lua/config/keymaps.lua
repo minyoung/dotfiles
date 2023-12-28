@@ -29,8 +29,3 @@ keymap.set("n", "<C-w><C-h>", "<C-w>10<")
 keymap.set("n", "<C-w><C-l>", "<C-w>10>")
 keymap.set("n", "<C-w><C-k>", "<C-w>5-")
 keymap.set("n", "<C-w><C-j>", "<C-w>5+")
-
-keymap.set("n", "<leader>n", ":Neotree toggle<Return>")
-
--- Depends on: smjonas/inc-rename.nvim
-keymap.set("n", "<leader>rn", ":IncRename ")

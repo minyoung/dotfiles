@@ -2,7 +2,9 @@ return {
 	-- Incremental rename
 	{
 		"smjonas/inc-rename.nvim",
-		cmd = "IncRename",
+		keys = {
+			{ "<leader>rn", "<cmd>IncRename<cr>", desc = "Rename identifier" },
+		},
 		config = true,
 	},
 
@@ -19,6 +21,7 @@ return {
 				noremap = true,
 				silent = true,
 				expr = false,
+				desc = "Refactor selected code",
 			},
 		},
 		opts = {},
@@ -52,76 +55,40 @@ return {
 	},
 
 	{
-		"simrat39/symbols-outline.nvim",
+		"stevearc/aerial.nvim",
+		event = "VeryLazy",
 		keys = {
-			{ "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" },
+			{ "<leader>cs", "<cmd>AerialToggle!<cr>", desc = "Symbols Outline" },
 		},
-		cmd = "SymbolsOutline",
-		opts = {
-			position = "right",
-		},
+		opts = {},
 	},
 
+	-- lualine integration
 	{
-		"nvim-cmp",
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-		},
+		"nvim-lualine/lualine.nvim",
+		optional = true,
 		opts = function(_, opts)
-			vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-			local cmp = require("cmp")
-			local defaults = require("cmp.config.default")()
-			return {
-				completion = {
-					completeopt = "menu,menuone,noinsert",
-				},
-				mapping = cmp.mapping.preset.insert({
-					["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					-- ["<C-Space>"] = cmp.mapping.complete(),
-					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-					["<S-CR>"] = cmp.mapping.confirm({
-						behavior = cmp.ConfirmBehavior.Replace,
-						select = true,
-					}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-					["<C-CR>"] = function(fallback)
-						cmp.abort()
-						fallback()
-					end,
-				}),
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "path" },
-					{ name = "buffer" },
-				}),
-				formatting = {
-					format = function(_, item)
-						local icons = require("lazyvim.config").icons.kinds
-						if icons[item.kind] then
-							item.kind = icons[item.kind] .. item.kind
-						end
-						return item
-					end,
-				},
-				experimental = {
-					ghost_text = {
-						hl_group = "CmpGhostText",
-					},
-				},
-				sorting = defaults.sorting,
-			}
-		end,
-		---@param opts cmp.ConfigSchema
-		config = function(_, opts)
-			for _, source in ipairs(opts.sources) do
-				source.group_index = source.group_index or 1
-			end
-			require("cmp").setup(opts)
+			table.insert(opts.sections.lualine_c, {
+				"aerial",
+				sep = " ", -- separator between symbols
+				sep_icon = "", -- separator between icon and symbol
+
+				-- The number of symbols to render top-down. In order to render only 'N' last
+				-- symbols, negative numbers may be supplied. For instance, 'depth = -1' can
+				-- be used in order to render only current symbol.
+				depth = 5,
+
+				-- When 'dense' mode is on, icons are not rendered near their symbols. Only
+				-- a single icon that represents the kind of current symbol is rendered at
+				-- the beginning of status line.
+				dense = false,
+
+				-- The separator to be used to separate symbols in dense mode.
+				dense_sep = ".",
+
+				-- Color the symbol icons.
+				colored = true,
+			})
 		end,
 	},
 }
