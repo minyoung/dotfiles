@@ -2,8 +2,16 @@ return {
 	-- Incremental rename
 	{
 		"smjonas/inc-rename.nvim",
+		enabled = true,
 		keys = {
-			{ "<leader>rn", "<cmd>IncRename<cr>", desc = "Rename identifier" },
+			{
+				"<leader>rn",
+				function()
+					return ":IncRename " .. vim.fn.expand("<cword>")
+				end,
+				desc = "Rename identifier",
+				expr = true,
+			},
 		},
 		config = true,
 	},
@@ -31,12 +39,6 @@ return {
 		"echasnovski/mini.comment",
 		event = "VeryLazy",
 		opts = {
-			options = {
-				custom_commentstring = function()
-					return require("ts_context_commentstring.internal").calculate_commentstring()
-						or vim.bo.commentstring
-				end,
-			},
 			mappings = {
 				-- Toggle comment (like `gcip` - comment inner paragraph) for both
 				-- Normal and Visual modes
@@ -71,7 +73,7 @@ return {
 			table.insert(opts.sections.lualine_c, {
 				"aerial",
 				sep = " ", -- separator between symbols
-				sep_icon = "", -- separator between icon and symbol
+				sep_icon = " ", -- separator between icon and symbol
 
 				-- The number of symbols to render top-down. In order to render only 'N' last
 				-- symbols, negative numbers may be supplied. For instance, 'depth = -1' can

@@ -4,11 +4,15 @@ return {
 		"williamboman/mason.nvim",
 		opts = function(_, opts)
 			vim.list_extend(opts.ensure_installed, {
+				-- "jsonlsp",
 				"shellcheck",
 				"shfmt",
 				"tailwindcss-language-server",
 				"typescript-language-server",
 				"css-lsp",
+				"python-lsp-server",
+				"rust-analyzer",
+				"rustfmt",
 			})
 		end,
 	},
@@ -17,10 +21,18 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		opts = {
-			inlay_hints = { enabled = true },
+			inlay_hints = { enabled = false },
 			---@type lspconfig.options
 			servers = {
 				cssls = {},
+				jsonls = {
+					settings = {
+						json = {
+							schemas = require("schemastore").json.schemas({}),
+							validate = { enable = true },
+						},
+					},
+				},
 				tailwindcss = {
 					root_dir = function(...)
 						return require("lspconfig.util").root_pattern(".git")(...)

@@ -11,7 +11,24 @@ return {
 		enabled = false,
 	},
 
-	-- Lua
+	{
+		"kristijanhusak/vim-dadbod-ui",
+		dependencies = {
+			{ "tpope/vim-dadbod", lazy = true },
+			{ "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+		},
+		cmd = {
+			"DBUI",
+			"DBUIToggle",
+			"DBUIAddConnection",
+			"DBUIFindBuffer",
+		},
+		init = function()
+			-- Your DBUI configuration
+			vim.g.db_ui_use_nerd_fonts = 1
+		end,
+	},
+
 	{
 		"folke/twilight.nvim",
 		event = "VeryLazy",
@@ -113,6 +130,14 @@ return {
 				Util.lsp.on_rename(data.old_name, data.new_name)
 			end)
 		end,
+	},
+
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		-- Optional dependencies
+		cmd = "Oil",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 
 	{

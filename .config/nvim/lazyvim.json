@@ -1,0 +1,10 @@
+{
+  "extras": [
+    "lazyvim.plugins.extras.ai.copilot"
+  ],
+  "news": {
+    "NEWS.md": "10960",
+    "doc/news.txt": "24447"
+  },
+  "version": 7
+}

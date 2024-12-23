@@ -13,3 +13,8 @@ vim.api.nvim_create_autocmd("WinEnter", {
 	pattern = "*",
 	command = "set cursorline",
 })
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*.script", "*.gui_script", "*.render_script" },
+	command = "set ft=lua",
+})
