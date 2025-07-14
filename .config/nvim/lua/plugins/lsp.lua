@@ -24,6 +24,7 @@ return {
 			inlay_hints = { enabled = false },
 			---@type lspconfig.options
 			servers = {
+				biome = {},
 				cssls = {},
 				jsonls = {
 					settings = {

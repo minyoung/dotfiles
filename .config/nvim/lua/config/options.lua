@@ -47,3 +47,6 @@ vim.opt.showbreak = "≈»"
 vim.opt.colorcolumn = "121"
 
 vim.opt.mouse = ""
+
+vim.opt.exrc = true
+vim.opt.secure = true
