@@ -50,3 +50,5 @@ vim.opt.mouse = ""
 
 vim.opt.exrc = true
 vim.opt.secure = true
+
+vim.opt.laststatus = 3

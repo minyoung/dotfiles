@@ -18,6 +18,7 @@ return {
 			integrations = {
 				aerial = true,
 				alpha = false,
+				bufferline = true,
 				cmp = true,
 				dashboard = true,
 				flash = false,
