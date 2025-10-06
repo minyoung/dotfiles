@@ -78,6 +78,7 @@ return {
 					lsp_format = "fallback", -- not recommended to change
 				},
 				formatters_by_ft = {
+					html = { "html_beautify" },
 					lua = { "stylua" },
 					javascript = { "prettier" },
 					javascriptreact = { "prettier" },
