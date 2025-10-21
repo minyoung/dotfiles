@@ -69,6 +69,7 @@ brew install fd
 brew install fzf
 brew install git-delta
 brew install jq
+brew install lsd
 brew install ripgrep
 brew install scmpuff
 brew install neovim

@@ -51,14 +51,14 @@ alias urldecode='python -c "import sys, urllib; print urllib.unquote_plus(sys.ar
 # git
 alias gri='git rebase --interactive'
 function gfr() {
-	remote="${1:-origin}"
-	branch="${2:-$(basename $(git symbolic-ref refs/remotes/origin/HEAD))}"
-	git fetch "$remote" && git rebase "${remote}/${branch}"
+  remote="${1:-origin}"
+  branch="${2:-$(basename $(git symbolic-ref refs/remotes/origin/HEAD))}"
+  git fetch "$remote" && git rebase "${remote}/${branch}"
 }
 function gfrp() {
-	remote="${1:-origin}"
-	branch="${2:-$(basename $(git symbolic-ref refs/remotes/origin/HEAD))}"
-	git fetch "$remote" && git rebase "${remote}/${branch}" && git push "$remote" "HEAD:${branch}"
+  remote="${1:-origin}"
+  branch="${2:-$(basename $(git symbolic-ref refs/remotes/origin/HEAD))}"
+  git fetch "$remote" && git rebase "${remote}/${branch}" && git push "$remote" "HEAD:${branch}"
 }
 alias gciam='git commit --amend --no-edit'
 alias grbc='git rebase --continue'
@@ -79,6 +79,7 @@ alias m='make'
 # alias j='jrun'
 
 # common flags
+alias ls=lsd
 alias ll='ls -l'
 alias la='ls -a'
 alias rr='rm -rf'
@@ -92,49 +93,49 @@ alias amke='make'
 # do what I usually want to happen with regards to tmux, i.e.
 # fix ssh-agent forwarding or attach or create a new session
 ta() {
-	# reload some of the environment variables for tmux
-	# most notably this fixes ssh-agent forwarding
-	if [[ -n "$TMUX" ]]; then
-		fix_tmux_env
-		return
-	fi
-	tmux attach "$@" || tmux new-session 'echo "= New TMUX session =" ; zsh'
+  # reload some of the environment variables for tmux
+  # most notably this fixes ssh-agent forwarding
+  if [[ -n "$TMUX" ]]; then
+    fix_tmux_env
+    return
+  fi
+  tmux attach "$@" || tmux new-session 'echo "= New TMUX session =" ; zsh'
 }
 
 # reload some of the environment variables for tmux
 # most notably this fixes ssh-agent forwarding
 fix_tmux_env() {
-	if [[ -n $TMUX ]]; then
-		eval $(tmux showenv | grep -vE "^-" | awk -F = '{print "export "$1"=\""$2"\""}')
-		ssh-add -l
-	fi
+  if [[ -n $TMUX ]]; then
+    eval $(tmux showenv | grep -vE "^-" | awk -F = '{print "export "$1"=\""$2"\""}')
+    ssh-add -l
+  fi
 }
 
 # sometimes, you just want to keep on retrying until it succeeds
 just_do_it() {
-	echo "Just doing it: $@"
-	eval "$@"
-	while [[ $? != 0 ]]; do
-		sleep 2
-		echo "Just doing it again: $@"
-		eval "$@"
-	done
+  echo "Just doing it: $@"
+  eval "$@"
+  while [[ $? != 0 ]]; do
+    sleep 2
+    echo "Just doing it again: $@"
+    eval "$@"
+  done
 }
 
 # only add it if it's not already in PATH
 add_PATH() {
-	echo ":${PATH}:" | grep --silent ":$1:"
-	if [[ $? != 0 ]]; then
-		export PATH="${PATH}:$1"
-	fi
+  echo ":${PATH}:" | grep --silent ":$1:"
+  if [[ $? != 0 ]]; then
+    export PATH="${PATH}:$1"
+  fi
 }
 
 remove_PATH() {
-	WIP=":${PATH}:"
-	WIP="${WIP//:$1:/:}"
-	WIP="${WIP%:}"
-	WIP="${WIP#:}"
-	export PATH="${WIP}"
+  WIP=":${PATH}:"
+  WIP="${WIP//:$1:/:}"
+  WIP="${WIP%:}"
+  WIP="${WIP#:}"
+  export PATH="${WIP}"
 }
 
 source_if_exists "${HOME}/.sh/jump/jump.sh"
