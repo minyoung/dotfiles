@@ -73,6 +73,8 @@ brew install lsd
 brew install ripgrep
 brew install scmpuff
 brew install neovim
+brew install unar
+brew install ouch
 
 # setup_program bitwarden 1.14.0 bw
 # setup_program docker-compose 1.28.2
