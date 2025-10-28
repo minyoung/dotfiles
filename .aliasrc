@@ -55,14 +55,16 @@ function gfr() {
   branch="${2:-$(basename $(git symbolic-ref refs/remotes/origin/HEAD))}"
   git fetch "$remote" && git rebase "${remote}/${branch}"
 }
-function gfrp() {
-  remote="${1:-origin}"
-  branch="${2:-$(basename $(git symbolic-ref refs/remotes/origin/HEAD))}"
-  git fetch "$remote" && git rebase "${remote}/${branch}" && git push "$remote" "HEAD:${branch}"
-}
 alias gciam='git commit --amend --no-edit'
 alias grbc='git rebase --continue'
 alias gsu='git submodule update --init --recursive'
+alias gf='git fetch'
+alias gp='git push'
+function gpup() {
+  remote="${1:-origin}"
+  branch="${2:-$(git symbolic-ref --short HEAD)}"
+  git push --set-upstream "$remote" "HEAD:${branch}"
+}
 
 # kubectl
 alias kg='kubectl get'
