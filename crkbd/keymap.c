@@ -162,62 +162,21 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
   }
 }
 
-/*
-bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
+uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_keycode) {
   switch (keycode) {
     case _LC_GRV:
-      return false;
+    case _L1_SPC:
+    case _LG_ESC:
+    case _RG_ENT:
+    case _L2_SPC:
+      return 0;
     default:
-      return true;
+      if (is_flow_tap_key(keycode) && is_flow_tap_key(prev_keycode)) {
+        return FLOW_TAP_TERM;
+      }
+      return 0;
   }
 }
-*/
-
-/*
-bool lower_interrupted = false;
-bool raise_interrupted = false;
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  // unfortunately LT() doesn't use `get_ignore_mod_tap_interrupt`, so we'll
-  // have to emulate it's logic manually here
-  // https://github.com/qmk/qmk_firmware/issues/303
-  // https://github.com/yroeht/qmk_firmware/commit/cc78964f531fff7eb0ebc4c4e75bc8bc76386ec2
-  switch (keycode) {
-    case LT_LOWER:
-      if (record->event.pressed) {
-        lower_interrupted = false;
-        layer_on(_LOWER);
-      } else {
-        if (!lower_interrupted) {
-          register_code(KC_SPC);
-          unregister_code(KC_SPC);
-        }
-        layer_off(_LOWER);
-      }
-      return false;
-      break;
-    case LT_RAISE:
-      if (record->event.pressed) {
-        raise_interrupted = false;
-        layer_on(_RAISE);
-      } else {
-        if (!raise_interrupted) {
-          register_code(KC_SPC);
-          unregister_code(KC_SPC);
-        }
-        layer_off(_RAISE);
-      }
-      return false;
-      break;
-    default:
-      if (record->event.pressed) {
-        lower_interrupted = true;
-        raise_interrupted = true;
-      }
-  }
-  return true;
-}
-*/
 
 typedef enum {
   TD_NONE,
