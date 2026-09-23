@@ -48,7 +48,7 @@ function precmd {
         return
     fi
 
-    count-commands.py log_command_end $LAST_COMMAND_ID
+    count-commands log_command_end $LAST_COMMAND_ID
     unset LAST_COMMAND_ID
 }
 
@@ -60,7 +60,7 @@ function preexec {
     # last_command_time="`date +%s`"
 
     export LAST_COMMAND_ID=$(uuidgen)
-    count-commands.py log_command $LAST_COMMAND_ID $@
+    count-commands log_command $LAST_COMMAND_ID $@
 }
 
 u () {

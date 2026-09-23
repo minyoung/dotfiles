@@ -1,15 +1,15 @@
 #!/bin/bash
 
 copy() {
-	cp -i "${dotfiles}/$1" "$1"
+  cp -i "${dotfiles}/$1" "$1"
 }
 
 symlink() {
-	relative_path=$(dirname "$1")
-	if [[ "$relative_path" != "." ]]; then
-		relative_path=$(echo "$relative_path" | sed -E "s|[^/]+|..|g")
-	fi
-	ln -si "${relative_path}/${dotfiles}/$1" "$1"
+  relative_path=$(dirname "$1")
+  if [[ "$relative_path" != "." ]]; then
+    relative_path=$(echo "$relative_path" | sed -E "s|[^/]+|..|g")
+  fi
+  ln -si "${relative_path}/${dotfiles}/$1" "$1"
 }
 
 current_dir=$(dirname "$0")
@@ -39,7 +39,8 @@ copy .localrc
 
 # bin
 mkdir -p bin
-symlink bin/count-commands.py
+make -C "${dotfiles}/bin"
+$HOME/bin/count-commands init
 
 # vim
 mkdir -p .config
