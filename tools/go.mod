@@ -1,8 +1,11 @@
-module dotfiles-bin
+module dotfiles
 
 go 1.26.3
 
-require modernc.org/sqlite v1.58.0
+require (
+	gopkg.in/yaml.v3 v3.0.1
+	modernc.org/sqlite v1.58.0
+)
 
 require (
 	github.com/dustin/go-humanize v1.0.1 // indirect

@@ -2,9 +2,8 @@
 
 mkdir -p Programs
 
-current_dir=$(dirname "$0")
-dotfiles="${current_dir#./}"
-dotfiles="${dotfiles%/*}"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+dotfiles="$(dirname "$script_dir")"
 
 setup_program() {
   program="$1"
@@ -47,5 +46,3 @@ brew install ouch
 # brew install --cask gcloud-cli
 
 brew install go
-make -C "${dotfiles}/bin"
-$HOME/bin/count-commands init

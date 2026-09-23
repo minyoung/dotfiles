@@ -38,14 +38,14 @@ func DBPath() string {
 func FormatDuration(duration float64) string {
 	var b strings.Builder
 	if duration > 3600 {
-		b.WriteString(fmt.Sprintf("%dh ", int(duration/3600)))
+		fmt.Fprintf(&b, "%dh ", int(duration/3600))
 		duration = math.Mod(duration, 3600)
 	}
 	if duration > 60 {
-		b.WriteString(fmt.Sprintf("%dm ", int(duration/60)))
+		fmt.Fprintf(&b, "%dm ", int(duration/60))
 		duration = math.Mod(duration, 60)
 	}
-	b.WriteString(fmt.Sprintf("%.2fs", duration))
+	fmt.Fprintf(&b, "%.2fs", duration)
 	return b.String()
 }
 
@@ -90,7 +90,7 @@ func GetDB() (*sql.DB, error) {
 		return nil, err
 	}
 	if _, err := db.Exec("PRAGMA busy_timeout = 300"); err != nil {
-		db.Close()
+		_ = db.Close()
 		return nil, err
 	}
 	return db, nil

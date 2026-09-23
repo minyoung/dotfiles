@@ -45,8 +45,6 @@ alias dos2unix='recode dos/CR-LF..l1'
 alias unix2win='recode l1..windows-1250'
 alias unix2dos='recode l1..dos/CR-LF'
 alias clip='nc localhost 8400'
-alias urlencode='python -c "import sys, urllib; print urllib.quote_plus(sys.argv[1])"'
-alias urldecode='python -c "import sys, urllib; print urllib.unquote_plus(sys.argv[1])"'
 
 # git
 alias gri='git rebase --interactive'
@@ -129,6 +127,13 @@ add_PATH() {
   echo ":${PATH}:" | grep --silent ":$1:"
   if [[ $? != 0 ]]; then
     export PATH="${PATH}:$1"
+  fi
+}
+
+prefix_PATH() {
+  echo ":${PATH}:" | grep --silent ":$1:"
+  if [[ $? != 0 ]]; then
+    export PATH="$1:${PATH}"
   fi
 }
 

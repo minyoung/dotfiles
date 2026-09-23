@@ -5,16 +5,11 @@ copy() {
 }
 
 symlink() {
-  relative_path=$(dirname "$1")
-  if [[ "$relative_path" != "." ]]; then
-    relative_path=$(echo "$relative_path" | sed -E "s|[^/]+|..|g")
-  fi
-  ln -si "${relative_path}/${dotfiles}/$1" "$1"
+  ln -si "${dotfiles}/$1" "$1"
 }
 
-current_dir=$(dirname "$0")
-dotfiles="${current_dir#./}"
-dotfiles="${dotfiles%/*}"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" && pwd)"
+dotfiles="$(dirname "$script_dir")"
 
 symlink .inputrc
 symlink .tmux.conf

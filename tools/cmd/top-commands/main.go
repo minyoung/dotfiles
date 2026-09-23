@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"dotfiles-bin/internal/commandlog"
+	"dotfiles/internal/commandlog"
 
 	_ "modernc.org/sqlite"
 )
@@ -51,7 +51,7 @@ func top(db *sql.DB) error {
 	if err != nil {
 		return err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 
 	printTableHeader("count", "     %", "command")
 	for rows.Next() {
@@ -75,7 +75,7 @@ func sub(db *sql.DB, command string, filters []string) error {
 	if err != nil {
 		return err
 	}
-	defer rows.Close()
+	defer func() { _ = rows.Close() }()
 
 	counts := map[string]int{}
 	total := 0
@@ -138,7 +138,7 @@ func main() {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 
 	if len(args) == 0 {
 		err = top(db)

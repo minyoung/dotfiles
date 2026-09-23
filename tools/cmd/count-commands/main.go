@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"dotfiles-bin/internal/commandlog"
+	"dotfiles/internal/commandlog"
 )
 
 func now() float64 {
@@ -34,7 +34,7 @@ func initDB() {
 		printError(err)
 		os.Exit(1)
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 
 	if err := commandlog.CreateCommandTable(db); err != nil {
 		printError(err)
@@ -56,7 +56,7 @@ func logCommand(args []string) {
 			printError(err)
 			return
 		}
-		defer db.Close()
+		defer func() { _ = db.Close() }()
 
 		if err := commandlog.InsertCommand(db, uuid, timestamp, userString, expandedString); err != nil {
 			printError(err)
@@ -116,7 +116,7 @@ func logCommandEnd(args []string) {
 		printError(err)
 		return
 	}
-	defer db.Close()
+	defer func() { _ = db.Close() }()
 
 	row, err := commandlog.UpdateCommandEnd(db, uuid, timestamp)
 	if err != nil {
