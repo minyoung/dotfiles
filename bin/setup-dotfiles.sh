@@ -18,11 +18,11 @@ dotfiles="${dotfiles%/*}"
 
 symlink .inputrc
 symlink .tmux.conf
+copy .tmux.local.conf
 
 # git
 symlink .gitconfig
 copy .gitconfig.local
-symlink .gitaliases
 
 # shell
 symlink .aliasrc
@@ -39,8 +39,6 @@ copy .localrc
 
 # bin
 mkdir -p bin
-make -C "${dotfiles}/bin"
-$HOME/bin/count-commands init
 
 # vim
 mkdir -p .config
