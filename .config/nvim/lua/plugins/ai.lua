@@ -6,14 +6,48 @@ return {
 		config = function()
 			require("minuet").setup({
 				provider = "openai_fim_compatible",
-				n_completions = 1,
-				context_window = 512,
 				provider_options = {
+					gemini = {
+						model = "gemini-3.1-flash-lite",
+						optional = {
+							generationConfig = {
+								maxOutputTokens = 256,
+								thinkingConfig = {
+									-- thinkingBudget = 0,
+									thinkingLevel = "minimal",
+								},
+							},
+							safetySettings = {
+								{
+									category = "HARM_CATEGORY_DANGEROUS_CONTENT",
+									threshold = "BLOCK_ONLY_HIGH",
+								},
+							},
+						},
+					},
+
 					openai_fim_compatible = {
 						api_key = "TERM",
 						name = "Ollama",
 						end_point = "http://localhost:11434/v1/completions",
-						model = "qwen2.5-coder:7b",
+						model = "qwen2.5-coder:1.5b",
+					},
+
+					openai_compatible = {
+						api_key = "OPENROUTER_API_KEY",
+						name = "OpenRouter",
+						end_point = "https://openrouter.ai/api/v1/chat/completions",
+						model = "deepseek/deepseek-v4-flash:free",
+						optional = {
+							max_tokens = 56,
+							top_p = 0.9,
+							provider = {
+								-- Prioritize throughput for faster completion
+								sort = "throughput",
+							},
+							-- disable thinking to avoid first token latency
+							reasoning_effort = "none",
+						},
 					},
 				},
 			})
@@ -64,15 +98,15 @@ return {
 			rules = {
 				prd = {
 					description = "create-prd",
-					files = { ".cursor/rules/create-prd.md" },
+					files = { "/Users/minyoung/dotfiles/rules/create-prd.md" },
 				},
 				tasks = {
 					description = "generate-tasks",
-					files = { ".cursor/rules/generate-tasks.md" },
+					files = { "/Users/minyoung/dotfiles/rules/generate-tasks.md" },
 				},
 				process = {
 					description = "process-task-list",
-					files = { ".cursor/rules/process-task-list.md" },
+					files = { "/Users/minyoung/dotfiles/rules/process-task-list.md" },
 				},
 			},
 			strategies = {
@@ -100,6 +134,25 @@ return {
 									default = "gemma-4-31b-it",
 									choices = { "gemma-4-31b-it", "gemma-4-26b-a4b-it" },
 								},
+							},
+						})
+					end,
+				},
+				ollama = function()
+					return require("codecompanion.adapters").extend("ollama", {
+						schema = {
+							model = {
+								default = "deepcoder",
+								choices = { "gemma3", "qwen2.5-coder", "gpt-oss", "deepcoder" },
+							},
+						},
+					})
+				end,
+				acp = {
+					claude_code = function()
+						return require("codecompanion.adapters").extend("claude_code", {
+							env = {
+								CLAUDE_CODE_OAUTH_TOKEN = "CLAUDE_CODE_OAUTH_TOKEN",
 							},
 						})
 					end,
@@ -142,9 +195,9 @@ return {
 						auto_generate_title = true,
 						title_generation_opts = {
 							---Adapter for generating titles (defaults to current chat adapter)
-							adapter = nil, -- "copilot"
+							adapter = "gemma", -- "copilot"
 							---Model for generating titles (defaults to current chat model)
-							model = nil, -- "gpt-4o"
+							model = "gemma-4-26b-a4b-it", -- "gpt-4o"
 							---Number of user prompts after which to refresh the title (0 to disable)
 							refresh_every_n_prompts = 0, -- e.g., 3 to refresh after every 3rd user prompt
 							---Maximum number of times to refresh the title (default: 3)
